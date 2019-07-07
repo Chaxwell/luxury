@@ -1,0 +1,12 @@
+authentification:
+    termsOfUse_start:  J'ai lu et j'accepte les
+    termsOfUse_end: Conditions Générales d'Utilisation
+    passwordValidation: Confirmez le mot de passe
+    password: Mot de passe
+    email: Email
+    keepLogged: Gardez-moi connecté
+    forgotPassword: Mot de passe oublié ?
+    loginToAccount: Se connecter à son compte
+    login: Connexion
+    newToLuxuryServices_start: Nouveau sur Luxury Services ?
+    newToLuxuryServices_end: Nous rejoindre, c'est permettre à notre expertise en recrutement et à notre accompagnement personnel de faire ressortir le meilleur de vous en vous proposant la position la plus adaptée.

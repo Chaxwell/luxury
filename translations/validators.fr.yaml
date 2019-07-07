@@ -1,0 +1,10 @@
+entity:
+    user:
+        emailAlreadyUsed: Cet email est déjà utilisé.
+        emailNotValid: L'email '{{ value }}' n'est pas valide.
+        emailBlank: Veuillez renseigner un email.
+        passwordMinLength: Votre mot de passe doit être de {{ limit }} caractères minimum.
+        passwordMaxLength: Votre mot de passe doit être de {{ limit }} caractères maximum.
+        passwordBlank: Veuillez renseigner un mot de passe.
+        passwordCompromised: Ce mot de passe est connu des bases de données piratées, veuillez renseigner un autre mot de passe.
+        passwordsDifferent: Les mots de passe ne sont pas identiques.

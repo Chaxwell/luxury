@@ -1,0 +1,32 @@
+authentification:
+    termsOfUse_start: I have read and I accept the
+    termsOfUse_end: Terms Of Use
+    passwordValidation: Confirm password
+    password: Password
+    email: Email
+    keepLogged: Keep me logged in
+    forgotPassword: Forgot your password?
+    loginToAccount: Log in to your account
+    login: Login
+    newToLuxuryServices_start: New to Luxury Services?
+    newToLuxuryServices_end: Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.
+    createNewAccount: Create a new account
+    createAccount: Create an account
+    alreadyHaveAccount: Already have an account? Click here
+
+navigation:
+    home: Home
+    jobOffers: Job Offers
+    aboutUs: About Us
+    contact: Contact
+    profile: Profile
+    logout: Logout
+    login: Login
+    signUp: Sign Up
+
+footer:
+    intro: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
+    home: Home
+    jobOffers: Job Offers
+    aboutUs: About Us
+    contact: Contact

@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div
+        class="base">
+
+        <!-- Page -->
+        <div
+            class="page">
+
+            <!-- Page Header-->
+            <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="white-text">Login</h2>
+                            <span class="white-text">Welcome on board</span>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="#!">Home</a>
+                                </li>
+                                <li class="active">Login</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Page Content-->
+            <section class="section-padding gray-bg log-section">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="card card-panel">
+                                <h3 class="text-extrabold">{{ 'authentification.loginToAccount'|trans }}</h3>
+                                <form action="{{ path('auth_login') }}" accept-char="UTF-8" autocomplete="off" data-parsley-validate id="login-form" method="post" role="form">
+                                    <div class="input-field">
+                                        <input autofocus data-parsley-error-message="A valid email address is required." data-parsley-trigger="change" id="email" name="email" required type="email" value="">
+                                        <label for="email">{{ 'authentification.email'|trans }}</label>
+                                        <span class="help-block">Type your email address.</span>
+                                    </div>
+                                    <div class="input-field">
+                                        <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-trigger="change" id="password" name="password" required type="password">
+                                        <label for="password">{{ 'authentification.password'|trans }}</label>
+                                        <i class="fa fa-eye show-password"></i>
+                                        <span class="help-block">Type your password.</span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <input id="keep-logged" name="keepLogged" type="checkbox" value="1"/>
+                                        <label for="keep-logged">{{ 'authentification.keepLogged'|trans }}</label>
+                                    </div>
+                                    <button class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20" type="submit">{{ 'authentification.login'|trans }}</button>
+                                    <div class="links">
+                                        <a href="#!">{{ 'authentification.forgotPassword'|trans }}</a>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-8">
+                            <div class="card card-panel ptb-70 text-center">
+                                <div class="promo-info">
+                                    <h1 class="text-uppercase mb-30 text-extrabold font-30">{{ 'authentification.newToLuxuryServices_start'|trans }}</h1>
+                                    <p class="width-60 mb-30">{{ 'authentification.newToLuxuryServices_end'|trans }}</p>
+                                    <a class="btn btn-lg gradient secondary waves-effect waves-light mt-20" href="{{ path('auth_register') }}">
+                                        <span>Sign-up<strong>
+                                                Free</strong>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

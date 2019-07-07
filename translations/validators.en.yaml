@@ -1,0 +1,10 @@
+entity:
+    user:
+        emailAlreadyUsed: This email already exists.
+        emailNotValid: The email '{{ value }}' isn't valid.
+        emailBlank: Please fill in an email.
+        passwordMinLength: Your password must be at least {{ limit }} characters long.
+        passwordMaxLength: Your password must be maximum {{ limit }} characters long.
+        passwordBlank: Please fill in a password.
+        passwordCompromised: This password is known from hacked databases, please fill in another password.
+        passwordsDifferent: Passwords are different.

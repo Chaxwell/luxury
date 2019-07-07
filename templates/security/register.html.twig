@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div
+        class="base">
+
+        <!-- Page -->
+        <div
+            class="page">
+
+            <!-- Page Header-->
+            <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="white-text">Register</h2>
+                            <span class="white-text">Welcome on board</span>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="#!">Home</a>
+                                </li>
+                                <li class="active">Register</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Page Content-->
+            <section class="section-padding gray-bg log-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 card card-panel">
+                            <h3 class="text-extrabold">{{ 'authentification.createNewAccount'|trans }}</h3>
+                            <form action="{{ path('auth_register') }}" accept-char="UTF-8" autocomplete="off" data-parsley-validate id="register-form" method="post" role="form">
+                                <div class="input-field">
+                                    <input id="email" name="registration[email]" required type="email" value="">
+                                    <label for="email">Email</label>
+                                    <span class="help-block">Type your email address.</span>
+                                    {# {{ form_row(form.email, {label: 'authentification.email'}) }} #}
+                                </div>
+                                <div class="input-field">
+                                    <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-minlength="6" data-parsley-trigger="change" id="password" name="registration[password]" required type="password" value="">
+                                    <label for="password">Password</label>
+                                    <i class="fa fa-eye show-password"></i>
+                                    <span class="help-block">Type your password.</span>
+                                    {# {{ form_row(form.password, {label: 'authentification.password'}) }} #}
+                                </div>
+                                <div class="input-field">
+                                    <input data-parsley-equalto="#password" data-parsley-error-message="Password does not match." data-parsley-trigger="change" id="password_confirmation" name="passwordValidation" required type="password" value="">
+                                    <label for="password_confirmation">Confirm Password</label>
+                                    <i class="fa fa-eye show-password"></i>
+                                    <span class="help-block">Confirm your password.</span>
+                                    {# {{ form_row(form.passwordValidation, {label: 'authentification.passwordValidation'}) }} #}
+                                </div>
+                                <div class="checkbox">
+                                    <input id="terms-of-use" name="termsOfUse" required type="checkbox" value="1">
+                                    <label for="terms-of-use">{{ 'authentification.termsOfUse_start'|trans }}
+                                        <a href="#!" target="_blank">{{ 'authentification.termsOfUse_end'|trans }}</a>
+                                    </label>
+                                </div>
+
+                                <button class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20" type="submit">{{ 'authentification.createAccount'|trans }}</button>
+                                <div class="links">
+                                    <a href="{{ path('auth_login') }}">{{ 'authentification.alreadyHaveAccount'|trans }}</a>
+                                </div>
+
+                                {{ form_widget(form._token) }}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
