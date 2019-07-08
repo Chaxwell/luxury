@@ -17,6 +17,18 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+        $this->em = $this->getEntityManager();
+        $this->connectionManager = $this->getEntityManager()->getConnection();
+        $this->userTable = $this->em->getClassMetadata(User::class)->getTableName();
+    }
+
+    public function countCandidates()
+    {
+        $listOfCandidates = $this->connectionManager
+            ->prepare("SELECT COUNT(*) as count FROM {$this->userTable}");
+        $listOfCandidates->execute();
+
+        return $listOfCandidates->fetch()['count'];
     }
 
     // /**

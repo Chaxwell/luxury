@@ -17,8 +17,19 @@ class JobOfferRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, JobOffer::class);
+        $this->em = $this->getEntityManager();
+        $this->connectionManager = $this->getEntityManager()->getConnection();
+        $this->jobOfferTable = $this->em->getClassMetadata(JobOffer::class)->getTableName();
     }
 
+    public function countJobOffers()
+    {
+        $listOfJobOffers = $this->connectionManager
+            ->prepare("SELECT COUNT(*) as count FROM {$this->jobOfferTable}");
+        $listOfJobOffers->execute();
+
+        return $listOfJobOffers->fetch()['count'];
+    }
     // /**
     //  * @return JobOffer[] Returns an array of JobOffer objects
     //  */

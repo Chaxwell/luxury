@@ -17,6 +17,18 @@ class CandidatureRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Candidature::class);
+        $this->em = $this->getEntityManager();
+        $this->connectionManager = $this->getEntityManager()->getConnection();
+        $this->candidatureTable = $this->em->getClassMetadata(Candidature::class)->getTableName();
+    }
+
+    public function countCandidatures()
+    {
+        $listOfCandidatures = $this->connectionManager
+            ->prepare("SELECT COUNT(*) as count FROM {$this->candidatureTable}");
+        $listOfCandidatures->execute();
+
+        return $listOfCandidatures->fetch()['count'];
     }
 
     // /**

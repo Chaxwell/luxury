@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Client;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Client|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +17,18 @@ class ClientRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Client::class);
+        $this->em = $this->getEntityManager();
+        $this->connectionManager = $this->getEntityManager()->getConnection();
+        $this->clientTable = $this->em->getClassMetadata(Client::class)->getTableName();
+    }
+
+    public function countClients()
+    {
+        $listOfClients = $this->connectionManager
+            ->prepare("SELECT COUNT(*) as count FROM {$this->clientTable}");
+        $listOfClients->execute();
+
+        return $listOfClients->fetch()['count'];
     }
 
     // /**

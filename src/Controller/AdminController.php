@@ -10,6 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Repository\ClientRepository;
+use App\Repository\JobOfferRepository;
+use App\Repository\CandidatureRepository;
 
 /**
  * @Route("/admin")
@@ -19,9 +22,19 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="admin_dashboard", methods={"GET"})
      */
-    public function dashboard()
+    public function dashboard(UserRepository $userRepository, ClientRepository $clientRepository, JobOfferRepository $jobOfferRepository, CandidatureRepository $candidatureRepository)
     {
-        return $this->render('admin/index.html.twig');
+        $numberOfCandidates = $userRepository->countCandidates();
+        $numberOfClients = $clientRepository->countClients();
+        $numberOfJobOffers = $jobOfferRepository->countJobOffers();
+        $numberOfCandidatures = $candidatureRepository->countCandidatures();
+
+        return $this->render('admin/index.html.twig', [
+            'numberOfCandidates' => $numberOfCandidates,
+            'numberOfClients' => $numberOfClients,
+            'numberOfJobOffers' => $numberOfJobOffers,
+            'numberOfCandidatures' => $numberOfCandidatures,
+        ]);
     }
 
     /**
