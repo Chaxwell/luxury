@@ -512,6 +512,10 @@ class User implements UserInterface
 
     public function getRoles(): array
     {
+        if ($this->isAdmin == 1) {
+            return ['ROLE_USER', 'ROLE_ADMIN'];
+        }
+
         return ['ROLE_USER'];
     }
 

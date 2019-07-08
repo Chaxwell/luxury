@@ -13,13 +13,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="white-text">Register</h2>
-                            <span class="white-text">Welcome on board</span>
+                            <h2 class="white-text">{{ 'authentification.register'|trans }}</h2>
+                            <span class="white-text">{{ 'authentification.welcome'|trans }}</span>
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="#!">Home</a>
+                                    <a href="{{ path('home_index') }}">{{ 'authentification.home'|trans }}</a>
                                 </li>
-                                <li class="active">Register</li>
+                                <li class="active">{{ 'authentification.register'|trans }}</li>
                             </ol>
                         </div>
                     </div>
@@ -36,20 +36,20 @@
                             <form action="{{ path('auth_register') }}" accept-char="UTF-8" autocomplete="off" data-parsley-validate id="register-form" method="post" role="form">
                                 <div class="input-field">
                                     <input id="email" name="registration[email]" required type="email" value="">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ 'authentification.email'|trans }}</label>
                                     <span class="help-block">Type your email address.</span>
                                     {# {{ form_row(form.email, {label: 'authentification.email'}) }} #}
                                 </div>
                                 <div class="input-field">
                                     <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-minlength="6" data-parsley-trigger="change" id="password" name="registration[password]" required type="password" value="">
-                                    <label for="password">Password</label>
+                                    <label for="password">{{ 'authentification.password'|trans }}</label>
                                     <i class="fa fa-eye show-password"></i>
                                     <span class="help-block">Type your password.</span>
                                     {# {{ form_row(form.password, {label: 'authentification.password'}) }} #}
                                 </div>
                                 <div class="input-field">
                                     <input data-parsley-equalto="#password" data-parsley-error-message="Password does not match." data-parsley-trigger="change" id="password_confirmation" name="passwordValidation" required type="password" value="">
-                                    <label for="password_confirmation">Confirm Password</label>
+                                    <label for="password_confirmation">{{ 'authentification.passwordValidation'|trans }}</label>
                                     <i class="fa fa-eye show-password"></i>
                                     <span class="help-block">Confirm your password.</span>
                                     {# {{ form_row(form.passwordValidation, {label: 'authentification.passwordValidation'}) }} #}

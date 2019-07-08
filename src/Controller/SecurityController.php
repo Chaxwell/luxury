@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="auth_login", methods={"GET"})
+     * @Route("/login", name="auth_login", methods={"GET","POST"})
      */
     public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {

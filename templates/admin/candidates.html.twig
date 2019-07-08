@@ -1,0 +1,70 @@
+{% extends "admin.html.twig" %}
+
+{% block title %}Candidates | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.candidates'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Last name</th>
+                        <th>First name</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Job sector</th>
+                        <th>Disponibility</th>
+                        <th>Register date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CHAXEL</td>
+                        <td>Christophe</td>
+                        <td>chaxel.christophe@gmail.com</td>
+                        <td>Roanne</td>
+                        <td>Computer science</td>
+                        <td>Yes</td>
+                        <td>2019/07/08</td>
+                        <td><a href="#"><i data-feather="plus"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>CHAXEL</td>
+                        <td>Christophe</td>
+                        <td>chaxel.christophe@gmail.com</td>
+                        <td>Roanne</td>
+                        <td>Computer science</td>
+                        <td>Yes</td>
+                        <td>2019/07/08</td>
+                        <td><a href="#"><i data-feather="plus"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>CHAXEL</td>
+                        <td>Christophe</td>
+                        <td>chaxel.christophe@gmail.com</td>
+                        <td>Roanne</td>
+                        <td>Computer science</td>
+                        <td>Yes</td>
+                        <td>2019/07/08</td>
+                        <td><a href="#"><i data-feather="plus"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

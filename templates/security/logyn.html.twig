@@ -13,13 +13,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="white-text">Login</h2>
-                            <span class="white-text">Welcome on board</span>
+                            <h2 class="white-text">{{ 'authentification.login'|trans }}</h2>
+                            <span class="white-text">{{ 'authentification.welcome'|trans }}</span>
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="#!">Home</a>
+                                    <a href="{{ path('home_index') }}">{{ 'authentification.home'|trans }}</a>
                                 </li>
-                                <li class="active">Login</li>
+                                <li class="active">{{ 'authentification.login'|trans }}</li>
                             </ol>
                         </div>
                     </div>
@@ -35,12 +35,12 @@
                                 <h3 class="text-extrabold">{{ 'authentification.loginToAccount'|trans }}</h3>
                                 <form action="{{ path('auth_login') }}" accept-char="UTF-8" autocomplete="off" data-parsley-validate id="login-form" method="post" role="form">
                                     <div class="input-field">
-                                        <input autofocus data-parsley-error-message="A valid email address is required." data-parsley-trigger="change" id="email" name="email" required type="email" value="">
+                                        <input autofocus data-parsley-error-message="A valid email address is required." data-parsley-trigger="change" id="email" name="_username" required type="email" value="">
                                         <label for="email">{{ 'authentification.email'|trans }}</label>
                                         <span class="help-block">Type your email address.</span>
                                     </div>
                                     <div class="input-field">
-                                        <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-trigger="change" id="password" name="password" required type="password">
+                                        <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-trigger="change" id="password" name="_password" required type="password">
                                         <label for="password">{{ 'authentification.password'|trans }}</label>
                                         <i class="fa fa-eye show-password"></i>
                                         <span class="help-block">Type your password.</span>

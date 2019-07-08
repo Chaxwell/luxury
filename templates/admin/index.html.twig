@@ -1,0 +1,80 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Dashboard |
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {# ---
+    layout: examples
+    title: Dashboard Template
+    extra_css: "dashboard.css"
+    extra_js:
+        - "https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"
+        - "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
+        - "dashboard.js"
+    ---  #}
+
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.dashboard'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        <section class="dashboard d-flex">
+            <div class="left">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header center font-weight-bold">{{ 'admin.candidates'|trans }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title center">
+                            <b class="number">245</b>
+                            candidates total.</h5>
+                        <hr>
+                        {# <p class="card-text"></p> #}
+                    </div>
+                </div>
+
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header center font-weight-bold">{{ 'admin.jobOffers'|trans }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title center">
+                            <b class="number">38</b>
+                            job offers total.</h5>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header center font-weight-bold">Clients</div>
+                    <div class="card-body">
+                        <h5 class="card-title center">
+                            <b class="number">12</b>
+                            clients total.</h5>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header center font-weight-bold">Candidatures</div>
+                    <div class="card-body">
+                        <h5 class="card-title center">
+                            <b class="number">56</b>
+                            candidatures total.</h5>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
