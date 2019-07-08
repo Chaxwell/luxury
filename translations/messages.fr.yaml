@@ -10,3 +10,54 @@ authentification:
     login: Connexion
     newToLuxuryServices_start: Nouveau sur Luxury Services ?
     newToLuxuryServices_end: Nous rejoindre, c'est permettre à notre expertise en recrutement et à notre accompagnement personnel de faire ressortir le meilleur de vous en vous proposant la position la plus adaptée.
+    createNewAccount: Créer un nouveau compte
+    createAccount: Créer un compte
+    alreadyHaveAccount: Vous êtes déjà inscrit ? Cliquez ici
+    register: Inscription
+    welcome: Bienvenue à bord
+    home: Accueil
+
+navigation:
+    home: Accueil
+    jobOffers: Offres d'Emploi
+    aboutUs: À propos
+    contact: Contact
+    profile: Profil
+    logout: Déconnexion
+    login: Connexion
+    signUp: Inscription
+
+footer:
+    intro: Luxury Services est un cabinet leader dans le recrutement de professionnels se spécialisant dans le recrutement de personnels permanent, sous contrats ou temporaires pour le compte des plus grandes employeurs du monde.
+    home: Accueil
+    jobOffers: Offres d'emploi
+    aboutUs: À propos
+    contact: Contact
+    termsOfUse: Conditions Générales d'Utilisation
+    copyright: © 2019 Tout droit réservé - par
+
+profile:
+    profileComplete: Houra ! Votre profil est complet.
+    personalInfo: Vos informations personnelles
+    gender: Genre
+    currentLocation: Position actuelle
+    firstName: Prénom
+    lastName: Nom
+    address: Adresse
+    country: Pays
+    nationality: Nationnalité
+    birthDate: Date de naissance
+    birthPlace: Lieu de naissance
+    photo: Photo
+    profilePro: Votre profil professionnel
+    passport: Passport
+    resume: CV
+    interestJobSector: Interest in job sector
+    experience: Expérience
+    holderDescription: "Courte description pour votre profil, ainsi que pour des informations plus personnelles (ex: vos passions/intérêts). Vous pouvez aussi mettre le lien que vous souhaitez."
+    luxuryAccount: Votre compte Luxury Services
+    email: Email
+    password: Changez votre mot de passe ici
+    passwordValidation: Confirmez votre nouveau mot de passe
+    deleteAccount: Supprimer mon compte
+    backHome: Retour à l'accueil

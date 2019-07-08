@@ -1,3 +1,12 @@
+admin:
+    luxuryServices: Luxury Services
+    logout: Logout
+    dashboard: Dashboard
+    candidates: Candidates
+    clients: Clients
+    jobOffers: Job Offers
+    candidatures: Candidatures
+
 authentification:
     termsOfUse_start: I have read and I accept the
     termsOfUse_end: Terms Of Use
@@ -13,6 +22,9 @@ authentification:
     createNewAccount: Create a new account
     createAccount: Create an account
     alreadyHaveAccount: Already have an account? Click here
+    register: Register
+    welcome: Welcome on board
+    home: Home
 
 navigation:
     home: Home
@@ -23,6 +35,9 @@ navigation:
     logout: Logout
     login: Login
     signUp: Sign Up
+    yourProfile: Your profile
+    persoAndProInfo: Personnal & Professionnal informations
+    admin: Administration
 
 footer:
     intro: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
@@ -30,3 +45,31 @@ footer:
     jobOffers: Job Offers
     aboutUs: About Us
     contact: Contact
+    termsOfUse: Terms Of Use
+    copyright: © 2019 All right reserved - by
+
+profile:
+    profileComplete: Hooray ! Your profile is complete.
+    personalInfo: Your personal informations
+    gender: Gender
+    currentLocation: Current location
+    firstName: First name
+    lastName: Last name
+    address: Address
+    country: Country
+    nationality: Nationality
+    birthDate: Birthdate
+    birthPlace: Birthplace
+    photo: Photo
+    profilePro: Your professional profile
+    passport: Passport
+    resume: Résumé
+    interestJobSector: Interest in job sector
+    experience: Experience
+    holderDescription: Short description for your profile, as well as more personnal informations (e.g. your hobbies/interest). You can also paste any link you want.
+    luxuryAccount: Your Luxury Services account
+    email: Email
+    password: Change your password here
+    passwordValidation: Confirm your new password
+    deleteAccount: Delete my account
+    backHome: Back home
