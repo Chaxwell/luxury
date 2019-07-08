@@ -6,6 +6,31 @@ admin:
     clients: Clients
     jobOffers: Job Offers
     candidatures: Candidatures
+    password: Password
+    email: Email
+    gender: Gender
+    male: Male
+    female: Female
+    currentLocation: Current location
+    firstName: First name
+    lastName: Last name
+    address: Address
+    country: Country
+    nationality: Nationality
+    birthDate: Birthdate
+    birthPlace: Birthplace
+    photo: Photo
+    profilePro: Your professional profile
+    passport: Passport
+    resume: Résumé
+    interestJobSector: Interest in job sector
+    experience: Experience
+    holderDescription: Short description for your profile, as well as more personnal informations (e.g. your hobbies/interest). You can also paste any link you want.
+    city: City
+    jobSector: Job Sector
+    availability: Availability
+    registerDate: Register date
+    actions: Actions
 
 authentification:
     termsOfUse_start: I have read and I accept the

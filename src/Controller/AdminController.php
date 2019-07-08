@@ -2,8 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/admin")
@@ -21,8 +27,42 @@ class AdminController extends AbstractController
     /**
      * @Route("/candidates", name="admin_candidates", methods={"GET"})
      */
-    public function candidates()
+    public function candidates(UserRepository $userRepository)
     {
-        return $this->render('admin/candidates.html.twig');
+        $candidates = $userRepository->findAll();
+
+        return $this->render('admin/candidates.html.twig', [
+            'candidates' => $candidates,
+        ]);
+    }
+
+    /**
+     * @Route("/candidate/new", name="admin_new_candidate", methods={"GET", "POST"})
+     */
+    public function newCandidate(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $candidate = new User();
+        $form = $this->createForm(UserType::class, $candidate);
+        $form->handleRequest($request);
+
+        // dd($candidate);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
+
+            $candidate
+                ->setCreatedAt()
+                ->setUpdatedAt()
+                ->setPassword($hashedPassword);
+
+            $objectManager->persist($candidate);
+            $objectManager->flush();
+
+            return $this->redirectToRoute('admin_candidates');
+        }
+
+        return $this->render('admin/new_candidate.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

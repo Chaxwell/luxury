@@ -160,6 +160,11 @@ class User implements UserInterface
     private $isAdmin = 0;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $availability = 0;
+
+    /**
      * @var JobCategory
      *
      * @ORM\OneToMany(targetEntity="App\Entity\JobCategory", mappedBy="user")
@@ -529,4 +534,16 @@ class User implements UserInterface
 
     public function eraseCredentials()
     { }
+
+    public function getAvailability(): ?bool
+    {
+        return $this->availability;
+    }
+
+    public function setAvailability(?bool $availability): self
+    {
+        $this->availability = $availability;
+
+        return $this;
+    }
 }

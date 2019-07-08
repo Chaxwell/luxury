@@ -138,8 +138,11 @@ a svg {
   color: darkorange;
 }
 
-/* table, td, th {
-  border-collapse: collapse;
-  border: 1px solid black;
-  padding: 10px;
-} */
+.feather.big {
+  width: 24px;
+  height: 24px;
+}
+
+.big {
+  font-size: 1.3em;
+}

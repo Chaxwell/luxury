@@ -16,14 +16,7 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('password')
-            ->add('gender', ChoiceType::class, [
-                'choices' => [
-                    'Male' => 'Male',
-                    'Female' => 'Female'
-                ],
-                'expanded' => false,
-                'multiple' => false,
-            ])
+            ->add('gender')
             ->add('firstName')
             ->add('lastName')
             ->add('phoneNumber')
@@ -38,10 +31,12 @@ class UserType extends AbstractType
             ->add('resume')
             ->add('experience')
             ->add('description')
-            // ->add('note')
+            ->add('note')
+            ->add('availability')
+            // ->add('jobCategory')
             // ->add('createdAt')
             // ->add('updatedAt')
-            // ->add('isAdmin')
+            ->add('isAdmin')
         ;
     }
 
@@ -49,6 +44,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'allow_extra_fields' => true,
         ]);
     }
 }

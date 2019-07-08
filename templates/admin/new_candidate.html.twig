@@ -1,0 +1,157 @@
+{% extends "admin.html.twig" %}
+
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.candidates'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        <div class="errors py-3 px-3 my-3 bg-light">
+            {{ form_errors(form) }}
+        </div>
+
+        <form action="{{ path('admin_new_candidate') }}" autocomplete="off" class="mb-5" method="POST">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="email">{{ 'admin.email'|trans }}</label>
+                    <input class="form-control" id="email" name="user[email]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="password">{{ 'admin.password'|trans }}</label>
+                    <input class="form-control" id="password" name="user[password]" type="password">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-2">
+                    <label for="email">{{ 'admin.gender'|trans }}</label>
+                    <select class="form-control" id="gender" name="user[gender]">
+                        <option value="male">{{ 'admin.male'|trans }}</option>
+                        <option value="female">{{ 'admin.female'|trans }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label for="first-name">First name</label>
+                    <input class="form-control" id="first-name" name="user[firstName]" type="text">
+                </div>
+                <div class="form-group col-3">
+                    <label for="last-name">Last name</label>
+                    <input class="form-control" id="last-name" name="user[lastName]" type="text">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="address">Address</label>
+                    <input class="form-control" id="address" name="user[address]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="country">Country</label>
+                    <input class="form-control" id="country" name="user[country]" type="text">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="current-location">Current location</label>
+                    <input class="form-control" id="current-location" name="user[currentLocation]" type="text">
+                </div>
+                {# <div class="form-group col-4">
+                    <label for="birth-date">Birth date</label>
+                    <!-- datetime -->
+                    <input class="form-control" id="birth-date" name="user[birthDate]" type="date">
+                </div> #}
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="nationality">Nationality</label>
+                    <input class="form-control" id="nationality" name="user[nationality]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="birth-place">Birth place</label>
+                    <input class="form-control" id="birth-place" name="user[birthPlace]" type="text">
+                </div>
+                <div class="form-group col-2">
+                    <label for="phone-number">Phone number</label>
+                    <input class="form-control" id="phone-number" maxlength="10" name="user[phoneNumber]" type="tel">
+                    <small style="color: grey;">Format: 0102030405</small>
+                </div>
+                <div class="form-group col-4">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" cols="30" id="description" name="user[description]" rows="1"></textarea>
+                </div>
+                <div class="form-group col-4">
+                    <label for="job-category">Job Sector</label>
+                    <select class="form-control" id="job-category" name="user[jobCategory]">
+                        <option value="commercial">Commercial</option>
+                        <option value="retail">Retail sales</option>
+                        <option value="creative">Creative</option>
+                        <option value="technology">Technology</option>
+                        <option value="marketing">Marketing & PR</option>
+                        <option value="fashion">Fashion & luxury</option>
+                        <option value="management">Management & HR</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label for="experience">Experience</label>
+                    <select class="form-control" id="experience" name="user[experience]">
+                        <option value="06months">0-6 months</option>
+                        <option value="612months">6-12 months</option>
+                        <option value="12years">1-2 years</option>
+                        <option value="2years">2+ years</option>
+                        <option value="5years">5+ years</option>
+                        <option value="10years">10+ years</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label for="profile-picture">Profile picture</label>
+                    <input class="form-control" id="profile-picture" name="user[profilePicture]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="passport">Passport</label>
+                    <input class="form-control" id="passport" name="user[passport]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="resume">Résumé</label>
+                    <input class="form-control" id="resume" name="user[resume]" type="text">
+                </div>
+                <div class="form-group col-8">
+                    <label for="note">Note</label>
+                    <textarea class="form-control" cols="30" id="note" name="user[note]" rows="1"></textarea>
+                </div>
+                <div class="form-group col-12">
+                    <p class="mb-1">Admin</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="is-admin1" name="user[isAdmin]" type="radio" value="1">
+                        <label class="form-check-label" for="is-admin1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input checked class="form-check-input" id="is-admin2" name="user[isAdmin]" type="radio" value="0">
+                        <label class="form-check-label" for="is-admin2">No</label>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <p class="mb-1">Availability</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="availability1" name="user[availability]" type="radio" value="1">
+                        <label class="form-check-label" for="availability1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input checked class="form-check-input" id="availability2" name="user[availability]" type="radio" value="0">
+                        <label class="form-check-label" for="availability2">No</label>
+                    </div>
+                </div>
+
+                <div class="col-2 offset-md-5">
+                    <button class="btn btn-outline-dark px-5" type="submit">Submit</button>
+                </div>
+
+                {{ form_widget(form._token) }}
+            </form>
+        </div>
+    </main>
+{% endblock %}
