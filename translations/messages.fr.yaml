@@ -1,3 +1,61 @@
+admin:
+    luxuryServices: Luxury Services
+    logout: Déconnexion
+    dashboard: Tableau de bord
+    candidates: Candidats
+    clients: Clients
+    jobOffers: Offres d'emploi
+    candidatures: Candidatures
+    password: Mot de passe
+    email: Email
+    gender: Genre
+    male: Homme
+    female: Femme
+    currentLocation: Localisation
+    firstName: Prénom
+    lastName: Nom
+    address: Adresse
+    country: Pays
+    nationality: Nationnalité
+    birthDate: Date de naissance
+    birthPlace: Lieu de naissance
+    photo: Photo
+    profilePro: Votre profil profesionnel
+    passport: Passeport
+    resume: CV
+    interestJobSector: Intéressé par le secteur
+    experience: Expérience
+    holderDescription: "Courte description pour votre profil, ainsi que pour des informations plus personnelles (ex: vos passions/intérêts). Vous pouvez aussi mettre le lien que vous souhaitez."
+    city: Ville
+    jobSector: Secteur d'emploi
+    availability: Disponibilité
+    registerDate: Date d'inscription
+    actions: Actions
+    newCandidate: Ajouter un nouveau candidat
+    phoneNumber: Numéro de téléphone
+    description: Description
+    addCandidate: Ajouter un candidat
+    commercial: Commercial
+    retailSales: Vente au détail
+    creative: Créatif
+    technology: Technologie
+    marketing: Marketing & RP
+    fashion: Mode & luxe
+    management: Management & RH
+    06months: 0-6 mois
+    612months: 6-12 mois
+    12years: 1-2 années
+    2years: 2+ années
+    5years: 5+ années
+    10years: 10+ années
+    profilePicture: Image de profil
+    note: Note
+    admin: Admin
+    yes: Oui
+    no: Non
+    submit: Envoyer
+    phoneNumberFormat: "Format: 0102030405"
+
 authentification:
     termsOfUse_start:  J'ai lu et j'accepte les
     termsOfUse_end: Conditions Générales d'Utilisation
@@ -26,6 +84,9 @@ navigation:
     logout: Déconnexion
     login: Connexion
     signUp: Inscription
+    yourProfile: Votre profil
+    persoAndProInfo: Informations personnelles & professionnelles
+    admin: Administration
 
 footer:
     intro: Luxury Services est un cabinet leader dans le recrutement de professionnels se spécialisant dans le recrutement de personnels permanent, sous contrats ou temporaires pour le compte des plus grandes employeurs du monde.
@@ -50,9 +111,9 @@ profile:
     birthPlace: Lieu de naissance
     photo: Photo
     profilePro: Votre profil professionnel
-    passport: Passport
+    passport: Passeport
     resume: CV
-    interestJobSector: Interest in job sector
+    interestJobSector: Intéressé par le secteur
     experience: Expérience
     holderDescription: "Courte description pour votre profil, ainsi que pour des informations plus personnelles (ex: vos passions/intérêts). Vous pouvez aussi mettre le lien que vous souhaitez."
     luxuryAccount: Votre compte Luxury Services

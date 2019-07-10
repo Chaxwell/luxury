@@ -134,7 +134,8 @@ section.right {
   float: right;
 }
 
-a svg {
+button svg,
+table svg {
   color: darkorange;
 }
 
@@ -145,4 +146,10 @@ a svg {
 
 .big {
   font-size: 1.3em;
+}
+
+.undernav {
+  list-style: none;
+  padding: 0 0 0 14px;
+  margin: -5px 0 0 0;
 }

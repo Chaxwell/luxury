@@ -31,6 +31,32 @@ admin:
     availability: Availability
     registerDate: Register date
     actions: Actions
+    newCandidate: Add a new candidate
+    editCandidate: Edit a candidate
+    phoneNumber: Phone Number
+    description: Description
+    addCandidate: Add a candidate
+    commercial: Commercial
+    retailSales: Retail sales
+    creative: Creative
+    technology: Technology
+    marketing: Marketing & PR
+    fashion: Fashion & luxury
+    management: Management & HR
+    06months: 0-6 months
+    612months: 6-12 months
+    12years: 1-2 years
+    2years: 2+ years
+    5years: 5+ years
+    10years: 10+ years
+    profilePicture: Profile picture
+    note: Note
+    admin: Admin
+    yes: Yes
+    no: No
+    submit: Submit
+    phoneNumberFormat: "Format: 0102030405"
+    confirmDelete: Are you sure you want to delete this candidate?
 
 authentification:
     termsOfUse_start: I have read and I accept the

@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Entity\Candidature;
 use App\Entity\Client;
-use App\Entity\JobCategory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -84,9 +83,9 @@ class JobOffer
     private $client;
 
     /**
-     * @var JobCategory
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\JobCategory", inversedBy="jobOffers")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $jobCategory;
 
@@ -96,6 +95,7 @@ class JobOffer
      * @ORM\ManyToOne(targetEntity="App\Entity\Candidature", inversedBy="jobOffer")
      */
     private $candidature;
+
 
     public function __construct()
     {
@@ -270,12 +270,15 @@ class JobOffer
         return $this;
     }
 
-    public function getJobCategory(): ?JobCategory
+    /**
+     * @return string|null
+     */
+    public function getJobCategory(): ?string
     {
         return $this->jobCategory;
     }
 
-    public function setJobCategory(?JobCategory $jobCategory): self
+    public function setJobCategory(?string $jobCategory): self
     {
         $this->jobCategory = $jobCategory;
 

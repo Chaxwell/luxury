@@ -1,0 +1,198 @@
+{% extends "admin.html.twig" %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.editCandidate'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        <div class="errors py-3 px-3 my-3 bg-light">
+            {{ form_errors(form) }}
+        </div>
+
+        <form action="{{ path('admin_edit_candidate', {id: candidate.id}) }}" autocomplete="off" class="mb-5" method="POST">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    {# <label for="email">{{ 'admin.email'|trans }}</label>
+                    <input class="form-control" id="email" name="user[email]" type="email"> #}
+                    {{ form_label(form.email, 'admin.email')}}
+                    {{ form_widget(form.email, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="password">{{ 'admin.password'|trans }}</label>
+                    <input class="form-control" id="password" name="user[password]" type="password"> #}
+                    {{ form_label(form.password, 'admin.password')}}
+                    {{ form_widget(form.password, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-2">
+                    {# <label for="gender">{{ 'admin.gender'|trans }}</label>
+                    <select class="form-control" id="gender" name="user[gender]">
+                        <option value="male">{{ 'admin.male'|trans }}</option>
+                        <option value="female">{{ 'admin.female'|trans }}</option>
+                    </select> #}
+                    {{ form_label(form.gender, 'admin.gender')}}
+                    {{ form_widget(form.gender, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-3">
+                    {# <label for="first-name">{{ 'admin.firstName'|trans }}</label>
+                    <input class="form-control" id="first-name" name="user[firstName]" type="text"> #}
+                    {{ form_label(form.firstName, 'admin.firstName')}}
+                    {{ form_widget(form.firstName, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-3">
+                    {# <label for="last-name">{{ 'admin.lastName'|trans }}</label>
+                    <input class="form-control" id="last-name" name="user[lastName]" type="text"> #}
+                    {{ form_label(form.lastName, 'admin.lastName')}}
+                    {{ form_widget(form.lastName, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    {# <label for="address">{{ 'admin.address'|trans }}</label>
+                    <input class="form-control" id="address" name="user[address]" type="text"> #}
+                    {{ form_label(form.address, 'admin.address')}}
+                    {{ form_widget(form.address, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="country">{{ 'admin.country'|trans }}</label>
+                    <input class="form-control" id="country" name="user[country]" type="text"> #}
+                    {{ form_label(form.country, 'admin.country')}}
+                    {{ form_widget(form.country, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    {# <label for="current-location">{{ 'admin.currentLocation'|trans }}</label>
+                    <input class="form-control" id="current-location" name="user[currentLocation]" type="text"> #}
+                    {{ form_label(form.currentLocation, 'admin.currentLocation')}}
+                    {{ form_widget(form.currentLocation, {attr: {class: 'form-control'}}) }}
+                </div>
+                {# <div class="form-group col-4">
+                <label for="birth-date">{{ 'admin.birthDate'|trans }}</label>
+                <!-- datetime -->
+                <input class="form-control" id="birth-date" name="user[birthDate]" type="date">
+                </div> #}
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    {# <label for="nationality">{{ 'admin.nationality'|trans }}</label>
+                    <input class="form-control" id="nationality" name="user[nationality]" type="text"> #}
+                    {{ form_label(form.nationality, 'admin.nationality')}}
+                    {{ form_widget(form.nationality, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="birth-place">{{ 'admin.birthPlace'|trans }}</label>
+                    <input class="form-control" id="birth-place" name="user[birthPlace]" type="text"> #}
+                    {{ form_label(form.birthPlace, 'admin.birthPlace')}}
+                    {{ form_widget(form.birthPlace, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-2">
+                    {# <label for="phone-number">{{ 'admin.phoneNumber'|trans }}</label>
+                    <input class="form-control" id="phone-number" maxlength="10" name="user[phoneNumber]" type="tel"> #}
+                    {{ form_label(form.phoneNumber, 'admin.phoneNumber')}}
+                    {{ form_widget(form.phoneNumber, {attr: {class: 'form-control'}}) }}
+                    <small style="color: grey;">{{ 'admin.phoneNumberFormat'|trans }}</small>
+                </div>
+                <div class="form-group col-6">
+                    {# <label for="description">{{ 'admin.description'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="description" name="user[description]" rows="2" placeholder="{{ 'admin.holderDescription'|trans }}"></textarea> #}
+                    {{ form_label(form.description, 'admin.description')}}
+                    {{ form_widget(form.description, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="job-category">{{ 'admin.jobSector'|trans }}</label>
+                    <select class="form-control" id="job-category" name="user[jobCategory]">
+                        <option value="commercial">{{ 'admin.commercial'|trans }}</option>
+                        <option value="retail">{{ 'admin.retailSales'|trans }}</option>
+                        <option value="creative">{{ 'admin.creative'|trans }}</option>
+                        <option value="technology">{{ 'admin.technology'|trans }}</option>
+                        <option value="marketing">{{ 'admin.marketing'|trans }}</option>
+                        <option value="fashion">{{ 'admin.fashion'|trans }}</option>
+                        <option value="management">{{ 'admin.management'|trans }}</option>
+                    </select> #}
+                    {{ form_label(form.jobCategory, 'admin.jobSector')}}
+                    {{ form_widget(form.jobCategory, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="experience">{{ 'admin.experience'|trans }}</label>
+                    <select class="form-control" id="experience" name="user[experience]">
+                        <option value="06months">{{ 'admin.06months'|trans }}</option>
+                        <option value="612months">{{ 'admin.612months'|trans }}</option>
+                        <option value="12years">{{ 'admin.12years'|trans }}</option>
+                        <option value="2years">{{ 'admin.2years'|trans }}</option>
+                        <option value="5years">{{ 'admin.5years'|trans }}</option>
+                        <option value="10years">{{ 'admin.10years'|trans }}</option>
+                    </select> #}
+                    {{ form_label(form.experience, 'admin.experience')}}
+                    {{ form_widget(form.experience, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="profile-picture">{{ 'admin.profilePicture'|trans }}</label>
+                    <input class="form-control" id="profile-picture" name="user[profilePicture]" type="text"> #}
+                    {{ form_label(form.profilePicture, 'admin.profilePicture')}}
+                    {{ form_widget(form.profilePicture, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="passport">{{ 'admin.passport'|trans }}</label>
+                    <input class="form-control" id="passport" name="user[passport]" type="text"> #}
+                    {{ form_label(form.passport, 'admin.passport')}}
+                    {{ form_widget(form.passport, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-4">
+                    {# <label for="resume">{{ 'admin.resume'|trans }}</label> #}
+                    {# <input class="form-control" id="resume" name="user[resume]" type="text"> #}
+                    {{ form_label(form.resume, 'admin.resume')}}
+                    {{ form_widget(form.resume, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-8">
+                    {# <label for="note">{{ 'admin.note'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="note" name="user[note]" rows="1"></textarea> #}
+                    {{ form_label(form.note, 'admin.note')}}
+                    {{ form_widget(form.note, {attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="form-group col-12">
+                    <p class="mb-1">{{ 'admin.admin'|trans }}</p>
+                    {# <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="is-admin1" name="user[isAdmin]" type="radio" value="1">
+                        <label class="form-check-label" for="is-admin1">{{ 'admin.yes'|trans }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input checked class="form-check-input" id="is-admin2" name="user[isAdmin]" type="radio" value="0">
+                        <label class="form-check-label" for="is-admin2">{{ 'admin.no'|trans }}</label>
+                    </div> #}
+                    <div class="form-check form-check-inline">
+                        {{ form_widget(form.isAdmin, {attr: {class: 'form-check-input'}}) }}
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <p class="mb-1">{{ 'admin.availability'|trans }}</p>
+                    {# <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="availability1" name="user[availability]" type="radio" value="1">
+                        <label class="form-check-label" for="availability1">{{ 'admin.yes'|trans }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input checked class="form-check-input" id="availability2" name="user[availability]" type="radio" value="0">
+                        <label class="form-check-label" for="availability2">{{ 'admin.no'|trans }}</label>
+                    </div> #}
+                    <div class="form-check form-check-inline">
+                        {{ form_widget(form.availability, {attr: {class: 'form-check-input'}}) }}
+                    </div>
+                </div>
+
+                {{ form_widget(form._token) }}
+
+                <div class="col-2 offset-md-5">
+                    <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

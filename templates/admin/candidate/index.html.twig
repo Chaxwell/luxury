@@ -1,6 +1,8 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}Candidates | {{ parent() }}{% endblock %}
+{% block title %}Candidates |
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
@@ -19,7 +21,9 @@
         </div>
 
         <div class="float-right my-2">
-            <a href="{{ path('admin_new_candidate') }}" class="btn btn-dark">Add a candidate <span class="big">&CirclePlus;</span></a>
+            <a href="{{ path('admin_new_candidate') }}" class="btn btn-dark">Add a candidate
+                <span class="big">&CirclePlus;</span>
+            </a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
@@ -32,22 +36,29 @@
                         <th>{{ 'admin.jobSector'|trans }}</th>
                         <th>{{ 'admin.availability'|trans }}</th>
                         <th>{{ 'admin.registerDate'|trans }}</th>
+                        <th>{{ 'admin.note'|trans }}</th>
                         <th>{{ 'admin.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% set confirmDelete = 'admin.confirmDelete'|trans %}
                     {% for candidate in candidates %}
                         <tr>
                             <td>{{ candidate.lastName ? candidate.lastName : 'N/A' }}</td>
                             <td>{{ candidate.firstName ? candidate.firstName : 'N/A' }}</td>
                             <td>{{ candidate.email ? candidate.email : 'N/A'}}</td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A'}}</td>
-                            <td>Nique ton oncle</td>
+                            <td>Placeholder</td>
                             <td>{{ candidate.availability ? 'Yes' : 'No'}}</td>
                             <td>{{ candidate.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
+                            <td data-id="{{ candidate.id }}"><button class="btn p-0"><i style="darkorange" data-feather="bookmark"></i></button></td>
                             <td class="d-flex justify-content-between">
-                                <a href="#"><i data-feather="edit"></i></a>
-                                <a href="#"><i data-feather="x-circle"></i></a>
+                                <a href="{{ path('admin_edit_candidate', {id: candidate.id}) }}">
+                                    <button class="btn p-0"><i data-feather="edit"></i></button>
+                                </a>
+                                <form method="POST" action="{{ path('admin_delete_candidate', {id: candidate.id}) }}" onsubmit="return confirm('{{ confirmDelete }}');">
+                                    <button class="btn p-0" type="submit"><i data-feather="x-circle"></i></button>
+                                </form>
                             </td>
                         </tr>
                     {% endfor %}

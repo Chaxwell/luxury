@@ -157,17 +157,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isAdmin = 0;
+    private $isAdmin = false;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $availability = 0;
+    private $availability = false;
 
     /**
-     * @var JobCategory
+     * @var string
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\JobCategory", mappedBy="user")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $jobCategory;
 
@@ -180,7 +180,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->jobCategory = new ArrayCollection();
         $this->candidatures = new ArrayCollection();
     }
 
@@ -454,32 +453,16 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|JobCategory[]
+     * @return string|null
      */
-    public function getJobCategory(): Collection
+    public function getJobCategory(): ?string
     {
         return $this->jobCategory;
     }
 
-    public function addJobCategory(JobCategory $jobCategory): self
+    public function setJobCategory(?string $jobCategory): self
     {
-        if (!$this->jobCategory->contains($jobCategory)) {
-            $this->jobCategory[] = $jobCategory;
-            $jobCategory->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJobCategory(JobCategory $jobCategory): self
-    {
-        if ($this->jobCategory->contains($jobCategory)) {
-            $this->jobCategory->removeElement($jobCategory);
-            // set the owning side to null (unless already changed)
-            if ($jobCategory->getUser() === $this) {
-                $jobCategory->setUser(null);
-            }
-        }
+        $this->jobCategory = $jobCategory;
 
         return $this;
     }

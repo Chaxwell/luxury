@@ -7,16 +7,35 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use App\Repository\JobCategoryRepository;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
 {
+    protected $jobCategoryRepository;
+
+    public function __construct(JobCategoryRepository $jobCategoryRepository)
+    {
+        $this->jobCategoryRepository = $jobCategoryRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $jobCategoriesByName = [];
+
+        foreach($this->jobCategoryRepository->findAll() as $jobCategory) {
+            $jobCategoriesByName[$jobCategory->getName()] = strtolower($jobCategory->getName());
+        }
+
         $builder
             ->add('email')
-            ->add('password')
-            ->add('gender')
+            ->add('password', PasswordType::class)
+            ->add('gender', ChoiceType::class, [
+                'choices' => [
+                    'admin.male' => 'male',
+                    'admin.female' => 'female'
+                ],
+            ])
             ->add('firstName')
             ->add('lastName')
             ->add('phoneNumber')
@@ -29,15 +48,39 @@ class UserType extends AbstractType
             ->add('birthPlace')
             ->add('passport')
             ->add('resume')
-            ->add('experience')
+            ->add('experience', ChoiceType::class, [
+                'choices' => [
+                    'admin.06months' => '06months',
+                    'admin.612months' => '612months',
+                    'admin.12years' => '12years',
+                    'admin.2years' => '2years',
+                    'admin.5years' => '5years',
+                    'admin.10years' => '10years',
+                ]
+            ])
             ->add('description')
             ->add('note')
-            ->add('availability')
-            // ->add('jobCategory')
+            ->add('availability', ChoiceType::class, [
+                'choices' => [
+                    'admin.yes' => true,
+                    'admin.no' => false,
+                ],
+                'expanded' => true,
+                'multiple' => false,
+            ])
+            ->add('jobCategory', ChoiceType::class, [
+                'choices'  => $jobCategoriesByName
+            ])
             // ->add('createdAt')
             // ->add('updatedAt')
-            ->add('isAdmin')
-        ;
+            ->add('isAdmin', ChoiceType::class, [
+                'choices' => [
+                    'admin.yes' => true,
+                    'admin.no' => false,
+                ],
+                'expanded' => true,
+                'multiple' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

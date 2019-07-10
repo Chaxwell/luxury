@@ -4,15 +4,16 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Repository\CandidatureRepository;
 use App\Repository\ClientRepository;
 use App\Repository\JobOfferRepository;
-use App\Repository\CandidatureRepository;
+use App\Repository\UserRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\JobCategory;
 
 /**
  * @Route("/admin")
@@ -42,9 +43,9 @@ class AdminController extends AbstractController
      */
     public function candidates(UserRepository $userRepository)
     {
-        $candidates = $userRepository->findAll();
+        $candidates = $userRepository->findBy([], ['id' => 'DESC']);
 
-        return $this->render('admin/candidates.html.twig', [
+        return $this->render('admin/candidate/index.html.twig', [
             'candidates' => $candidates,
         ]);
     }
@@ -58,10 +59,10 @@ class AdminController extends AbstractController
         $form = $this->createForm(UserType::class, $candidate);
         $form->handleRequest($request);
 
-        // dd($candidate);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
+            $candidate->setIsAdmin($request->request->get('user')['isAdmin']);
+            $candidate->setAvailability($request->request->get('user')['availability']);
 
             $candidate
                 ->setCreatedAt()
@@ -74,8 +75,63 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_candidates');
         }
 
-        return $this->render('admin/new_candidate.html.twig', [
+        return $this->render('admin/candidate/new.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/candidate/{id}/note", name="admin_note_candidate", methods={"POST", "GET"})
+     */
+    public function addNote(Request $request, User $candidate, ObjectManager $objectManager)
+    {
+        $candidate->setNote($request->request->get('note'));
+
+        $objectManager->persist($candidate);
+        $objectManager->flush();
+
+        return $this->redirectToRoute('admin_candidates');
+    }
+
+    /**
+     * @Route("/candidate/{id}/edit", name="admin_edit_candidate", methods={"GET", "POST"})
+     */
+    public function editCandidate(Request $request, User $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $form = $this->createForm(UserType::class, $candidate);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
+            $candidate->setIsAdmin($request->request->get('user')['isAdmin']);
+            $candidate->setAvailability($request->request->get('user')['availability']);
+
+            $candidate
+                ->setCreatedAt()
+                ->setUpdatedAt()
+                ->setPassword($hashedPassword);
+
+            $objectManager->persist($candidate);
+            $objectManager->flush();
+
+            return $this->redirectToRoute('admin_candidates');
+        }
+
+        return $this->render('admin/candidate/edit.html.twig', [
+            'candidate' => $candidate,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/candidate/{id}/delete", name="admin_delete_candidate", methods={"POST", "DELETE"})
+     */
+    public function deleteCandidate(Request $request, User $candidate)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($candidate);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_candidates');
     }
 }

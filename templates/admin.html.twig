@@ -44,6 +44,13 @@
                                     <span data-feather="users"></span>
                                     {{ 'admin.candidates'|trans }}
                                 </a>
+                                <ul class="undernav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('admin_new_candidate') }}">
+                                        <span data-feather="plus-circle"></span>
+                                        {{ 'admin.addCandidate'|trans }}</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">

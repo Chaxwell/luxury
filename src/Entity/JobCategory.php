@@ -20,42 +20,24 @@ class JobCategory
     private $id;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $names = [];
+    private $name;
 
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="jobCategory")
-     */
-    private $user;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="App\Entity\JobOffer", mappedBy="jobCategory")
-     */
-    private $jobOffers;
-
-    public function __construct()
-    {
-        $this->jobOffers = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNames(): ?array
+    public function getName(): ?string
     {
-        return $this->names;
+        return $this->name;
     }
 
-    public function setNames(?array $names): self
+    public function setName(?string $name): self
     {
-        $this->names = $names;
+        $this->name = $name;
 
         return $this;
     }
@@ -68,37 +50,6 @@ class JobCategory
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|JobOffer[]
-     */
-    public function getJobOffers(): Collection
-    {
-        return $this->jobOffers;
-    }
-
-    public function addJobOffer(JobOffer $jobOffer): self
-    {
-        if (!$this->jobOffers->contains($jobOffer)) {
-            $this->jobOffers[] = $jobOffer;
-            $jobOffer->setJobCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJobOffer(JobOffer $jobOffer): self
-    {
-        if ($this->jobOffers->contains($jobOffer)) {
-            $this->jobOffers->removeElement($jobOffer);
-            // set the owning side to null (unless already changed)
-            if ($jobOffer->getJobCategory() === $this) {
-                $jobOffer->setJobCategory(null);
-            }
-        }
 
         return $this;
     }
