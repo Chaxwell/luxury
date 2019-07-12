@@ -4,6 +4,8 @@ namespace App\Entity;
 use App\Entity\JobOffer;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
@@ -63,11 +65,16 @@ class Client
     private $updatedAt;
 
     /**
-     * @var JobOffer
+     * @var ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\JobOffer", inversedBy="client")
+     * @ORM\OneToMany(targetEntity="App\Entity\JobOffer", mappedBy="client")
      */
-    private $jobOffer;
+    private $jobOffers;
+
+    public function __construct()
+    {
+        $this->jobOffers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -182,14 +189,30 @@ class Client
         return $this;
     }
 
-    public function getJobOffer(): ?JobOffer
+    public function getJobOffers(): Collection
     {
-        return $this->jobOffer;
+        return $this->jobOffers;
     }
 
-    public function setJobOffer(?JobOffer $jobOffer): self
+    public function addJobOffer(JobOffer $jobOffer): self
     {
-        $this->jobOffer = $jobOffer;
+        if (!$this->jobOffer->contains($jobOffer)) {
+            $this->jobOffer[] = $jobOffer;
+            $jobOffer->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobOffer(JobOffer $jobOffer): self
+    {
+        if ($this->jobOffer->contains($jobOffer)) {
+            $this->jobOffer->removeElement($jobOffer);
+            // set the owning side to null (unless already changed)
+            if ($jobOffer->getClient() === $this) {
+                $jobOffer->setClient(null);
+            }
+        }
 
         return $this;
     }

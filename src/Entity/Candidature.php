@@ -4,12 +4,15 @@ namespace App\Entity;
 
 use App\Entity\JobOffer;
 use App\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatureRepository")
+ * @UniqueEntity(
+ *      fields={"user", "jobOffer"},
+ *      message="This candidate has an already existing offer to this job."
+ * )
  */
 class Candidature
 {
@@ -30,24 +33,23 @@ class Candidature
      */
     private $updatedAt;
 
+    // TODO: Make user and joboffer in a group for uniqueness
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="candidatures")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @var JobOffer
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\JobOffer", mappedBy="candidature")
+     * @ORM\ManyToOne(targetEntity="App\Entity\JobOffer", inversedBy="candidatures")
+     * @ORM\JoinColumn(name="job_offer_id", referencedColumnName="id")
      */
     private $jobOffer;
 
-    public function __construct()
-    {
-        $this->jobOffer = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -59,9 +61,9 @@ class Candidature
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime('now');
 
         return $this;
     }
@@ -71,9 +73,9 @@ class Candidature
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime('now');
 
         return $this;
     }
@@ -90,33 +92,14 @@ class Candidature
         return $this;
     }
 
-    /**
-     * @return Collection|JobOffer[]
-     */
-    public function getJobOffer(): Collection
+    public function getJobOffer(): ?JobOffer
     {
         return $this->jobOffer;
     }
 
-    public function addJobOffer(JobOffer $jobOffer): self
+    public function setJobOffer(JobOffer $jobOffer): self
     {
-        if (!$this->jobOffer->contains($jobOffer)) {
-            $this->jobOffer[] = $jobOffer;
-            $jobOffer->setCandidature($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJobOffer(JobOffer $jobOffer): self
-    {
-        if ($this->jobOffer->contains($jobOffer)) {
-            $this->jobOffer->removeElement($jobOffer);
-            // set the owning side to null (unless already changed)
-            if ($jobOffer->getCandidature() === $this) {
-                $jobOffer->setCandidature(null);
-            }
-        }
+        $this->jobOffer = $jobOffer;
 
         return $this;
     }

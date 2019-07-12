@@ -85,8 +85,6 @@ class UserType extends AbstractType
             ->add('jobCategory', ChoiceType::class, [
                 'choices'  => $jobCategoriesByName
             ])
-            // ->add('createdAt')
-            // ->add('updatedAt')
             ->add('isAdmin', ChoiceType::class, [
                 'choices' => [
                     'admin.yes' => true,

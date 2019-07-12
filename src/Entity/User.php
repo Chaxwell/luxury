@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Entity\JobCategory;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -16,6 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      fields="email",
  *      message="entity.user.emailAlreadyUsed"
  * )
+ * @Vich\Uploadable
  */
 class User implements UserInterface
 {
@@ -88,6 +91,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $profilePicture;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="profile_resume", fileNameProperty="profilePicture")
+     */
+    private $profilePictureFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -282,6 +292,20 @@ class User implements UserInterface
         $this->profilePicture = $profilePicture;
 
         return $this;
+    }
+
+    public function setProfilePictureFile(File $profilePicture = null): void
+    {
+        $this->profilePictureFile = $profilePicture;
+
+        if ($profilePicture) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getProfilePictureFile()
+    {
+        return $this->profilePictureFile;
     }
 
     public function getCurrentLocation(): ?string

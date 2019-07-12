@@ -18,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
+use App\Entity\Candidature;
+use App\Form\CandidatureType;
 
 /**
  * @Route("/admin")
@@ -264,7 +266,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_clients');
     }
 
-        /**
+    /**
      * @Route("/joboffers", name="admin_joboffers", methods={"GET"})
      */
     public function jobOffers(JobOfferRepository $jobOfferRepository)
@@ -293,7 +295,7 @@ class AdminController extends AbstractController
             $objectManager->persist($jobOffer);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_jobOffers');
+            return $this->redirectToRoute('admin_joboffers');
         }
 
         return $this->render('admin/joboffer/new.html.twig', [
@@ -351,5 +353,94 @@ class AdminController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_joboffers');
+    }
+
+    /**
+     * @Route("/candidatures", name="admin_candidatures", methods={"GET"})
+     */
+    public function candidatures(CandidatureRepository $candidatureRepository)
+    {
+        $candidatures = $candidatureRepository->findBy([], ['id' => 'DESC']);
+
+        return $this->render('admin/candidature/index.html.twig', [
+            'candidatures' => $candidatures,
+        ]);
+    }
+
+    /**
+     * @Route("/candidature/new", name="admin_new_candidature", methods={"GET", "POST"})
+     */
+    public function newCandidature(Request $request, ObjectManager $objectManager)
+    {
+        $candidature = new Candidature();
+        $form = $this->createForm(CandidatureType::class, $candidature);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidature
+                ->setCreatedAt()
+                ->setUpdatedAt();
+
+            $objectManager->persist($candidature);
+            $objectManager->flush();
+
+            return $this->redirectToRoute('admin_candidatures');
+        }
+
+        return $this->render('admin/candidature/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/candidature/{id}/note", name="admin_note_candidature", methods={"POST"})
+     */
+    public function addNoteToCandidature(Request $request, Candidature $candidature, ObjectManager $objectManager)
+    {
+        $candidature->setNote($request->request->get('note'));
+
+        $objectManager->persist($candidature);
+        $objectManager->flush();
+
+        return $this->redirectToRoute('admin_joboffers', [
+            'flashMessage' => $this->addFlash('success', 'Note added.')
+        ]);
+    }
+
+    /**
+     * @Route("/candidature{id}/edit", name="admin_edit_candidature", methods={"GET", "POST"})
+     */
+    public function editCandidature(Request $request, Candidature $candidature, ObjectManager $objectManager)
+    {
+        $form = $this->createForm(JobOfferType::class, $candidature);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidature
+                ->setCreatedAt()
+                ->setUpdatedAt();
+
+            $objectManager->persist($candidature);
+            $objectManager->flush();
+
+            return $this->redirectToRoute('admin_candidatures');
+        }
+
+        return $this->render('admin/candidature/edit.html.twig', [
+            'candidature' => $candidature,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/candidature/{id}/delete", name="admin_delete_candidature", methods={"POST", "DELETE"})
+     */
+    public function deleteCandidature(Candidature $candidature)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($candidature);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_candidatures');
     }
 }

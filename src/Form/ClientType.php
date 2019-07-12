@@ -19,7 +19,6 @@ class ClientType extends AbstractType
             ->add('contactEmail')
             ->add('contactPhoneNumber')
             ->add('note')
-            ->add('jobOffer')
         ;
     }
 

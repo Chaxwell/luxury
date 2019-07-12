@@ -1,0 +1,104 @@
+{% extends "admin.html.twig" %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.newJobOffer'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        {% if form_errors(form) %}
+        <div class="alert alert-danger py-3 px-3 my-3">
+            {{ form_errors(form) }}
+        </div>
+        {% endif %}
+
+        <form action="{{ path('admin_new_joboffer') }}" autocomplete="off" class="mb-5" method="POST">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="reference">{{ 'admin.jobOffer.reference'|trans }}</label>
+                    <input class="form-control" id="reference" name="job_offer[reference]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="title">{{ 'admin.jobOffer.title'|trans }}</label>
+                    <input class="form-control" id="title" name="job_offer[title]" type="text">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-2">
+                    <label for="description">{{ 'admin.jobOffer.description'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="description" name="job_offer[description]" rows="2"></textarea>
+                </div>
+                <div class="form-group col-3">
+                    <label for="location">{{ 'admin.jobOffer.location'|trans }}</label>
+                    <input class="form-control" id="location" name="job_offer[location]" type="text">
+                </div>
+                <div class="form-group col-3">
+                    <label for="salary">{{ 'admin.jobOffer.salary'|trans }}</label>
+                    <input class="form-control" id="salary" name="job_offer[salary]" type="number" min="0" step="50">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="job-category">{{ 'admin.jobSector'|trans }}</label>
+                    <select class="form-control" id="job-category" name="job_offer[jobCategory]">
+                        <option value="commercial">{{ 'admin.commercial'|trans }}</option>
+                        <option value="retail">{{ 'admin.retailSales'|trans }}</option>
+                        <option value="creative">{{ 'admin.creative'|trans }}</option>
+                        <option value="technology">{{ 'admin.technology'|trans }}</option>
+                        <option value="marketing">{{ 'admin.marketing'|trans }}</option>
+                        <option value="fashion">{{ 'admin.fashion'|trans }}</option>
+                        <option value="management">{{ 'admin.management'|trans }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <p class="mb-1">{{ 'admin.active'|trans }}</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="active1" name="job_offer[active]" type="radio" value="1">
+                        <label class="form-check-label" for="active1">{{ 'admin.yes'|trans }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input checked class="form-check-input" id="active2" name="job_offer[active]" type="radio" value="0">
+                        <label class="form-check-label" for="active2">{{ 'admin.no'|trans }}</label>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="note">{{ 'admin.note'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="note" name="job_offer[note]" rows="1"></textarea>
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-4">
+                    <label for="type">{{ 'admin.jobOffer.type'|trans }}</label>
+                    <select class="form-control" id="type" name="job_offer[type]">
+                        <option value="fulltime">{{ 'admin.fulltime'|trans }}</option>
+                        <option value="partTime">{{ 'admin.partTime'|trans }}</option>
+                        <option value="temporary">{{ 'admin.temporary'|trans }}</option>
+                        <option value="freelance">{{ 'admin.freelance'|trans }}</option>
+                        <option value="seasonal">{{ 'admin.seasonal'|trans }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    {{ form_row(form.client, {label: 'admin.client', attr: {class: 'form-control'}}) }}
+                </div>
+                <div class="buttons col-12 offset-md-4 row">
+                    <div class="px-2">
+                        <a class="btn btn-outline-dark" href="{{ path('admin_joboffers') }}">{{ 'admin.cancel'|trans }}</a>
+                    </div>
+                    <div class="px-2">
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                    </div>
+                </div>
+
+                {{ form_widget(form._token) }}
+            </form>
+        </div>
+    </main>
+{% endblock %}

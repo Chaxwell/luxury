@@ -7,6 +7,7 @@ use App\Entity\Client;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\JobOfferRepository")
@@ -57,6 +58,9 @@ class JobOffer
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Positive(
+     *      message="The value must be positive"
+     * )
      */
     private $salary;
 
@@ -76,30 +80,28 @@ class JobOffer
     private $closedAt;
 
     /**
-     * @var Client
-     *
-     * @ORM\OneToMany(targetEntity="App\Entity\Client", mappedBy="jobOffer")
-     */
-    private $client;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $jobCategory;
 
     /**
-     * @var Candidature
+     * @var Client
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Candidature", inversedBy="jobOffer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="jobOffers")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
-    private $candidature;
+    private $client;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="jobOffer")
+     */
+    private $candidatures;
 
     public function __construct()
     {
-        $this->client = new ArrayCollection();
+        $this->candidatures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -238,40 +240,18 @@ class JobOffer
         return $this;
     }
 
-    /**
-     * @return Collection|Client[]
-     */
-    public function getClient(): Collection
+    public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function addClient(Client $client): self
+    public function setClient(Client $client): self
     {
-        if (!$this->client->contains($client)) {
-            $this->client[] = $client;
-            $client->setJobOffer($this);
-        }
+        $this->client = $client;
 
         return $this;
     }
 
-    public function removeClient(Client $client): self
-    {
-        if ($this->client->contains($client)) {
-            $this->client->removeElement($client);
-            // set the owning side to null (unless already changed)
-            if ($client->getJobOffer() === $this) {
-                $client->setJobOffer(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getJobCategory(): ?string
     {
         return $this->jobCategory;
@@ -284,14 +264,30 @@ class JobOffer
         return $this;
     }
 
-    public function getCandidature(): ?Candidature
+    public function getCandidatures(): Collection
     {
-        return $this->candidature;
+        return $this->candidatures;
     }
 
-    public function setCandidature(?Candidature $candidature): self
+    public function addCandidature(Candidature $candidature): self
     {
-        $this->candidature = $candidature;
+        if (!$this->candidature->contains($candidature)) {
+            $this->candidature[] = $candidature;
+            $candidature->setJobOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): self
+    {
+        if ($this->candidature->contains($candidature)) {
+            $this->candidature->removeElement($candidature);
+            // set the owning side to null (unless already changed)
+            if ($candidature->getJobOffer() === $this) {
+                $candidature->setJobOffer(null);
+            }
+        }
 
         return $this;
     }

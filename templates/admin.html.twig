@@ -57,7 +57,7 @@
                                     <span data-feather="dollar-sign"></span>
                                     {{ 'admin.clients'|trans }}
                                 </a>
-                                 <ul class="undernav">
+                                <ul class="undernav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('admin_new_client') }}">
                                         <span data-feather="plus-circle"></span>
@@ -66,16 +66,30 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ path('admin_joboffers') }}">
                                     <span data-feather="clipboard"></span>
                                     {{ 'admin.jobOffers'|trans }}
                                 </a>
+                                <ul class="undernav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('admin_new_joboffer') }}">
+                                        <span data-feather="plus-circle"></span>
+                                        {{ 'admin.addJobOffer'|trans }}</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ path('admin_candidatures') }}">
                                     <span data-feather="paperclip"></span>
                                     {{ 'admin.candidatures'|trans }}
                                 </a>
+                                <ul class="undernav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('admin_new_candidature') }}">
+                                        <span data-feather="plus-circle"></span>
+                                        {{ 'admin.addCandidature'|trans }}</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
 

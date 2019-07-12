@@ -59,6 +59,42 @@ admin:
     confirmDelete: Are you sure you want to delete this candidate?
     files: Files
     cancel: Cancel
+    jobOfferTitle: Title
+    companyName: Company Name
+    contactName: Contact Name
+    contactEmail: Contact Email
+    contactPhoneNumber: Contact Number
+    active: Active
+    closureDate: Closure Date
+    addClient: Add a client
+    companyType: Company Type
+    contactJob: Contact Job
+    newClient: Add a new client
+    fulltime: Fulltime
+    partTime: Part time
+    temporary: Temporary
+    freelance: Freelance
+    seasonal: Seasonal
+    addJobOffer: Add a job offer
+    newJobOffer: Add a new job offer
+    client: Client
+    addCandidature: Add a candidature
+    newCandidature: Add a new candidature
+    jobOffer:
+        reference: Reference
+        title: Job title
+        description: Description
+        location: Location
+        salary: Salary
+        type: Type
+        client: Client
+        jobOffer: Job offer
+    candidate:
+        lastName: Candidate last name
+        email: Candidate email
+        candidate: Candidate
+    candidature:
+        createdAt: Created at
 
 authentification:
     termsOfUse_start: I have read and I accept the

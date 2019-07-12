@@ -1,13 +1,13 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}Candidates |
+{% block title %}Clients |
     {{ parent() }}
 {% endblock %}
 
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.jobOffers'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.candidatures'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -25,7 +25,7 @@
             </div>
         {% endfor %}
         <div class="float-right my-2">
-            <a href="{{ path('admin_new_joboffer') }}" class="btn btn-dark">Add a job offer
+            <a href="{{ path('admin_new_candidature') }}" class="btn btn-dark">Add a candidature
                 <span class="big">&CirclePlus;</span>
             </a>
         </div>
@@ -33,42 +33,50 @@
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>{{ 'admin.jobOfferTitle'|trans }}</th>
+                        <th>{{ 'admin.candidate.lastName'|trans }}</th>
+                        <th>{{ 'admin.candidate.email'|trans }}</th>
+                        <th>{{ 'admin.jobOffer.title'|trans }}</th>
                         <th>{{ 'admin.companyName'|trans }}</th>
                         <th>{{ 'admin.contactName'|trans }}</th>
                         <th>{{ 'admin.contactEmail'|trans }}</th>
-                        <th>{{ 'admin.contactPhoneNumber'|trans }}</th>
-                        <th>{{ 'admin.active'|trans }}</th>
-                        <th>{{ 'admin.registerDate'|trans }}</th>
-                        <th>{{ 'admin.closureDate'|trans }}</th>
+                        <th>{{ 'admin.candidature.createdAt'|trans }}</th>
                         <th>{{ 'admin.note'|trans }}</th>
+                        <th>{{ 'admin.files'|trans }}</th>
                         <th>{{ 'admin.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% set confirmDelete = 'admin.confirmDelete'|trans %}
-                    {% for jobOffer in jobOffers %}
+                    {% for candidature in candidatures %}
                         <tr>
-                            <td>{{ jobOffer.title ? jobOffer.title : 'N/A' }}</td>
-                            <td>{{ jobOffer.client.companyName ? jobOffer.client.companyName : 'N/A' }}</td>
-                            <td>{{ jobOffer.client.contactName ? jobOffer.client.contactName : 'N/A' }}</td>
-                            <td>{{ jobOffer.client.contactEmail ? jobOffer.client.contactEmail : 'N/A' }}</td>
-                            <td>{{ jobOffer.client.contactPhoneNumber ? jobOffer.client.contactPhoneNumber|capitalize : 'N/A' }}</td>
-                            <td>{{ jobOffer.active ? 'Yes' : 'No' }}</td>
-                            <td>{{ jobOffer.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
-                            <td>{{ jobOffer.closedAt ? jobOffer.closedAt|date("d/m/Y H:i:s", "Europe/Paris") : 'N/A' }}</td>
-                            <td data-id="{{ jobOffer.id }}">
-                                <button class="btn p-0">
+                            <td>{{ candidature.user.lastName ? candidature.user.lastName : 'N/A' }}</td>
+                            <td>{{ candidature.user.email ? candidature.user.email : 'N/A' }}</td>
+                            <td>{{ candidature.jobOffer.title ? candidature.jobOffer.title : 'N/A' }}</td>
+                            <td>{{ candidature.jobOffer.client.companyName ? candidature.jobOffer.client.companyName : 'N/A' }}</td>
+                            <td>{{ candidature.jobOffer.client.contactName ? candidature.jobOffer.client.contactName : 'N/A' }}</td>
+                            <td>{{ candidature.jobOffer.client.contactEmail ? candidature.jobOffer.client.contactEmail : 'N/A' }}</td>
+                            <td>{{ candidature.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
+                            <td data-id="{{ candidature.id }}">
+                                {# <button class="btn p-0">
                                     <i data-feather="bookmark"></i>
-                                </button>
+                                </button> #}
+                            </td>
+                            <td>
+                                {% if candidature.user.resume %}
+                                <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidature.user.resume) }}">{{ 'admin.resume'|trans }} <i data-feather="file-text"></i></a>
+                                {% elseif candidature.user.passport %}
+                                <a target="_blank" href="#">{{ 'admin.passport'|trans }} <i data-feather="book"></i></a>
+                                {% else %}
+                                {{ 'N/A' }}
+                                {% endif %}
                             </td>
                             <td class="d-flex justify-content-between">
-                                <a href="{{ path('admin_edit_joboffer', {id: jobOffer.id}) }}">
+                                <a href="{{ path('admin_edit_candidature', {id: candidature.id}) }}">
                                     <button class="btn p-0">
                                         <i data-feather="edit"></i>
                                     </button>
                                 </a>
-                                <form method="POST" action="{{ path('admin_delete_joboffer', {id: jobOffer.id}) }}" onsubmit="return confirm('{{ confirmDelete }}');">
+                                <form method="POST" action="{{ path('admin_delete_candidature', {id: candidature.id}) }}" onsubmit="return confirm('{{ confirmDelete }}');">
                                     <button class="btn p-0" type="submit">
                                         <i data-feather="x-circle"></i>
                                     </button>
