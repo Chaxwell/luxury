@@ -29,6 +29,12 @@
             <section class="section-padding gray-bg log-section">
                 <div class="container">
                     <div class="row">
+                        {% if error %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+
 
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="card card-panel">

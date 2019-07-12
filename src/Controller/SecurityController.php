@@ -3,15 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\LoginType;
+use App\Form\ProfileType;
 use App\Form\RegistrationType;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/auth")
@@ -41,11 +42,31 @@ class SecurityController extends AbstractController
     { }
 
     /**
-     * @Route("/profile", name="auth_profile", methods={"GET"}))
+     * @Route("/profile", name="auth_profile", methods={"GET", "POST"}))
      */
-    public function profile(Request $request): Response
+    public function profile(Request $request, UserInterface $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        return $this->render('security/profile.html.twig', []);
+        // dd($this->get('security.token_storage')->getToken()->getUser());
+
+        $form = $this->createForm(ProfileType::class, $candidate);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
+            $candidate
+                ->setPassword($hashedPassword)
+                ->setUpdatedAt();
+            $objectManager->persist($candidate);
+            $objectManager->flush();
+
+            return $this->redirectToRoute('auth_profile', [
+                'flashMessage' => $this->addFlash('success', 'Profile edited with success.')
+            ]);
+        }
+
+        return $this->render('security/profile.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

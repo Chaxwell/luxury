@@ -1,0 +1,71 @@
+{% extends "admin.html.twig" %}
+
+{% block body %}
+    <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{ 'admin.newClient'|trans }}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
+                    <button class="btn btn-sm btn-outline-secondary" type="button">Export</button>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button>
+            </div>
+        </div>
+
+        {% if form_errors(form) %}
+            <div class="alert alert-danger py-3 px-3 my-3">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path('admin_new_client') }}" autocomplete="off" class="mb-5" method="POST">
+            <div class="form-row">
+                <div class="form-group col-4">
+                    <label for="company-name">{{ 'admin.companyName'|trans }}</label>
+                    <input class="form-control" id="company-name" name="client[companyName]" type="text">
+                </div>
+                <div class="form-group col-4">
+                    <label for="company-type">{{ 'admin.companyType'|trans }}</label>
+                    <input class="form-control" id="company-type" name="client[companyType]" type="text">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-2">
+                    <label for="contact-name">{{ 'admin.contactName'|trans }}</label>
+                    <input class="form-control" id="contact-name" name="client[contactName]" type="text">
+                </div>
+                <div class="form-group col-3">
+                    <label for="contact-job">{{ 'admin.contactJob'|trans }}</label>
+                    <input class="form-control" id="contact-job" name="client[contactJob]" type="text">
+                </div>
+                <div class="form-group col-3">
+                    <label for="contact-email">{{ 'admin.contactEmail'|trans }}</label>
+                    <input class="form-control" id="contact-email" name="client[contactEmail]" type="email">
+                </div>
+                <div class="col-4"></div>
+                <div class="form-group col-2">
+                    <label for="contact-phone-number">{{ 'admin.contactPhoneNumber'|trans }}</label>
+                    <input class="form-control" id="contact-phone-number" maxlength="10" name="client[contactPhoneNumber]" type="tel">
+                    <small style="color: grey;">{{ 'admin.numberFormat'|trans }}</small>
+                </div>
+                <div class="form-group col-8">
+                    <label for="note">{{ 'admin.note'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="note" name="user[note]" rows="1"></textarea>
+                </div>
+                <div class="buttons col-12 offset-md-4 row">
+                    <div class="px-2">
+                        <a class="btn btn-outline-dark" href="{{ path('admin_clients') }}">{{ 'admin.cancel'|trans }}</a>
+                    </div>
+                    <div class="px-2">
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                    </div>
+                </div>
+
+                {{ form_widget(form._token) }}
+            </form>
+        </div>
+    </main>
+{% endblock %}

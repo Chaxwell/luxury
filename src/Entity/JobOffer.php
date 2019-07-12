@@ -46,9 +46,9 @@ class JobOffer
     private $note;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $types = [];
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -167,14 +167,14 @@ class JobOffer
         return $this;
     }
 
-    public function getTypes(): ?array
+    public function getType(): ?string
     {
-        return $this->types;
+        return $this->type;
     }
 
-    public function setTypes(?array $types): self
+    public function setType(?string $type): self
     {
-        $this->types = $types;
+        $this->type = $type;
 
         return $this;
     }
@@ -208,9 +208,9 @@ class JobOffer
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime('now');
 
         return $this;
     }
@@ -220,13 +220,12 @@ class JobOffer
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime('now');
 
         return $this;
     }
-
     public function getClosedAt(): ?\DateTimeInterface
     {
         return $this->closedAt;

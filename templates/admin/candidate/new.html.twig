@@ -20,7 +20,7 @@
             {{ form_errors(form) }}
         </div>
 
-        <form action="{{ path('admin_new_candidate') }}" autocomplete="off" class="mb-5" method="POST">
+        <form action="{{ path('admin_new_candidate') }}" autocomplete="off" class="mb-5" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-4">
                     <label for="email">{{ 'admin.email'|trans }}</label>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="form-group col-4">
                     <label for="resume">{{ 'admin.resume'|trans }}</label>
-                    <input class="form-control" id="resume" name="user[resume]" type="text">
+                    <input class="form-control" id="resume" name="user[resumeFile]" type="file">
                 </div>
                 <div class="form-group col-8">
                     <label for="note">{{ 'admin.note'|trans }}</label>
@@ -145,8 +145,13 @@
                     </div>
                 </div>
 
-                <div class="col-2 offset-md-5">
-                    <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                <div class="buttons col-12 offset-md-4 row">
+                    <div class="px-2">
+                        <a class="btn btn-outline-dark" href="{{ path('admin_candidates') }}">{{ 'admin.cancel'|trans }}</a>
+                    </div>
+                    <div class="px-2">
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                    </div>
                 </div>
 
                 {{ form_widget(form._token) }}

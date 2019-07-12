@@ -6,13 +6,11 @@ use App\Entity\User;
 use App\Repository\JobCategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
 
-class UserType extends AbstractType
+class ProfileType extends AbstractType
 {
     protected $jobCategoryRepository;
 
@@ -25,13 +23,14 @@ class UserType extends AbstractType
     {
         $jobCategoriesByName = [];
 
-        foreach ($this->jobCategoryRepository->findAll() as $jobCategory) {
+        foreach($this->jobCategoryRepository->findAll() as $jobCategory) {
             $jobCategoriesByName[$jobCategory->getName()] = strtolower($jobCategory->getName());
         }
 
         $builder
             ->add('email')
             ->add('password', PasswordType::class)
+            ->add('passwordValidation', PasswordType::class)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'admin.male' => 'male',
@@ -49,19 +48,7 @@ class UserType extends AbstractType
             ->add('birthDate')
             ->add('birthPlace')
             ->add('passport')
-            ->add('resumeFile', FileType::class, [
-                'mapped' => false,
-                'required' => true,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '10240k',
-                        'mimeTypes' => [
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Please upload an image.'
-                    ])
-                ],
-            ])
+            ->add('resume')
             ->add('experience', ChoiceType::class, [
                 'choices' => [
                     'admin.06months' => '06months',
@@ -73,7 +60,6 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('description')
-            ->add('note')
             ->add('availability', ChoiceType::class, [
                 'choices' => [
                     'admin.yes' => true,
@@ -84,16 +70,6 @@ class UserType extends AbstractType
             ])
             ->add('jobCategory', ChoiceType::class, [
                 'choices'  => $jobCategoriesByName
-            ])
-            // ->add('createdAt')
-            // ->add('updatedAt')
-            ->add('isAdmin', ChoiceType::class, [
-                'choices' => [
-                    'admin.yes' => true,
-                    'admin.no' => false,
-                ],
-                'expanded' => true,
-                'multiple' => false,
             ]);
     }
 
@@ -101,7 +77,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            // 'allow_extra_fields' => true,
+            'allow_extra_fields' => true,
         ]);
     }
 }

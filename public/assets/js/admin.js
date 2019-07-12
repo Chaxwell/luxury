@@ -1,6 +1,7 @@
 const path = window.location.href;
 const menuLinks = document.querySelectorAll('.sidebar-sticky ul li a');
 const notes = document.querySelectorAll('svg.feather-bookmark');
+const alertBoxes = document.querySelectorAll('.alert.alert-success');
 
 menuLinks.forEach(link => {
     if (link.href == path) {
@@ -23,19 +24,24 @@ notes.forEach(note => {
 
         const textarea = document.createElement("textarea");
         textarea.setAttribute('name', 'note')
+        textarea.setAttribute('class', 'form-control')
+
 
         const submitButton = document.createElement("button");
         submitButton.setAttribute('type', 'submit');
+        submitButton.setAttribute('class', 'mt-1 float-right');
         submitButton.innerText = 'Send';
 
-        const idHidden = document.createElement("input");
-        idHidden.setAttribute('type', 'hidden')
-        idHidden.setAttribute('name', 'id')
-        idHidden.setAttribute('value', noteGrandParent.getAttribute('data-id'))
-
-        form.appendChild(idHidden);
         form.appendChild(textarea);
         form.appendChild(submitButton);
         noteGrandParent.appendChild(form);
     });
+});
+
+alertBoxes.forEach(alertBox => {
+    if (alertBox.innerText != '') {
+        setTimeout(() => {
+            alertBox.remove();
+        }, 2000);
+    }
 });
