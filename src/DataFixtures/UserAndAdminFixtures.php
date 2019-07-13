@@ -5,8 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserAndAdminFixtures extends Fixture implements FixtureGroupInterface
 {
@@ -24,15 +24,20 @@ class UserAndAdminFixtures extends Fixture implements FixtureGroupInterface
             ->setEmail('mail@mail.com')
             ->setPassword(
                 $this->passwordEncoder->encodePassword($candidate, 'password')
-            );
+            )
+            ->setCreatedAt()
+            ->setUpdatedAt();
         $admin
             ->setEmail('admin@mail.com')
             ->setPassword(
                 $this->passwordEncoder->encodePassword($admin, 'password')
             )
-            ->setIsAdmin(true);
+            ->setIsAdmin(true)
+            ->setCreatedAt()
+            ->setUpdatedAt();
 
-        $manager->persist($candidate, $admin);
+        $manager->persist($candidate);
+        $manager->persist($admin);
         $manager->flush();
     }
 
