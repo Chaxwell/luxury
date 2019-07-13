@@ -16,4 +16,5 @@ or as admin user with :
 # Additional information
 
 You can execute a particular Fixture with the following command :
+
 `bin/console doctrine:fixtures:load --fixture=/src/DataFixtures/FixtureName`
