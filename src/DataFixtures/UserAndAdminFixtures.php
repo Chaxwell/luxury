@@ -10,7 +10,7 @@ use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
 class UserAndAdminFixtures extends Fixture implements FixtureGroupInterface
 {
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder): void
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
     }
