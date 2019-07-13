@@ -1,9 +1,13 @@
 {% extends "admin.html.twig" %}
 
+{% block title %}{{ 'admin.candidate.editCandidate'|trans }} |
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.editCandidate'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.candidate.editCandidate'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -16,97 +20,99 @@
             </div>
         </div>
 
-        <div class="errors py-3 px-3 my-3 bg-light">
-            {{ form_errors(form) }}
-        </div>
+        {% if form_errors(form) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
 
         <form action="{{ path('admin_edit_candidate', {id: candidate.id}) }}" autocomplete="off" class="mb-5" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-4">
-                    {{ form_label(form.email, 'admin.email')}}
+                    {{ form_label(form.email, 'form.email')}}
                     {{ form_widget(form.email, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.password, 'admin.password')}}
+                    {{ form_label(form.password, 'form.password')}}
                     {{ form_widget(form.password, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-2">
-                    {{ form_label(form.gender, 'admin.gender')}}
+                    {{ form_label(form.gender, 'form.gender')}}
                     {{ form_widget(form.gender, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-3">
-                    {{ form_label(form.firstName, 'admin.firstName')}}
+                    {{ form_label(form.firstName, 'form.firstName')}}
                     {{ form_widget(form.firstName, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-3">
-                    {{ form_label(form.lastName, 'admin.lastName')}}
+                    {{ form_label(form.lastName, 'form.lastName')}}
                     {{ form_widget(form.lastName, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.address, 'admin.address')}}
+                    {{ form_label(form.address, 'form.address')}}
                     {{ form_widget(form.address, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.country, 'admin.country')}}
+                    {{ form_label(form.country, 'form.country')}}
                     {{ form_widget(form.country, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.currentLocation, 'admin.currentLocation')}}
+                    {{ form_label(form.currentLocation, 'form.currentLocation')}}
                     {{ form_widget(form.currentLocation, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.nationality, 'admin.nationality')}}
+                    {{ form_label(form.nationality, 'form.nationality')}}
                     {{ form_widget(form.nationality, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.birthPlace, 'admin.birthPlace')}}
+                    {{ form_label(form.birthPlace, 'form.birthPlace')}}
                     {{ form_widget(form.birthPlace, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-2">
-                    {{ form_label(form.phoneNumber, 'admin.phoneNumber')}}
+                    {{ form_label(form.phoneNumber, 'form.phoneNumber')}}
                     {{ form_widget(form.phoneNumber, {attr: {class: 'form-control'}}) }}
-                    <small style="color: grey;">{{ 'admin.phoneNumberFormat'|trans }}</small>
+                    <small style="color: grey;">{{ 'form.phoneNumberFormat'|trans }}</small>
                 </div>
                 <div class="form-group col-6">
-                    {{ form_label(form.description, 'admin.description')}}
+                    {{ form_label(form.description, 'form.description')}}
                     {{ form_widget(form.description, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.jobCategory, 'admin.jobSector')}}
+                    {{ form_label(form.jobCategory, 'form.jobSector')}}
                     {{ form_widget(form.jobCategory, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.experience, 'admin.experience')}}
+                    {{ form_label(form.experience, 'form.experience')}}
                     {{ form_widget(form.experience, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.profilePicture, 'admin.profilePicture')}}
+                    {{ form_label(form.profilePicture, 'form.profilePicture')}}
                     {{ form_widget(form.profilePicture, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.passport, 'admin.passport')}}
+                    {{ form_label(form.passport, 'form.passport')}}
                     {{ form_widget(form.passport, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.resumeFile, 'admin.resume')}}
+                    {{ form_label(form.resumeFile, 'form.resume')}}
                     {{ form_widget(form.resumeFile, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-8">
-                    {{ form_label(form.note, 'admin.note')}}
+                    {{ form_label(form.note, 'form.note')}}
                     {{ form_widget(form.note, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-12">
-                    <p class="mb-1">{{ 'admin.admin'|trans }}</p>
+                    <p class="mb-1">{{ 'form.admin'|trans }}</p>
                     <div class="form-check form-check-inline">
                         {{ form_widget(form.isAdmin, {attr: {class: 'form-check-input'}}) }}
                     </div>
                 </div>
                 <div class="form-group col-12">
-                    <p class="mb-1">{{ 'admin.availability'|trans }}</p>
+                    <p class="mb-1">{{ 'form.available'|trans }}</p>
                     <div class="form-check form-check-inline">
                         {{ form_widget(form.availability, {attr: {class: 'form-check-input'}}) }}
                     </div>
@@ -116,10 +122,10 @@
 
                 <div class="buttons col-12 offset-md-4 row">
                     <div class="px-2">
-                        <a class="btn btn-outline-dark" href="{{ path('admin_candidates') }}">{{ 'admin.cancel'|trans }}</a>
+                        <a class="btn btn-outline-dark" href="{{ path('admin_candidates') }}">{{ 'form.cancel'|trans }}</a>
                     </div>
                     <div class="px-2">
-                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'form.submit'|trans }}</button>
                     </div>
                 </div>
             </form>

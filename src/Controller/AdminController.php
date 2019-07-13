@@ -412,7 +412,7 @@ class AdminController extends AbstractController
      */
     public function editCandidature(Request $request, Candidature $candidature, ObjectManager $objectManager)
     {
-        $form = $this->createForm(JobOfferType::class, $candidature);
+        $form = $this->createForm(CandidatureType::class, $candidature);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

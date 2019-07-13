@@ -1,13 +1,13 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}Candidates |
+{% block title %}{{ 'admin.candidate.candidates'|trans }} |
     {{ parent() }}
 {% endblock %}
 
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.candidates'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.candidate.candidates'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -25,7 +25,7 @@
             </div>
         {% endfor %}
         <div class="float-right my-2">
-            <a href="{{ path('admin_new_candidate') }}" class="btn btn-dark">Add a candidate
+            <a href="{{ path('admin_new_candidate') }}" class="btn btn-dark">{{ 'admin.candidate.addCandidate'|trans }}
                 <span class="big">&CirclePlus;</span>
             </a>
         </div>
@@ -33,20 +33,20 @@
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>{{ 'admin.lastName'|trans }}</th>
-                        <th>{{ 'admin.firstName'|trans }}</th>
-                        <th>{{ 'admin.email'|trans }}</th>
-                        <th>{{ 'admin.city'|trans }}</th>
-                        <th>{{ 'admin.jobSector'|trans }}</th>
-                        <th>{{ 'admin.availability'|trans }}</th>
-                        <th>{{ 'admin.registerDate'|trans }}</th>
-                        <th>{{ 'admin.note'|trans }}</th>
-                        <th>{{ 'admin.files'|trans }}</th>
-                        <th>{{ 'admin.actions'|trans }}</th>
+                        <th>{{ 'admin.table.lastName'|trans }}</th>
+                        <th>{{ 'admin.table.firstName'|trans }}</th>
+                        <th>{{ 'admin.table.email'|trans }}</th>
+                        <th>{{ 'admin.table.city'|trans }}</th>
+                        <th>{{ 'admin.table.jobSector'|trans }}</th>
+                        <th>{{ 'admin.table.available'|trans }}</th>
+                        <th>{{ 'admin.table.registerDate'|trans }}</th>
+                        <th>{{ 'admin.table.note'|trans }}</th>
+                        <th>{{ 'admin.table.files'|trans }}</th>
+                        <th>{{ 'admin.table.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
                     {% for candidate in candidates %}
                         <tr>
                             <td>{{ candidate.lastName ? candidate.lastName : 'N/A' }}</td>
@@ -54,7 +54,7 @@
                             <td>{{ candidate.email ? candidate.email : 'N/A' }}</td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A' }}</td>
                             <td>{{ candidate.jobCategory ? candidate.jobCategory|capitalize : 'N/A' }}</td>
-                            <td>{{ candidate.availability ? 'Yes' : 'No' }}</td>
+                            <td>{{ candidate.availability ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
                             <td>{{ candidate.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
                             <td data-id="{{ candidate.id }}">
                                 <button class="btn p-0">
@@ -63,11 +63,11 @@
                             </td>
                             <td>
                                 {% if candidate.resume %}
-                                <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidate.resume) }}">{{ 'admin.resume'|trans }} <i data-feather="file-text"></i></a>
+                                    <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidate.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
                                 {% elseif candidate.passport %}
-                                <a target="_blank" href="#">{{ 'admin.passport'|trans }} <i data-feather="book"></i></a>
+                                    <a target="_blank" href="#">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
                                 {% else %}
-                                N/A
+                                    N/A
                                 {% endif %}
                             </td>
                             <td class="d-flex justify-content-between">

@@ -1,13 +1,13 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}Candidates |
+{% block title %}{{ 'admin.jobOffer.jobOffers'|trans }} |
     {{ parent() }}
 {% endblock %}
 
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.jobOffers'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.jobOffer.jobOffers'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -19,13 +19,15 @@
                 </button>
             </div>
         </div>
+        {# TODO: Add flashes every where #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
+
         <div class="float-right my-2">
-            <a href="{{ path('admin_new_joboffer') }}" class="btn btn-dark">Add a job offer
+            <a href="{{ path('admin_new_joboffer') }}" class="btn btn-dark">{{ 'admin.jobOffer.addJobOffer'|trans }}
                 <span class="big">&CirclePlus;</span>
             </a>
         </div>
@@ -33,20 +35,20 @@
             <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>{{ 'admin.jobOfferTitle'|trans }}</th>
-                        <th>{{ 'admin.companyName'|trans }}</th>
-                        <th>{{ 'admin.contactName'|trans }}</th>
-                        <th>{{ 'admin.contactEmail'|trans }}</th>
-                        <th>{{ 'admin.contactPhoneNumber'|trans }}</th>
-                        <th>{{ 'admin.active'|trans }}</th>
-                        <th>{{ 'admin.registerDate'|trans }}</th>
-                        <th>{{ 'admin.closureDate'|trans }}</th>
-                        <th>{{ 'admin.note'|trans }}</th>
-                        <th>{{ 'admin.actions'|trans }}</th>
+                        <th>{{ 'admin.table.jobTitle'|trans }}</th>
+                        <th>{{ 'admin.table.companyName'|trans }}</th>
+                        <th>{{ 'admin.table.contactName'|trans }}</th>
+                        <th>{{ 'admin.table.contactEmail'|trans }}</th>
+                        <th>{{ 'admin.table.contactPhoneNumber'|trans }}</th>
+                        <th>{{ 'admin.table.active'|trans }}</th>
+                        <th>{{ 'admin.table.registerDate'|trans }}</th>
+                        <th>{{ 'admin.table.closureDate'|trans }}</th>
+                        <th>{{ 'admin.table.note'|trans }}</th>
+                        <th>{{ 'admin.table.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
                     {% for jobOffer in jobOffers %}
                         <tr>
                             <td>{{ jobOffer.title ? jobOffer.title : 'N/A' }}</td>
@@ -54,7 +56,7 @@
                             <td>{{ jobOffer.client.contactName ? jobOffer.client.contactName : 'N/A' }}</td>
                             <td>{{ jobOffer.client.contactEmail ? jobOffer.client.contactEmail : 'N/A' }}</td>
                             <td>{{ jobOffer.client.contactPhoneNumber ? jobOffer.client.contactPhoneNumber|capitalize : 'N/A' }}</td>
-                            <td>{{ jobOffer.active ? 'Yes' : 'No' }}</td>
+                            <td>{{ jobOffer.active ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
                             <td>{{ jobOffer.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
                             <td>{{ jobOffer.closedAt ? jobOffer.closedAt|date("d/m/Y H:i:s", "Europe/Paris") : 'N/A' }}</td>
                             <td data-id="{{ jobOffer.id }}">

@@ -13,13 +13,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="white-text">{{ 'authentification.register'|trans }}</h2>
-                            <span class="white-text">{{ 'authentification.welcome'|trans }}</span>
+                            <h2 class="white-text">{{ 'misc.register'|trans }}</h2>
+                            <span class="white-text">{{ 'misc.welcomeOnBoard'|trans }}</span>
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="{{ path('home_index') }}">{{ 'authentification.home'|trans }}</a>
+                                    <a href="{{ path('home_index') }}">{{ 'navigation.home'|trans }}</a>
                                 </li>
-                                <li class="active">{{ 'authentification.register'|trans }}</li>
+                                <li class="active">{{ 'misc.register'|trans }}</li>
                             </ol>
                         </div>
                     </div>
@@ -32,38 +32,37 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-sm-offset-3 card card-panel">
-                            <h3 class="text-extrabold">{{ 'authentification.createNewAccount'|trans }}</h3>
+                            <h3 class="text-extrabold">{{ 'form.createNewAccount'|trans }}</h3>
                             <form action="{{ path('auth_register') }}" accept-char="UTF-8" autocomplete="off" data-parsley-validate id="register-form" method="post" role="form">
                                 <div class="input-field">
                                     <input id="email" name="registration[email]" required type="email" value="">
-                                    <label for="email">{{ 'authentification.email'|trans }}</label>
+                                    <label for="email">{{ 'form.email'|trans }}</label>
                                     <span class="help-block">Type your email address.</span>
-                                    {# {{ form_row(form.email, {label: 'authentification.email'}) }} #}
+                                    {# {{ form_row(form.email, {label: 'form.email'}) }} #}
                                 </div>
                                 <div class="input-field">
                                     <input data-parsley-error-message="The password must be at least 6 characters." data-parsley-minlength="6" data-parsley-trigger="change" id="password" name="registration[password]" required type="password" value="">
-                                    <label for="password">{{ 'authentification.password'|trans }}</label>
+                                    <label for="password">{{ 'form.password'|trans }}</label>
                                     <i class="fa fa-eye show-password"></i>
                                     <span class="help-block">Type your password.</span>
-                                    {# {{ form_row(form.password, {label: 'authentification.password'}) }} #}
+                                    {# {{ form_row(form.password, {label: 'form.password'}) }} #}
                                 </div>
                                 <div class="input-field">
                                     <input data-parsley-equalto="#password" data-parsley-error-message="Password does not match." data-parsley-trigger="change" id="password_confirmation" name="passwordValidation" required type="password" value="">
-                                    <label for="password_confirmation">{{ 'authentification.passwordValidation'|trans }}</label>
+                                    <label for="password_confirmation">{{ 'form.passwordValidation'|trans }}</label>
                                     <i class="fa fa-eye show-password"></i>
                                     <span class="help-block">Confirm your password.</span>
-                                    {# {{ form_row(form.passwordValidation, {label: 'authentification.passwordValidation'}) }} #}
+                                    {# {{ form_row(form.passwordValidation, {label: 'form.passwordValidation'}) }} #}
                                 </div>
                                 <div class="checkbox">
                                     <input id="terms-of-use" name="termsOfUse" required type="checkbox" value="1">
-                                    <label for="terms-of-use">{{ 'authentification.termsOfUse_start'|trans }}
-                                        <a href="#!" target="_blank">{{ 'authentification.termsOfUse_end'|trans }}</a>
+                                    <label for="terms-of-use">{{ 'form.readTermsOfUse'|trans({'%url%': '#!'})|raw }}</a>
                                     </label>
                                 </div>
 
-                                <button class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20" type="submit">{{ 'authentification.createAccount'|trans }}</button>
+                                <button class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20" type="submit">{{ 'form.createAccount'|trans }}</button>
                                 <div class="links">
-                                    <a href="{{ path('auth_login') }}">{{ 'authentification.alreadyHaveAccount'|trans }}</a>
+                                    <a href="{{ path('auth_login') }}">{{ 'form.alreadyHaveAccount'|trans }}</a>
                                 </div>
 
                                 {{ form_widget(form._token) }}

@@ -19,10 +19,10 @@
 
     <body>
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ path('home_index') }}">{{ 'admin.luxuryServices'|trans }}</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ path('home_index') }}">{{ 'admin.misc.luxuryServices'|trans }}</a>
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="{{ path('auth_logout') }}">{{ 'admin.logout'|trans }}</a>
+                    <a class="nav-link" href="{{ path('auth_logout') }}">{{ 'admin.misc.logout'|trans }}</a>
                 </li>
             </ul>
         </nav>
@@ -35,59 +35,59 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_dashboard') }}">
                                     <span data-feather="home"></span>
-                                    {{ 'admin.dashboard'|trans }}
+                                    {{ 'admin.navigation.dashboard'|trans }}
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_candidates') }}">
                                     <span data-feather="users"></span>
-                                    {{ 'admin.candidates'|trans }}
+                                    {{ 'admin.navigation.candidates'|trans }}
                                 </a>
                                 <ul class="undernav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('admin_new_candidate') }}">
                                         <span data-feather="plus-circle"></span>
-                                        {{ 'admin.addCandidate'|trans }}</a>
+                                        {{ 'admin.navigation.addCandidate'|trans }}</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_clients') }}">
                                     <span data-feather="dollar-sign"></span>
-                                    {{ 'admin.clients'|trans }}
+                                    {{ 'admin.navigation.clients'|trans }}
                                 </a>
                                 <ul class="undernav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('admin_new_client') }}">
                                         <span data-feather="plus-circle"></span>
-                                        {{ 'admin.addClient'|trans }}</a>
+                                        {{ 'admin.navigation.addClient'|trans }}</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_joboffers') }}">
                                     <span data-feather="clipboard"></span>
-                                    {{ 'admin.jobOffers'|trans }}
+                                    {{ 'admin.navigation.jobOffers'|trans }}
                                 </a>
                                 <ul class="undernav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('admin_new_joboffer') }}">
                                         <span data-feather="plus-circle"></span>
-                                        {{ 'admin.addJobOffer'|trans }}</a>
+                                        {{ 'admin.navigation.addJobOffer'|trans }}</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_candidatures') }}">
                                     <span data-feather="paperclip"></span>
-                                    {{ 'admin.candidatures'|trans }}
+                                    {{ 'admin.navigation.candidatures'|trans }}
                                 </a>
                                 <ul class="undernav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('admin_new_candidature') }}">
                                         <span data-feather="plus-circle"></span>
-                                        {{ 'admin.addCandidature'|trans }}</a>
+                                        {{ 'admin.navigation.addCandidature'|trans }}</a>
                                     </li>
                                 </ul>
                             </li>

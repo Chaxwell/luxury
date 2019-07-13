@@ -1,9 +1,13 @@
 {% extends "admin.html.twig" %}
 
+{% block title %}{{ 'admin.jobOffer.editJobOffer'|trans }} |
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.editJobOffer'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.jobOffer.editJobOffer'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -17,7 +21,7 @@
         </div>
 
         {% if form_errors(form) %}
-            <div class="alert alert-danger py-3 px-3 my-3">
+            <div class="alert alert-danger">
                 {{ form_errors(form) }}
             </div>
         {% endif %}
@@ -25,59 +29,59 @@
         <form action="{{ path('admin_edit_joboffer', {id: jobOffer.id}) }}" autocomplete="off" class="mb-5" method="POST">
             <div class="form-row">
                 <div class="form-group col-4">
-                    {{ form_label(form.reference, 'admin.jobOffer.reference')}}
+                    {{ form_label(form.reference, 'form.reference')}}
                     {{ form_widget(form.reference, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_label(form.title, 'admin.jobOffer.title')}}
+                    {{ form_label(form.title, 'form.jobTitle')}}
                     {{ form_widget(form.title, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-2">
-                    {{ form_label(form.description, 'admin.jobOffer.description')}}
+                    {{ form_label(form.description, 'form.description')}}
                     {{ form_widget(form.description, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-3">
-                    {{ form_label(form.location, 'admin.jobOffer.location')}}
+                    {{ form_label(form.location, 'form.location')}}
                     {{ form_widget(form.location, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-3">
-                    {{ form_label(form.salary, 'admin.jobOffer.salary')}}
+                    {{ form_label(form.salary, 'form.salary')}}
                     {{ form_widget(form.salary, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.jobCategory, 'admin.jobSector')}}
+                    {{ form_label(form.jobCategory, 'form.jobSector')}}
                     {{ form_widget(form.jobCategory, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    <p class="mb-1">{{ 'admin.active'|trans }}</p>
+                    <p class="mb-1">{{ 'form.active'|trans }}</p>
                     <div class="form-check form-check-inline">
                         {{ form_widget(form.active, {attr: {class: 'form-check-input'}}) }}
                     </div>
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.note, 'admin.note')}}
+                    {{ form_label(form.note, 'form.note')}}
                     {{ form_widget(form.note, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    {{ form_label(form.type, 'admin.jobOffer.type')}}
+                    {{ form_label(form.type, 'form.jobType')}}
                     {{ form_widget(form.type, {attr: {class: 'form-control'}}) }}
                 </div>
                 <div class="form-group col-4">
-                    {{ form_row(form.client, {label: 'admin.client', attr: {class: 'form-control'}}) }}
+                    {{ form_row(form.client, {label: 'form.client', attr: {class: 'form-control'}}) }}
                 </div>
 
                 {{ form_widget(form._token) }}
 
                 <div class="buttons col-12 offset-md-4 row">
                     <div class="px-2">
-                        <a class="btn btn-outline-dark" href="{{ path('admin_joboffers') }}">{{ 'admin.cancel'|trans }}</a>
+                        <a class="btn btn-outline-dark" href="{{ path('admin_joboffers') }}">{{ 'form.cancel'|trans }}</a>
                     </div>
                     <div class="px-2">
-                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'form.submit'|trans }}</button>
                     </div>
                 </div>
             </form>

@@ -33,7 +33,6 @@ class Candidature
      */
     private $updatedAt;
 
-    // TODO: Make user and joboffer in a group for uniqueness
     /**
      * @var User
      *

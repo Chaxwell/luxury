@@ -1,9 +1,13 @@
 {% extends "admin.html.twig" %}
 
+{% block title %}{{ 'admin.candidate.addCandidate'|trans }} |
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{ 'admin.newCandidate'|trans }}</h1>
+            <h1 class="h2">{{ 'admin.candidate.newCandidate'|trans }}</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-group mr-2">
                     <button class="btn btn-sm btn-outline-secondary" type="button">Share</button>
@@ -16,141 +20,143 @@
             </div>
         </div>
 
-        <div class="errors py-3 px-3 my-3 bg-light">
-            {{ form_errors(form) }}
-        </div>
+        {% if form_errors(form) %}
+            <div class="alert alert-danger">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
 
         <form action="{{ path('admin_new_candidate') }}" autocomplete="off" class="mb-5" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-4">
-                    <label for="email">{{ 'admin.email'|trans }}</label>
+                    <label for="email">{{ 'form.email'|trans }}</label>
                     <input class="form-control" id="email" name="user[email]" type="email">
                 </div>
                 <div class="form-group col-4">
-                    <label for="password">{{ 'admin.password'|trans }}</label>
+                    <label for="password">{{ 'form.password'|trans }}</label>
                     <input class="form-control" id="password" name="user[password]" type="password">
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-2">
-                    <label for="email">{{ 'admin.gender'|trans }}</label>
+                    <label for="email">{{ 'form.gender'|trans }}</label>
                     <select class="form-control" id="gender" name="user[gender]">
-                        <option value="male">{{ 'admin.male'|trans }}</option>
-                        <option value="female">{{ 'admin.female'|trans }}</option>
+                        <option value="male">{{ 'form.male'|trans }}</option>
+                        <option value="female">{{ 'form.female'|trans }}</option>
                     </select>
                 </div>
                 <div class="form-group col-3">
-                    <label for="first-name">{{ 'admin.firstName'|trans }}</label>
+                    <label for="first-name">{{ 'form.firstName'|trans }}</label>
                     <input class="form-control" id="first-name" name="user[firstName]" type="text">
                 </div>
                 <div class="form-group col-3">
-                    <label for="last-name">{{ 'admin.lastName'|trans }}</label>
+                    <label for="last-name">{{ 'form.lastName'|trans }}</label>
                     <input class="form-control" id="last-name" name="user[lastName]" type="text">
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    <label for="address">{{ 'admin.address'|trans }}</label>
+                    <label for="address">{{ 'form.address'|trans }}</label>
                     <input class="form-control" id="address" name="user[address]" type="text">
                 </div>
                 <div class="form-group col-4">
-                    <label for="country">{{ 'admin.country'|trans }}</label>
+                    <label for="country">{{ 'form.country'|trans }}</label>
                     <input class="form-control" id="country" name="user[country]" type="text">
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    <label for="current-location">{{ 'admin.currentLocation'|trans }}</label>
+                    <label for="current-location">{{ 'form.currentLocation'|trans }}</label>
                     <input class="form-control" id="current-location" name="user[currentLocation]" type="text">
                 </div>
                 {# <div class="form-group col-4">
-                    <label for="birth-date">{{ 'admin.birthDate'|trans }}</label>
+                    <label for="birth-date">{{ 'form.birthDate'|trans }}</label>
                     <!-- datetime -->
                     <input class="form-control" id="birth-date" name="user[birthDate]" type="date">
                 </div> #}
                 <div class="col-4"></div>
                 <div class="form-group col-4">
-                    <label for="nationality">{{ 'admin.nationality'|trans }}</label>
+                    <label for="nationality">{{ 'form.nationality'|trans }}</label>
                     <input class="form-control" id="nationality" name="user[nationality]" type="text">
                 </div>
                 <div class="form-group col-4">
-                    <label for="birth-place">{{ 'admin.birthPlace'|trans }}</label>
+                    <label for="birth-place">{{ 'form.birthPlace'|trans }}</label>
                     <input class="form-control" id="birth-place" name="user[birthPlace]" type="text">
                 </div>
                 <div class="form-group col-2">
-                    <label for="phone-number">{{ 'admin.phoneNumber'|trans }}</label>
+                    <label for="phone-number">{{ 'form.phoneNumber'|trans }}</label>
                     <input class="form-control" id="phone-number" maxlength="10" name="user[phoneNumber]" type="tel">
-                    <small style="color: grey;">{{ 'admin.phoneNumberFormat'|trans }}</small>
+                    <small style="color: grey;">{{ 'form.phoneNumberFormat'|trans }}</small>
                 </div>
                 <div class="form-group col-6">
-                    <label for="description">{{ 'admin.description'|trans }}</label>
-                    <textarea class="form-control" cols="30" id="description" name="user[description]" rows="2" placeholder="{{ 'admin.holderDescription'|trans }}"></textarea>
+                    <label for="description">{{ 'form.description'|trans }}</label>
+                    <textarea class="form-control" cols="30" id="description" name="user[description]" rows="2" placeholder="{{ 'form.holderDescription'|trans }}"></textarea>
                 </div>
                 <div class="form-group col-4">
-                    <label for="job-category">{{ 'admin.jobSector'|trans }}</label>
+                    <label for="job-category">{{ 'form.jobSector'|trans }}</label>
                     <select class="form-control" id="job-category" name="user[jobCategory]">
-                        <option value="commercial">{{ 'admin.commercial'|trans }}</option>
-                        <option value="retail">{{ 'admin.retailSales'|trans }}</option>
-                        <option value="creative">{{ 'admin.creative'|trans }}</option>
-                        <option value="technology">{{ 'admin.technology'|trans }}</option>
-                        <option value="marketing">{{ 'admin.marketing'|trans }}</option>
-                        <option value="fashion">{{ 'admin.fashion'|trans }}</option>
-                        <option value="management">{{ 'admin.management'|trans }}</option>
+                        <option value="commercial">{{ 'form.commercial'|trans }}</option>
+                        <option value="retail">{{ 'form.retailSales'|trans }}</option>
+                        <option value="creative">{{ 'form.creative'|trans }}</option>
+                        <option value="technology">{{ 'form.technology'|trans }}</option>
+                        <option value="marketing">{{ 'form.marketingAndPR'|trans }}</option>
+                        <option value="fashion">{{ 'form.fashionAndLuxury'|trans }}</option>
+                        <option value="management">{{ 'form.managementAndHR'|trans }}</option>
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="experience">{{ 'admin.experience'|trans }}</label>
+                    <label for="experience">{{ 'form.experience'|trans }}</label>
                     <select class="form-control" id="experience" name="user[experience]">
-                        <option value="06months">{{ 'admin.06months'|trans }}</option>
-                        <option value="612months">{{ 'admin.612months'|trans }}</option>
-                        <option value="12years">{{ 'admin.12years'|trans }}</option>
-                        <option value="2years">{{ 'admin.2years'|trans }}</option>
-                        <option value="5years">{{ 'admin.5years'|trans }}</option>
-                        <option value="10years">{{ 'admin.10years'|trans }}</option>
+                        <option value="06months">{{ 'form.06months'|trans }}</option>
+                        <option value="612months">{{ 'form.612months'|trans }}</option>
+                        <option value="12years">{{ 'form.12years'|trans }}</option>
+                        <option value="2years">{{ 'form.2years'|trans }}</option>
+                        <option value="5years">{{ 'form.5years'|trans }}</option>
+                        <option value="10years">{{ 'form.10years'|trans }}</option>
                     </select>
                 </div>
                 <div class="form-group col-4">
-                    <label for="profile-picture">{{ 'admin.profilePicture'|trans }}</label>
+                    <label for="profile-picture">{{ 'form.profilePicture'|trans }}</label>
                     <input class="form-control" id="profile-picture" name="user[profilePicture]" type="text">
                 </div>
                 <div class="form-group col-4">
-                    <label for="passport">{{ 'admin.passport'|trans }}</label>
+                    <label for="passport">{{ 'form.passport'|trans }}</label>
                     <input class="form-control" id="passport" name="user[passport]" type="text">
                 </div>
                 <div class="form-group col-4">
-                    <label for="resume">{{ 'admin.resume'|trans }}</label>
+                    <label for="resume">{{ 'form.resume'|trans }}</label>
                     <input class="form-control" id="resume" name="user[resumeFile]" type="file">
                 </div>
                 <div class="form-group col-8">
-                    <label for="note">{{ 'admin.note'|trans }}</label>
+                    <label for="note">{{ 'form.note'|trans }}</label>
                     <textarea class="form-control" cols="30" id="note" name="user[note]" rows="1"></textarea>
                 </div>
                 <div class="form-group col-12">
-                    <p class="mb-1">{{ 'admin.admin'|trans }}</p>
+                    <p class="mb-1">{{ 'form.admin'|trans }}</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" id="is-admin1" name="user[isAdmin]" type="radio" value="1">
-                        <label class="form-check-label" for="is-admin1">{{ 'admin.yes'|trans }}</label>
+                        <label class="form-check-label" for="is-admin1">{{ 'admin.misc.yes'|trans }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input checked class="form-check-input" id="is-admin2" name="user[isAdmin]" type="radio" value="0">
-                        <label class="form-check-label" for="is-admin2">{{ 'admin.no'|trans }}</label>
+                        <label class="form-check-label" for="is-admin2">{{ 'admin.misc.no'|trans }}</label>
                     </div>
                 </div>
                 <div class="form-group col-12">
-                    <p class="mb-1">{{ 'admin.availability'|trans }}</p>
+                    <p class="mb-1">{{ 'form.available'|trans }}</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" id="availability1" name="user[availability]" type="radio" value="1">
-                        <label class="form-check-label" for="availability1">{{ 'admin.yes'|trans }}</label>
+                        <label class="form-check-label" for="availability1">{{ 'admin.misc.yes'|trans }}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input checked class="form-check-input" id="availability2" name="user[availability]" type="radio" value="0">
-                        <label class="form-check-label" for="availability2">{{ 'admin.no'|trans }}</label>
+                        <label class="form-check-label" for="availability2">{{ 'admin.misc.no'|trans }}</label>
                     </div>
                 </div>
 
                 <div class="buttons col-12 offset-md-4 row">
                     <div class="px-2">
-                        <a class="btn btn-outline-dark" href="{{ path('admin_candidates') }}">{{ 'admin.cancel'|trans }}</a>
+                        <a class="btn btn-outline-dark" href="{{ path('admin_candidates') }}">{{ 'form.cancel'|trans }}</a>
                     </div>
                     <div class="px-2">
-                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'admin.submit'|trans }}</button>
+                        <button class="btn btn-outline-dark px-5" type="submit">{{ 'form.submit'|trans }}</button>
                     </div>
                 </div>
 

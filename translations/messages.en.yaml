@@ -1,164 +1,182 @@
 admin:
-    luxuryServices: Luxury Services
-    logout: Logout
-    dashboard: Dashboard
-    candidates: Candidates
-    clients: Clients
-    jobOffers: Job Offers
-    candidatures: Candidatures
-    password: Password
-    email: Email
-    gender: Gender
-    male: Male
-    female: Female
-    currentLocation: Current location
-    firstName: First name
-    lastName: Last name
-    address: Address
-    country: Country
-    nationality: Nationality
-    birthDate: Birthdate
-    birthPlace: Birthplace
-    photo: Photo
-    profilePro: Your professional profile
-    passport: Passport
-    resume: Résumé
-    interestJobSector: Interest in job sector
-    experience: Experience
-    holderDescription: Short description for your profile, as well as more personnal informations (e.g. your hobbies/interest). You can also paste any link you want.
-    city: City
-    jobSector: Job Sector
-    availability: Availability
-    registerDate: Register date
-    actions: Actions
-    newCandidate: Add a new candidate
-    editCandidate: Edit a candidate
-    phoneNumber: Phone Number
-    description: Description
-    addCandidate: Add a candidate
-    commercial: Commercial
-    retailSales: Retail sales
-    creative: Creative
-    technology: Technology
-    marketing: Marketing & PR
-    fashion: Fashion & luxury
-    management: Management & HR
+    misc:
+        confirmDelete: Are you sure you want to delete this candidate?
+        logout: Logout
+        luxuryServices: Luxury Services
+        no: No
+        passport: Passport
+        resume: Résumé
+        yes: Yes
+    table:
+        actions: Actions
+        active: Active
+        available: Available
+        candidateEmail: Candidate email
+        candidateName: Candidate name
+        city: City
+        closureDate: Closure date
+        companyName: Company name
+        contactEmail: Contact email
+        contactName: Contact name
+        contactPhoneNumber: Contact number
+        createdAt: Created at
+        email: Email
+        files: Files
+        firstName: First name
+        jobSector: Job sector
+        jobTitle: Job title
+        lastName: Last name
+        note: Note
+        registerDate: Register date
+    dashboard:
+        candidates: Candidates
+        candidatures: Candidatures
+        clients: Clients
+        dashboard: Dashboard
+        jobOffers: Job offers
+    candidate:
+        addCandidate: Add a candidate
+        candidate: Candidate
+        candidates: Candidates
+        editCandidate: Edit a candidate
+        newCandidate: Add a new candidate
+    candidature:
+        addCandidature: Add a candidature
+        candidature: Candidature
+        candidatures: Candidatures
+        editCandidature: Edit a candidature
+        newCandidature: Add a new candidature
+    client:
+        addClient: Add a client
+        client: Client
+        clients: Clients
+        editClient: Edit a client
+        newClient: Add a new client
+    navigation:
+        addCandidate: Add a candidate
+        addCandidature: Add a candidature
+        addClient: Add a client
+        addJobOffer: Add a job offer
+        candidates: Candidates
+        candidatures: Candidatures
+        clients: Clients
+        dashboard: Dashboard
+        jobOffers: Job offers
+    jobOffer:
+        addJobOffer: Add a job offer
+        editJobOffer: Edit a job offer
+        jobOffer: Job offer
+        jobOffers: Job offers
+        newJobOffer: Add a new job offer
+
+form:
     06months: 0-6 months
-    612months: 6-12 months
+    10years: 10+ years
     12years: 1-2 years
     2years: 2+ years
     5years: 5+ years
-    10years: 10+ years
-    profilePicture: Profile picture
-    note: Note
-    admin: Admin
-    yes: Yes
-    no: No
-    submit: Submit
-    phoneNumberFormat: "Format: 0102030405"
-    confirmDelete: Are you sure you want to delete this candidate?
-    files: Files
-    cancel: Cancel
-    jobOfferTitle: Title
-    companyName: Company Name
-    contactName: Contact Name
-    contactEmail: Contact Email
-    contactPhoneNumber: Contact Number
+    612months: 6-12 months
     active: Active
-    closureDate: Closure Date
-    addClient: Add a client
-    companyType: Company Type
-    contactJob: Contact Job
-    newClient: Add a new client
-    fulltime: Fulltime
-    partTime: Part time
-    temporary: Temporary
-    freelance: Freelance
-    seasonal: Seasonal
-    addJobOffer: Add a job offer
-    newJobOffer: Add a new job offer
-    client: Client
-    addCandidature: Add a candidature
-    newCandidature: Add a new candidature
-    jobOffer:
-        reference: Reference
-        title: Job title
-        description: Description
-        location: Location
-        salary: Salary
-        type: Type
-        client: Client
-        jobOffer: Job offer
-    candidate:
-        lastName: Candidate last name
-        email: Candidate email
-        candidate: Candidate
-    candidature:
-        createdAt: Created at
-
-authentification:
-    termsOfUse_start: I have read and I accept the
-    termsOfUse_end: Terms Of Use
-    passwordValidation: Confirm password
-    password: Password
-    email: Email
-    keepLogged: Keep me logged in
-    forgotPassword: Forgot your password?
-    loginToAccount: Log in to your account
-    login: Login
-    newToLuxuryServices_start: New to Luxury Services?
-    newToLuxuryServices_end: Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.
-    createNewAccount: Create a new account
-    createAccount: Create an account
-    alreadyHaveAccount: Already have an account? Click here
-    register: Register
-    welcome: Welcome on board
-    home: Home
-
-navigation:
-    home: Home
-    jobOffers: Job Offers
-    aboutUs: About Us
-    contact: Contact
-    profile: Profile
-    logout: Logout
-    login: Login
-    signUp: Sign Up
-    yourProfile: Your profile
-    persoAndProInfo: Personnal & Professionnal informations
-    admin: Administration
-
-footer:
-    intro: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
-    home: Home
-    jobOffers: Job Offers
-    aboutUs: About Us
-    contact: Contact
-    termsOfUse: Terms Of Use
-    copyright: © 2019 All right reserved - by
-
-profile:
-    profileComplete: Hooray ! Your profile is complete.
-    personalInfo: Your personal informations
-    gender: Gender
-    currentLocation: Current location
-    firstName: First name
-    lastName: Last name
     address: Address
-    country: Country
-    nationality: Nationality
+    admin: Admin
+    alreadyHaveAccount: Already have an account? Click here
+    available: Available
+    backHome: Back home
     birthDate: Birthdate
     birthPlace: Birthplace
-    photo: Photo
-    profilePro: Your professional profile
-    passport: Passport
-    resume: Résumé
-    interestJobSector: Interest in job sector
-    experience: Experience
-    holderDescription: Short description for your profile, as well as more personnal informations (e.g. your hobbies/interest). You can also paste any link you want.
-    luxuryAccount: Your Luxury Services account
-    email: Email
-    password: Change your password here
-    passwordValidation: Confirm your new password
+    cancel: Cancel
+    candidate: Candidate
+    client: Client
+    commercial: Commercial
+    companyName: Company name
+    companyType: Company type
+    contactEmail: Contact email
+    contactJob: Contact job
+    contactName: Contact name
+    contactPhoneNumber: Contact number
+    country: Country
+    createAccount: Create an account
+    createNewAccount: Create a new account
+    creative: Creative
+    currentLocation: Current location
     deleteAccount: Delete my account
-    backHome: Back home
+    description: Description
+    email: Email
+    experience: Experience
+    fashionAndLuxury: Fashion & luxury
+    female: Female
+    firstName: First Name
+    forgotPassword: Forgot your password?
+    freelance: Freelance
+    fulltime: Fulltime
+    gender: Gender
+    holderDescription: Short description for your profile, as well as more personnal informations (e.g. your hobbies/interest). You can also paste any link you want.
+    interestJobSector: Interest in job sector
+    jobOffer: Job offer
+    jobSector: Job Sector
+    jobTitle: Job title
+    jobType: Job type
+    keepLogged: Keep me logged in
+    lastName: Last Name
+    location: Location
+    login: Login
+    loginToAccount: Log in to your account
+    luxuryAccount: Your Luxury Services account
+    male: Male
+    managementAndHR: Management & HR
+    marketingAndPR: Marketing & PR
+    nationality: Nationality
+    note: Note
+    partTime: Part time
+    passport: Passport
+    password: Password
+    passwordValidation: Confirm password
+    personalInfo: Your personal informations
+    phoneNumber: Phone number
+    phoneNumberFormat: "Format: 0102030405"
+    photo: Photo
+    profileComplete: Hooray ! Your profile is complete.
+    profilePicture: Profile picture
+    profilePro: Your professional profile
+    readTermsOfUse: "I have read and I accept the <a href=\"%url%\" target=\"_blank\">Terms of Use</a>"
+    reference: Reference
+    register: Register
+    resume: Résumé
+    retailSales: Retail sales
+    salary: Salary
+    seasonal: Seasonal
+    submit: Submit
+    technology: Technology
+    temporary: Temporary
+
+misc:
+    commercial: Commercial
+    creative: Creative
+    fashionAndLuxury: Fashion & luxury
+    footerCopyright: © 2019 All right reserved - by
+    footerIntro: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
+    login: Login
+    marketingAndPR: Marketing & PR
+    newToLuxuryServices_end: Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.
+    newToLuxuryServices_start: New to Luxury Services?
+    register: Register
+    retailSales: Retail sales
+    technology: Technology
+    welcomeOnBoard: Welcome on board
+    youAre: You are
+
+navigation:
+    aboutUs: About Us
+    admin: Administration
+    contact: Contact
+    home: Home
+    jobOffers: Job Offers
+    joinUs: Join us
+    login: Login
+    logout: Logout
+    persoAndProInfo: Personnal & Professionnal informations
+    profile: Profile
+    signUp: Sign Up
+    signUpFree: Sign-up <strong>Free</strong>
+    termsOfUse: Terms Of Use
+    yourProfile: Your profile

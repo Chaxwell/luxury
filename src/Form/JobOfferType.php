@@ -35,8 +35,8 @@ class JobOfferType extends AbstractType
             ->add('description')
             ->add('active', ChoiceType::class, [
                 'choices' => [
-                    'admin.yes' => true,
-                    'admin.no' => false,
+                    'admin.misc.yes' => true,
+                    'admin.misc.no' => false,
                 ],
                 'expanded' => true,
                 'multiple' => false,
@@ -44,11 +44,11 @@ class JobOfferType extends AbstractType
             ->add('note')
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'admin.fulltime' => 'fulltime',
-                    'admin.partTime' => 'partTime',
-                    'admin.temporary' => 'temporary',
-                    'admin.freelance' => 'freelance',
-                    'admin.seasonal' => 'seasonal'
+                    'form.fulltime' => 'fulltime',
+                    'form.partTime' => 'partTime',
+                    'form.temporary' => 'temporary',
+                    'form.freelance' => 'freelance',
+                    'form.seasonal' => 'seasonal'
                 ]
             ])
             ->add('location')
@@ -59,7 +59,6 @@ class JobOfferType extends AbstractType
                     'step' => '50',
                 ],
             ])
-            // ->add('closedAt')
             ->add('jobCategory', ChoiceType::class, [
                 'choices' => $jobCategoriesByName
             ])
