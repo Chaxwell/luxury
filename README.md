@@ -8,7 +8,9 @@ Execute the following command in order :
 You can now connect as a regular user with :
 + mail@mail.com
 + password
+
 or as admin user with :
+
 + admin@mail.com
 + password
 
