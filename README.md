@@ -19,6 +19,6 @@ or as admin user with :
 
 You can execute a particular Fixture with the following command :
 
-`bin/console doctrine:fixtures:load --group=userAndAdmin`
+`bin/console doctrine:fixtures:load --group=userAndAdmin --append`
 
 All Fixtures have a group which consist of their base name to the camelCase format.
