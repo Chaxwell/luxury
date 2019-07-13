@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\JobCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class JobCategoryFixtures extends Fixture
+class JobCategoryFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -27,5 +28,10 @@ class JobCategoryFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['jobCategory'];
     }
 }
