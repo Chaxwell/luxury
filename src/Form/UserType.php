@@ -2,15 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\User;
-use App\Repository\JobCategoryRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\AbstractType;
+use App\Repository\JobCategoryRepository;
+use App\Entity\User;
 
 class UserType extends AbstractType
 {
@@ -31,7 +33,6 @@ class UserType extends AbstractType
 
         $builder
             ->add('email')
-            ->add('password', PasswordType::class)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'form.male' => 'male',
@@ -51,7 +52,7 @@ class UserType extends AbstractType
             ->add('passport')
             ->add('resumeFile', FileType::class, [
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '10240k',
@@ -93,6 +94,15 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ]);
+
+            $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+                $user = $event->getData();
+                $form = $event->getForm();
+
+                if(!$user || $user->getId() === null) {
+                    $form->add('password', PasswordType::class);
+                }
+            });
     }
 
     public function configureOptions(OptionsResolver $resolver)

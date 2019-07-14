@@ -8,3 +8,5 @@ entity:
         passwordBlank: Please fill in a password.
         passwordCompromised: This password is known from hacked databases, please fill in another password.
         passwordsDifferent: Passwords are different.
+    candidature:
+        alreadyPairedJobOffer: This candidate has an already existing offer to this job.

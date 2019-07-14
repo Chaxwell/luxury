@@ -19,13 +19,11 @@
                 </button>
             </div>
         </div>
-        {# TODO: Add flashes every where #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
-
         <div class="float-right my-2">
             <a href="{{ path('admin_new_joboffer') }}" class="btn btn-dark">{{ 'admin.jobOffer.addJobOffer'|trans }}
                 <span class="big">&CirclePlus;</span>
@@ -48,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans({'%what%': 'job offer'}) %}
                     {% for jobOffer in jobOffers %}
                         <tr>
                             <td>{{ jobOffer.title ? jobOffer.title : 'N/A' }}</td>
@@ -59,10 +57,13 @@
                             <td>{{ jobOffer.active ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
                             <td>{{ jobOffer.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
                             <td>{{ jobOffer.closedAt ? jobOffer.closedAt|date("d/m/Y H:i:s", "Europe/Paris") : 'N/A' }}</td>
-                            <td data-id="{{ jobOffer.id }}">
+                            <td>
                                 <button class="btn p-0">
                                     <i data-feather="bookmark"></i>
                                 </button>
+                                <form action="{{ path('admin_note_joboffer', {id: jobOffer.id}) }}" method="POST">
+                                    <textarea class="hidden form-control" name="note" id="note" cols="10" rows="3">{{ jobOffer.note }}</textarea>
+                                </form>
                             </td>
                             <td class="d-flex justify-content-between">
                                 <a href="{{ path('admin_edit_joboffer', {id: jobOffer.id}) }}">

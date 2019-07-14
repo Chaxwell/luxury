@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Client;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Client;
 
 /**
  * @method Client|null find($id, $lockMode = null, $lockVersion = null)

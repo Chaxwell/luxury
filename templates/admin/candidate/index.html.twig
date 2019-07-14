@@ -36,6 +36,7 @@
                         <th>{{ 'admin.table.lastName'|trans }}</th>
                         <th>{{ 'admin.table.firstName'|trans }}</th>
                         <th>{{ 'admin.table.email'|trans }}</th>
+                        <th>Candidatures</th>
                         <th>{{ 'admin.table.city'|trans }}</th>
                         <th>{{ 'admin.table.jobSector'|trans }}</th>
                         <th>{{ 'admin.table.available'|trans }}</th>
@@ -46,26 +47,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans({'%what%': 'candidate'}) %}
                     {% for candidate in candidates %}
                         <tr>
                             <td>{{ candidate.lastName ? candidate.lastName : 'N/A' }}</td>
                             <td>{{ candidate.firstName ? candidate.firstName : 'N/A' }}</td>
                             <td>{{ candidate.email ? candidate.email : 'N/A' }}</td>
+                            <td>{{ dump(candidate.candidatures) }}</td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A' }}</td>
                             <td>{{ candidate.jobCategory ? candidate.jobCategory|capitalize : 'N/A' }}</td>
                             <td>{{ candidate.availability ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
                             <td>{{ candidate.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
-                            <td data-id="{{ candidate.id }}">
+                            <td>
                                 <button class="btn p-0">
                                     <i data-feather="bookmark"></i>
                                 </button>
+                                <form action="{{ path('admin_note_candidate', {id: candidate.id}) }}" method="POST">
+                                    <textarea class="hidden form-control" name="note" id="note" cols="10" rows="3">{{ candidate.note }}</textarea>
+                                </form>
                             </td>
                             <td>
-                                {% if candidate.resume %}
-                                    <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidate.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
-                                {% elseif candidate.passport %}
-                                    <a target="_blank" href="#">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
+                                {% if candidate.resume or candidate.passport %}
+                                    {% if candidate.resume %}
+                                        <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidate.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
+                                    {% endif %}
+                                    {% if candidate.passport %}
+                                        <a target="_blank" href="#">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
+                                    {% endif %}
                                 {% else %}
                                     N/A
                                 {% endif %}

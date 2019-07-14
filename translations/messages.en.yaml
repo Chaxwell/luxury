@@ -1,6 +1,6 @@
 admin:
     misc:
-        confirmDelete: Are you sure you want to delete this candidate?
+        confirmDelete: Are you sure you want to delete this %what%?
         logout: Logout
         luxuryServices: Luxury Services
         no: No
@@ -125,6 +125,7 @@ form:
     male: Male
     managementAndHR: Management & HR
     marketingAndPR: Marketing & PR
+    message: Message
     nationality: Nationality
     note: Note
     partTime: Part time
@@ -145,38 +146,93 @@ form:
     retailSales: Retail sales
     salary: Salary
     seasonal: Seasonal
+    sendMessage: Send message
     submit: Submit
     technology: Technology
     temporary: Temporary
 
 misc:
+    aboutUs: About us
+    all: All
+    bringingJobSeekersAndEmployersTogether: Bringing job seekers and employers together for more that 40 years
+    checkedAndSorted: Checked and sorted, our job offers are updated regularly to offer you the best opportunities in the industry.
     commercial: Commercial
+    contact: Contact
     creative: Creative
+    discoverOurSkills: Discover our skills & attributes
+    dropUsALine: Drop us a line
+    eachOneOfYourSkillPreciousToUs: Each one of your skills is seen as precious resource to us, each one of your personality traits are considered as an added on value. Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.
+    experienced: Experienced
     fashionAndLuxury: Fashion & luxury
+    feelFreeToContactUs: Fell free to contact us
     footerCopyright: © 2019 All right reserved - by
     footerIntro: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
+    forAnyQuestionsOrDemands: for any questions or demands
+    getInTouchWithLuxuryServicesToLeaveWithTheRightCrew: "\"Get in touch with Luxury Services to leave the port for the season with the right crew, and a peace of mind knowing that whatever situation arises we will be there to help.\""
+    hasEstablishedLeadingPresenceInManyKeyMarkets: The Group has established a leading presence in many of the key markets for professional recruitment around the world and has positioned itself in certain other markets, which offer the opportunity for future growth.
+    hotlineHours: 9 - 22h with 24/7 speaker
+    jobOffers: Job offers
+    justLikeOurCandidatesWeOfferQualityPositions: Just like our candidates, we offer quality, serious & reliable positions. Come discover them and we will put you in contact with the perfect team for you to form the perfect crew.
+    justLikeOurCandidatesWeOfferSeriousJobOffers: just like our candidates, we offer quality, serious & reliable job offers.
+    leadingProfessionalRecruitmentConsultancy: Luxury Services is a leading professional recruitment consultancy specialising in the recruitment of permanent, contract and temporary positions on behalf of the world’s top employers.
     login: Login
+    luxuryServices: Luxury Services
+    luxuryServicesBasedInRoanne: Luxury Services is based in Roanne, on Loire department
+    luxuryServicesLeadingProfessionalInThePlacementOfCandidates: Luxury Services is one of the world's leading professional recruitment consultancies, specializing in the placement of candidates in permanent, contract, temporary and interim positions with clients around the world.
+    managementAndHR: Management & HR
     marketingAndPR: Marketing & PR
+    myFavoriteThingsInLife: "\"My favorite things in life don't cost any money. It's really clear that the most precious resource we all have is time.\""
     newToLuxuryServices_end: Joining us is allowing our recruitment expertise and personal guidance to bring the best out in you by choosing the most suited position.
     newToLuxuryServices_start: New to Luxury Services?
+    no: No
+    ourJobOffers: Our job offers
+    ourPhilosophy: Our philosophy
+    ourRoleWorkWithEmployersAndJobSeekers: Our role is to work with employers and job seekers to facilitate a successful match. This can range from advising a global company on a candidate sourcing strategy to helping a job seeker find their dream job.
+    personalInfo: Personnal informations
+    personalInfoAndProfessionalInfo: Personnal & Professionnal informations
+    preciseAndPersonalized: "Precise and personalized, we make sure they don’t skip a step: verifying tickets, diplomas and consulting references."
+    profile: Profile
+    recruitment: Recruitment
+    recruitmentAndServices: Recruitment & services
     register: Register
     retailSales: Retail sales
+    searchAndFilterByJobCategory: Search and filter by job category
+    signUpAndApply: Sign-up and apply for jobs now
     technology: Technology
+    theRoleOfARecruitementConsultancy: The role of a recruitment consultancy is to act as an intermediary, identifying and sourcing suitably qualified candidates on behalf of its clients. Candidates are recruited either for permanent or contract positions (typically for a fixed term) or on a temporary basis. Within the overall recruitment industry, the market for professional recruitment services is a specialist sector which has developed more recently.
+    verifiedJobs: Verified jobs
+    weHaveSolutionForYou: We have the solution for you
+    weHaveThePerfectJobForYou: We have the perfect job for you
+    weKnowTheImportanceOfEfficiency: We know the importance of efficiency and availability. These qualities are therefore our watchwords.
+    weProvideCustomizedServices: We provied customized services on demand
     welcomeOnBoard: Welcome on board
+    whetherEmployerOrCandidate: Whether you're an employer or a candidate looking for jobs
+    whetherYourNeedsAreUrgent: Whether your needs, desires or wishes are urgent or a little less, they will all be taken care of with the same efficiency by us.
+    whoWeAre: Who we are
+    yes: Yes
     youAre: You are
+    youKnowThatAttractingAndRetainingTopTalentIsVital: You know that attracting and retaining top talent is vital for the success of your business. It’s that end result you’re focused on – hiring a great team – and not the process to get there. This is where we can help...
+    yourProfile: Your profile
 
 navigation:
     aboutUs: About Us
     admin: Administration
     contact: Contact
+    contactUs: Contact us
+    getInTouchWithUs: <strong>Get in touch</strong> with us
     home: Home
     jobOffers: Job Offers
     joinUs: Join us
     login: Login
     logout: Logout
+    moreAboutUs: More about us
+    next: Next
     persoAndProInfo: Personnal & Professionnal informations
+    previous: Previous
     profile: Profile
     signUp: Sign Up
     signUpFree: Sign-up <strong>Free</strong>
     termsOfUse: Terms Of Use
+    viewAllJobOffers: View all job offers
+    viewJobs: View jobs
     yourProfile: Your profile

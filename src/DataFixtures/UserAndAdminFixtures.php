@@ -2,11 +2,11 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\User;
 
 class UserAndAdminFixtures extends Fixture implements FixtureGroupInterface
 {

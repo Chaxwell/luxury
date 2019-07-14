@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\JobOffer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\JobOffer;
 
 /**
  * @method JobOffer|null find($id, $lockMode = null, $lockVersion = null)

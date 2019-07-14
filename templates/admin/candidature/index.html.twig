@@ -40,13 +40,12 @@
                         <th>{{ 'admin.table.contactName'|trans }}</th>
                         <th>{{ 'admin.table.contactEmail'|trans }}</th>
                         <th>{{ 'admin.table.createdAt'|trans }}</th>
-                        <th>{{ 'admin.table.note'|trans }}</th>
                         <th>{{ 'admin.table.files'|trans }}</th>
                         <th>{{ 'admin.table.actions'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans({'%what%': 'candidature'}) %}
                     {% for candidature in candidatures %}
                         <tr>
                             <td>{{ candidature.user.lastName ? candidature.user.lastName : 'N/A' }}</td>
@@ -56,11 +55,6 @@
                             <td>{{ candidature.jobOffer.client.contactName ? candidature.jobOffer.client.contactName : 'N/A' }}</td>
                             <td>{{ candidature.jobOffer.client.contactEmail ? candidature.jobOffer.client.contactEmail : 'N/A' }}</td>
                             <td>{{ candidature.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
-                            <td data-id="{{ candidature.id }}">
-                                {# <button class="btn p-0">
-                                    <i data-feather="bookmark"></i>
-                                </button> #}
-                            </td>
                             <td>
                                 {% if candidature.user.resume %}
                                 <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidature.user.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>

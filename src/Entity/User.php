@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\JobCategory;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\JobCategory;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -52,7 +52,7 @@ class User implements UserInterface
      * //)
      * @Assert\Length(
      *      min = 6,
-     *      max = 64,
+     *      max = 96,
      *      minMessage = "entity.user.passwordMinLength",
      *      maxMessage = "entity.user.passwordMaxLength"
      * )
@@ -184,7 +184,7 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="user", cascade="all")
      */
     private $candidatures;
 

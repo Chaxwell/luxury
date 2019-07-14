@@ -2,9 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Candidature;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Candidature;
 
 /**
  * @method Candidature|null find($id, $lockMode = null, $lockVersion = null)

@@ -2,24 +2,23 @@
 
 namespace App\Controller;
 
-use App\Entity\Client;
-use App\Entity\User;
-use App\Form\ClientType;
-use App\Form\UserType;
-use App\Repository\CandidatureRepository;
-use App\Repository\ClientRepository;
-use App\Repository\JobOfferRepository;
-use App\Repository\UserRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Entity\JobOffer;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\UserRepository;
+use App\Repository\JobOfferRepository;
+use App\Repository\ClientRepository;
+use App\Repository\CandidatureRepository;
+use App\Form\UserType;
 use App\Form\JobOfferType;
-use App\Entity\Candidature;
+use App\Form\ClientType;
 use App\Form\CandidatureType;
+use App\Entity\User;
+use App\Entity\JobOffer;
+use App\Entity\Client;
+use App\Entity\Candidature;
 
 /**
  * @Route("/admin")
@@ -69,23 +68,6 @@ class AdminController extends AbstractController
             $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
             $candidate->setIsAdmin($request->request->get('user')['isAdmin']);
             $candidate->setAvailability($request->request->get('user')['availability']);
-            dd($form['resumeFile']->getData());
-            $resumeFile = $form['resumeFile']->getData();
-
-            if ($resumeFile) {
-                $originalFilename = pathinfo($resumeFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$resumeFile->guessExtension();
-            }
-
-            try {
-                $resumeFile->move(
-                    $this->getParameter('profile_resume'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                dd($e);
-            }
 
             $candidate
                 ->setCreatedAt()
@@ -95,7 +77,9 @@ class AdminController extends AbstractController
             $objectManager->persist($candidate);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_candidates');
+            return $this->redirectToRoute('admin_candidates', [
+                'flashMessage' => $this->addFlash('success', 'Candidate added with success.')
+            ]);
         }
 
         return $this->render('admin/candidate/new.html.twig', [
@@ -108,55 +92,39 @@ class AdminController extends AbstractController
      */
     public function addNoteToCandidate(Request $request, User $candidate, ObjectManager $objectManager)
     {
-        $candidate->setNote($request->request->get('note'));
+        $candidate
+            ->setNote($request->request->get('note'))
+            ->setUpdatedAt();
 
         $objectManager->persist($candidate);
         $objectManager->flush();
 
         return $this->redirectToRoute('admin_candidates', [
-            'flashMessage' => $this->addFlash('success', 'Note added.')
+            'flashMessage' => $this->addFlash('success', 'Note added with success.')
         ]);
     }
 
     /**
      * @Route("/candidate/{id}/edit", name="admin_edit_candidate", methods={"GET", "POST"})
      */
-    public function editCandidate(Request $request, User $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function editCandidate(Request $request, User $candidate, ObjectManager $objectManager)
     {
         $form = $this->createForm(UserType::class, $candidate);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
             $candidate->setIsAdmin($request->request->get('user')['isAdmin']);
             $candidate->setAvailability($request->request->get('user')['availability']);
-            $resumeFile = $form['resumeFile']->getData();
-
-            if ($resumeFile) {
-                $originalFilename = pathinfo($resumeFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$resumeFile->guessExtension();
-            }
-
-            try {
-                $resumeFile->move(
-                    $this->getParameter('profile_resume'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                dd($e);
-            }
 
             $candidate
-                ->setCreatedAt()
-                ->setUpdatedAt()
-                ->setPassword($hashedPassword)
-                ->setResume($newFilename);
+                ->setUpdatedAt();
 
             $objectManager->persist($candidate);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_candidates');
+            return $this->redirectToRoute('admin_candidates', [
+                'flashMessage' => $this->addFlash('success', 'Candidate edited with success.')
+            ]);
         }
 
         return $this->render('admin/candidate/edit.html.twig', [
@@ -174,7 +142,9 @@ class AdminController extends AbstractController
         $entityManager->remove($candidate);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_candidates');
+        return $this->redirectToRoute('admin_candidates', [
+            'flashMessage' => $this->addFlash('success', 'Candidate removed with success.')
+        ]);
     }
 
     /**
@@ -206,7 +176,9 @@ class AdminController extends AbstractController
             $objectManager->persist($client);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_clients');
+            return $this->redirectToRoute('admin_clients', [
+                'flashMessage' => $this->addFlash('success', 'Client added with success.')
+            ]);
         }
 
         return $this->render('admin/client/new.html.twig', [
@@ -219,13 +191,15 @@ class AdminController extends AbstractController
      */
     public function addNoteToClient(Request $request, Client $client, ObjectManager $objectManager)
     {
-        $client->setNote($request->request->get('note'));
+        $client
+            ->setNote($request->request->get('note'))
+            ->setUpdatedAt();
 
         $objectManager->persist($client);
         $objectManager->flush();
 
         return $this->redirectToRoute('admin_clients', [
-            'flashMessage' => $this->addFlash('success', 'Note added.')
+            'flashMessage' => $this->addFlash('success', 'Note added with success.')
         ]);
     }
 
@@ -239,13 +213,14 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $client
-                ->setCreatedAt()
                 ->setUpdatedAt();
 
             $objectManager->persist($client);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_clients');
+            return $this->redirectToRoute('admin_clients', [
+                'flashMessage' => $this->addFlash('success', 'Client edited with success.')
+            ]);
         }
 
         return $this->render('admin/client/edit.html.twig', [
@@ -263,7 +238,9 @@ class AdminController extends AbstractController
         $entityManager->remove($client);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_clients');
+        return $this->redirectToRoute('admin_clients', [
+            'flashMessage' => $this->addFlash('success', 'Client removed with success.')
+        ]);
     }
 
     /**
@@ -295,7 +272,9 @@ class AdminController extends AbstractController
             $objectManager->persist($jobOffer);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_joboffers');
+            return $this->redirectToRoute('admin_joboffers', [
+                'flashMessage' => $this->addFlash('success', 'Job offer added with success.')
+            ]);
         }
 
         return $this->render('admin/joboffer/new.html.twig', [
@@ -308,13 +287,15 @@ class AdminController extends AbstractController
      */
     public function addNoteTojobOffer(Request $request, JobOffer $jobOffer, ObjectManager $objectManager)
     {
-        $jobOffer->setNote($request->request->get('note'));
+        $jobOffer
+            ->setNote($request->request->get('note'))
+            ->setUpdatedAt();
 
         $objectManager->persist($jobOffer);
         $objectManager->flush();
 
         return $this->redirectToRoute('admin_joboffers', [
-            'flashMessage' => $this->addFlash('success', 'Note added.')
+            'flashMessage' => $this->addFlash('success', 'Note added with success.')
         ]);
     }
 
@@ -328,13 +309,14 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOffer
-                ->setCreatedAt()
                 ->setUpdatedAt();
 
             $objectManager->persist($jobOffer);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_joboffers');
+            return $this->redirectToRoute('admin_joboffers', [
+                'flashMessage' => $this->addFlash('success', 'Job offer edited with success.')
+            ]);
         }
 
         return $this->render('admin/joboffer/edit.html.twig', [
@@ -352,7 +334,9 @@ class AdminController extends AbstractController
         $entityManager->remove($jobOffer);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_joboffers');
+        return $this->redirectToRoute('admin_joboffers', [
+            'flashMessage' => $this->addFlash('success', 'Job offer removed with success.')
+        ]);
     }
 
     /**
@@ -376,34 +360,21 @@ class AdminController extends AbstractController
         $form = $this->createForm(CandidatureType::class, $candidature);
         $form->handleRequest($request);
 
+        // TODO: Handle the collections of candidature
         if ($form->isSubmitted() && $form->isValid()) {
             $candidature
                 ->setCreatedAt()
                 ->setUpdatedAt();
-
             $objectManager->persist($candidature);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_candidatures');
+            return $this->redirectToRoute('admin_candidatures', [
+                'flashMessage' => $this->addFlash('success', 'Candidature added with success.')
+            ]);
         }
 
         return $this->render('admin/candidature/new.html.twig', [
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/candidature/{id}/note", name="admin_note_candidature", methods={"POST"})
-     */
-    public function addNoteToCandidature(Request $request, Candidature $candidature, ObjectManager $objectManager)
-    {
-        $candidature->setNote($request->request->get('note'));
-
-        $objectManager->persist($candidature);
-        $objectManager->flush();
-
-        return $this->redirectToRoute('admin_joboffers', [
-            'flashMessage' => $this->addFlash('success', 'Note added.')
         ]);
     }
 
@@ -415,15 +386,18 @@ class AdminController extends AbstractController
         $form = $this->createForm(CandidatureType::class, $candidature);
         $form->handleRequest($request);
 
+        // TODO: Utiliser les requetes findBy etc pour remplir les ArrayCollection lorsqu'elles sont appelées.
         if ($form->isSubmitted() && $form->isValid()) {
             $candidature
-                ->setCreatedAt()
+                // ->getUser()->addCandidature($candidature)
                 ->setUpdatedAt();
 
             $objectManager->persist($candidature);
             $objectManager->flush();
 
-            return $this->redirectToRoute('admin_candidatures');
+            return $this->redirectToRoute('admin_candidatures', [
+                'flashMessage' => $this->addFlash('success', 'Candidature edited with success.')
+            ]);
         }
 
         return $this->render('admin/candidature/edit.html.twig', [
@@ -441,6 +415,8 @@ class AdminController extends AbstractController
         $entityManager->remove($candidature);
         $entityManager->flush();
 
-        return $this->redirectToRoute('admin_candidatures');
+        return $this->redirectToRoute('admin_candidatures', [
+            'flashMessage' => $this->addFlash('success', 'Candidature removed with success.')
+        ]);
     }
 }

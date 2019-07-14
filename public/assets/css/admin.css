@@ -148,6 +148,10 @@ table svg {
   font-size: 1.3em;
 }
 
+.hidden {
+  display: none;
+}
+
 .undernav {
   list-style: none;
   padding: 0 0 0 14px;

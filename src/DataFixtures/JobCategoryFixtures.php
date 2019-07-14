@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\JobCategory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\JobCategory;
 
 class JobCategoryFixtures extends Fixture implements FixtureGroupInterface
 {

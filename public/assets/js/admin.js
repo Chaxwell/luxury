@@ -12,29 +12,26 @@ menuLinks.forEach(link => {
 });
 
 notes.forEach(note => {
-    note.addEventListener('click', (event) => {
+    note.parentElement.addEventListener('click', (event) => {
         const noteGrandParent = note.parentElement.parentElement;
-        const dataId = noteGrandParent.getAttribute('data-id');
+        const form = noteGrandParent.childNodes[3];
+        const textarea = form.childNodes[1];
 
         note.parentElement.remove();
 
-        const form = document.createElement("form");
-        form.setAttribute('action', "/admin/candidate/"+ dataId +"/note");
-        form.setAttribute('method', 'POST');
-
-        const textarea = document.createElement("textarea");
-        textarea.setAttribute('name', 'note')
-        textarea.setAttribute('class', 'form-control')
-
-
         const submitButton = document.createElement("button");
         submitButton.setAttribute('type', 'submit');
-        submitButton.setAttribute('class', 'mt-1 float-right');
+        submitButton.setAttribute('class', 'mt-1 btn btn-sm btn-dark float-right');
         submitButton.innerText = 'Send';
-
-        form.appendChild(textarea);
         form.appendChild(submitButton);
-        noteGrandParent.appendChild(form);
+
+        const cancelButton = document.createElement("a");
+        cancelButton.setAttribute('class', 'mt-1 btn btn-sm btn-dark float-left');
+        cancelButton.setAttribute('href', path);
+        cancelButton.innerText = 'Cancel';
+        form.appendChild(cancelButton);
+
+        textarea.style.display = "block";
     });
 });
 
@@ -42,6 +39,6 @@ alertBoxes.forEach(alertBox => {
     if (alertBox.innerText != '') {
         setTimeout(() => {
             alertBox.remove();
-        }, 2000);
+        }, 2500);
     }
 });

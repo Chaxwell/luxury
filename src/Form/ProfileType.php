@@ -2,13 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\User;
-use App\Repository\JobCategoryRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\AbstractType;
+use App\Repository\JobCategoryRepository;
+use App\Entity\User;
 
 class ProfileType extends AbstractType
 {
@@ -33,8 +33,8 @@ class ProfileType extends AbstractType
             ->add('passwordValidation', PasswordType::class)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
-                    'admin.male' => 'male',
-                    'admin.female' => 'female'
+                    'form.male' => 'male',
+                    'form.female' => 'female'
                 ],
             ])
             ->add('firstName')
@@ -51,19 +51,19 @@ class ProfileType extends AbstractType
             ->add('resume')
             ->add('experience', ChoiceType::class, [
                 'choices' => [
-                    'admin.06months' => '06months',
-                    'admin.612months' => '612months',
-                    'admin.12years' => '12years',
-                    'admin.2years' => '2years',
-                    'admin.5years' => '5years',
-                    'admin.10years' => '10years',
+                    'form.06months' => '06months',
+                    'form.612months' => '612months',
+                    'form.12years' => '12years',
+                    'form.2years' => '2years',
+                    'form.5years' => '5years',
+                    'form.10years' => '10years',
                 ]
             ])
             ->add('description')
             ->add('availability', ChoiceType::class, [
                 'choices' => [
-                    'admin.yes' => true,
-                    'admin.no' => false,
+                    'misc.yes' => true,
+                    'misc.no' => false,
                 ],
                 'expanded' => true,
                 'multiple' => false,

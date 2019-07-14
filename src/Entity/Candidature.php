@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Entity\JobOffer;
-use App\Entity\User;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
+use App\Entity\JobOffer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidatureRepository")
  * @UniqueEntity(
  *      fields={"user", "jobOffer"},
- *      message="This candidate has an already existing offer to this job."
+ *      message="entity.candidature.alreadyPairedJobOffer"
  * )
  */
 class Candidature

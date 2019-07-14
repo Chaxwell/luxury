@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\ProfileType;
-use App\Form\RegistrationType;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\RegistrationType;
+use App\Form\ProfileType;
+use App\Entity\User;
 
 /**
  * @Route("/auth")
@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="auth_login", methods={"GET","POST"})
      */
-    public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

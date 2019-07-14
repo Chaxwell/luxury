@@ -2,15 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Client;
-use App\Entity\JobOffer;
-use App\Repository\JobCategoryRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Repository\JobCategoryRepository;
+use App\Entity\JobOffer;
+use App\Entity\Client;
 
 class JobOfferType extends AbstractType
 {

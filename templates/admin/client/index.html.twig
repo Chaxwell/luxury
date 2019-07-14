@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans %}
+                    {% set confirmDelete = 'admin.misc.confirmDelete'|trans({'%what%': 'client'}) %}
                     {% for client in clients %}
                         <tr>
                             <td>{{ client.companyName ? client.companyName : 'N/A' }}</td>
@@ -51,10 +51,13 @@
                             <td>{{ client.contactEmail ? client.contactEmail : 'N/A' }}</td>
                             <td>{{ client.contactPhoneNumber ? client.contactPhoneNumber : 'N/A' }}</td>
                             <td>{{ client.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
-                            <td data-id="{{ client.id }}">
-                                {# <button class="btn p-0">
+                            <td>
+                                <button class="btn p-0">
                                     <i data-feather="bookmark"></i>
-                                </button> #}
+                                </button>
+                                <form action="{{ path('admin_note_client', {id: client.id}) }}" method="POST">
+                                    <textarea class="hidden form-control" name="note" id="note" cols="10" rows="3">{{ client.note }}</textarea>
+                                </form>
                             </td>
                             <td class="d-flex justify-content-between">
                                 <a href="{{ path('admin_edit_client', {id: client.id}) }}">

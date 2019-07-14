@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Entity;
-use App\Entity\JobOffer;
-
 use Doctrine\ORM\Mapping as ORM;
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\JobOffer;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
