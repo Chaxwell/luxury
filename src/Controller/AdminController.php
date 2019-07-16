@@ -47,9 +47,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/candidates", name="admin_candidates", methods={"GET"})
      */
-    public function candidates(UserRepository $userRepository)
+    public function candidates(UserRepository $userRepository, CandidatureRepository $candidatureRepository)
     {
-        $candidates = $userRepository->findBy([], ['id' => 'DESC']);
+        $candidates = $userRepository
+            ->findBy([], ['id' => 'DESC']);
 
         return $this->render('admin/candidate/index.html.twig', [
             'candidates' => $candidates,
@@ -387,10 +388,8 @@ class AdminController extends AbstractController
         $form = $this->createForm(CandidatureType::class, $candidature);
         $form->handleRequest($request);
 
-        // TODO: Utiliser les requetes findBy etc pour remplir les ArrayCollection lorsqu'elles sont appelées.
         if ($form->isSubmitted() && $form->isValid()) {
             $candidature
-                // ->getUser()->addCandidature($candidature)
                 ->setUpdatedAt();
 
             $objectManager->persist($candidature);

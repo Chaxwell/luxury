@@ -34,27 +34,23 @@
 
 ## Accueil
 
-**TODO:** Voir les offres d'emploi en liste et filtrable par catégorie.\
 **TODO:** Afficher des sections d'appels à l'action (afin d'optimiser la conversion de l'utilisateur en candidat). **[facultatif]**
 
 
 ## Offres d'emploi
 
-**TODO:** Voir les offres d'emploi en liste et filtrable par catégorie.\
-**TODO:** Voir les offres d'emploi sans le nom du client.\
 **TODO:** Ne permettre qu'aux candidats avec un profil rempli à 100% de postuler à une offre d'emploi.
 
 
 ## Contact
 
-**TODO:** Mettre en place un formulaire de contact par email.\
-**TODO:** Voir la géolocalisation du cabinet de recrutement grâce à Google Maps.
+**TODO:** Mettre en place un formulaire de contact par email. **[facultatif]** \
+**TODO:** Voir la géolocalisation du cabinet de recrutement grâce à Google Maps. **[facultatif]**
 
 
 ## Profil
 
 **TODO:** Afficher le pourcentage de complétion du profil.\
-**TODO:** Pouvoir changer de mot de passe sans interférence avec le reste du formulaire (ne pas devoir rentrer son mot de passe pour un changement autre).\
 **TODO:** Pouvoir supprimer son compte.
 
 

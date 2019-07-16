@@ -53,7 +53,9 @@
                             <td>{{ candidate.lastName ? candidate.lastName : 'N/A' }}</td>
                             <td>{{ candidate.firstName ? candidate.firstName : 'N/A' }}</td>
                             <td>{{ candidate.email ? candidate.email : 'N/A' }}</td>
-                            <td>{{ '' }}</td>
+                            <td>
+                                {{ '' }}
+                            </td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A' }}</td>
                             <td>{{ candidate.jobCategory ? candidate.jobCategory|capitalize : 'N/A' }}</td>
                             <td>{{ candidate.availability ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
