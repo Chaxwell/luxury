@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\RegistrationType;
 use App\Form\ProfileType;
+use App\Form\ChangePasswordType;
 use App\Entity\User;
 
 /**
@@ -50,12 +51,25 @@ class SecurityController extends AbstractController
 
         $form = $this->createForm(ProfileType::class, $candidate);
         $form->handleRequest($request);
+        $formAccount = $this->createForm(ChangePasswordType::class, $candidate);
+        $formAccount->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('user')['password']);
             $candidate
-                ->setPassword($hashedPassword)
                 ->setUpdatedAt();
+
+            $objectManager->persist($candidate);
+            $objectManager->flush();
+            return $this->redirectToRoute('auth_profile', [
+                'flashMessage' => $this->addFlash('success', 'Profile edited with success.')
+            ]);
+        }
+        if ($formAccount->isSubmitted() && $formAccount->isValid()) {
+            $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('change_password')['password']);
+            $candidate
+                ->setUpdatedAt()
+                ->setPassword($hashedPassword);
+
             $objectManager->persist($candidate);
             $objectManager->flush();
 
@@ -66,6 +80,7 @@ class SecurityController extends AbstractController
 
         return $this->render('security/profile.html.twig', [
             'form' => $form->createView(),
+            'formAccount' => $formAccount->createView(),
         ]);
     }
 

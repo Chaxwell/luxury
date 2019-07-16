@@ -10,7 +10,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use App\Entity\JobCategory;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -20,7 +19,7 @@ use App\Entity\JobCategory;
  * )
  * @Vich\Uploadable
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -95,9 +94,38 @@ class User implements UserInterface
     /**
      * @var File
      *
-     * @Vich\UploadableField(mapping="profile_resume", fileNameProperty="profilePicture")
+     * @Vich\UploadableField(mapping="profile_picture", fileNameProperty="profilePicture")
+     * @Assert\Image(
+     *      maxSize="12Mi",
+     *      maxSizeMessage="entity.user.maxSizeImage",
+     *      mimeTypesMessage="entity.user.notAnImage"
+     * )
      */
     private $profilePictureFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $passport;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="profile_passport", fileNameProperty="passport")
+     */
+    private $passportFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resume;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="profile_resume", fileNameProperty="resume")
+     */
+    private $resumeFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -129,15 +157,6 @@ class User implements UserInterface
      */
     private $birthPlace;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $passport;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $resume;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -303,7 +322,7 @@ class User implements UserInterface
         }
     }
 
-    public function getProfilePictureFile()
+    public function getProfilePictureFile(): ?File
     {
         return $this->profilePictureFile;
     }
@@ -392,6 +411,20 @@ class User implements UserInterface
         return $this;
     }
 
+    public function setPassportFile(File $passport = null): void
+    {
+        $this->passportFile = $passport;
+
+        if ($passport) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPassportFile(): ?File
+    {
+        return $this->passportFile;
+    }
+
     public function getResume(): ?string
     {
         return $this->resume;
@@ -402,6 +435,20 @@ class User implements UserInterface
         $this->resume = $resume;
 
         return $this;
+    }
+
+    public function setResumeFile(File $resume = null): void
+    {
+        $this->resumeFile = $resume;
+
+        if ($resume) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getResumeFile(): ?File
+    {
+        return $this->resumeFile;
     }
 
     public function getExperience(): ?string
@@ -552,5 +599,29 @@ class User implements UserInterface
         $this->availability = $availability;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->profilePicture,
+            $this->resume,
+            $this->passport,
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->profilePicture,
+            $this->resume,
+            $this->passport
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

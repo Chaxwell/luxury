@@ -2,6 +2,8 @@ const path = window.location.href;
 const menuLinks = document.querySelectorAll('.sidebar-sticky ul li a');
 const notes = document.querySelectorAll('svg.feather-bookmark');
 const alertBoxes = document.querySelectorAll('.alert.alert-success');
+const fileInputs = document.querySelectorAll('input[type=file]');
+
 
 menuLinks.forEach(link => {
     if (link.href == path) {
@@ -41,4 +43,12 @@ alertBoxes.forEach(alertBox => {
             alertBox.remove();
         }, 2500);
     }
+});
+
+fileInputs.forEach(fileInput => {
+    fileInput.addEventListener('change', (event) => {
+        // Get file name and then replace the name of the label with it
+        const fileName = event.target.files[0].name;
+        event.target.previousElementSibling.innerText = fileName;
+    });
 });

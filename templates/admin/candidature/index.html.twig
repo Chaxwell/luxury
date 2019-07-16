@@ -56,12 +56,15 @@
                             <td>{{ candidature.jobOffer.client.contactEmail ? candidature.jobOffer.client.contactEmail : 'N/A' }}</td>
                             <td>{{ candidature.createdAt|date("d/m/Y H:i:s", "Europe/Paris") }}</td>
                             <td>
-                                {% if candidature.user.resume %}
-                                <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidature.user.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
-                                {% elseif candidature.user.passport %}
-                                <a target="_blank" href="#">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
+                                {% if candidature.user.resume or candidature.user.passport %}
+                                    {% if candidature.user.resume %}
+                                        <a target="_blank" href="{{ vich_uploader_asset(candidature.user, 'resumeFile') }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
+                                    {% endif %}
+                                    {% if candidature.user.passport %}
+                                        <a target="_blank" href="{{ vich_uploader_asset(candidature.user, 'passportFile') }}">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
+                                    {% endif %}
                                 {% else %}
-                                {{ 'N/A' }}
+                                    N/A
                                 {% endif %}
                             </td>
                             <td class="d-flex justify-content-between">

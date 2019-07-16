@@ -53,7 +53,7 @@
                             <td>{{ candidate.lastName ? candidate.lastName : 'N/A' }}</td>
                             <td>{{ candidate.firstName ? candidate.firstName : 'N/A' }}</td>
                             <td>{{ candidate.email ? candidate.email : 'N/A' }}</td>
-                            <td>{{ dump(candidate.candidatures) }}</td>
+                            <td>{{ '' }}</td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A' }}</td>
                             <td>{{ candidate.jobCategory ? candidate.jobCategory|capitalize : 'N/A' }}</td>
                             <td>{{ candidate.availability ? 'admin.misc.yes'|trans : 'admin.misc.no'|trans }}</td>
@@ -69,10 +69,10 @@
                             <td>
                                 {% if candidate.resume or candidate.passport %}
                                     {% if candidate.resume %}
-                                        <a target="_blank" href="{{ asset('assets/uploads/profile/resume/' ~ candidate.resume) }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
+                                        <a target="_blank" href="{{ vich_uploader_asset(candidate, 'resumeFile') }}">{{ 'admin.misc.resume'|trans }} <i data-feather="file-text"></i></a>
                                     {% endif %}
                                     {% if candidate.passport %}
-                                        <a target="_blank" href="#">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
+                                        <a target="_blank" href="{{ vich_uploader_asset(candidate, 'passportFile') }}">{{ 'admin.misc.passport'|trans }} <i data-feather="book"></i></a>
                                     {% endif %}
                                 {% else %}
                                     N/A

@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -28,9 +30,6 @@ class ProfileType extends AbstractType
         }
 
         $builder
-            ->add('email')
-            ->add('password', PasswordType::class)
-            ->add('passwordValidation', PasswordType::class)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     'form.male' => 'male',
@@ -40,15 +39,30 @@ class ProfileType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('phoneNumber')
-            ->add('profilePicture')
             ->add('currentLocation')
             ->add('address')
             ->add('country')
             ->add('nationality')
             ->add('birthDate')
             ->add('birthPlace')
-            ->add('passport')
-            ->add('resume')
+            ->add('profilePictureFile', VichImageType::class, [
+                'required' => false,
+                // 'allow_delete' => false,
+                // 'download_uri' => false,
+                // 'download_label' => false,
+            ])
+            ->add('passportFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'download_label' => false,
+            ])
+            ->add('resumeFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'download_label' => false,
+            ])
             ->add('experience', ChoiceType::class, [
                 'choices' => [
                     'form.06months' => '06months',

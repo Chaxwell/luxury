@@ -26,7 +26,7 @@ class JobOfferType extends AbstractType
         $jobCategoriesByName = [];
 
         foreach($this->jobCategoryRepository->findAll() as $jobCategory) {
-            $jobCategoriesByName[$jobCategory->getName()] = strtolower($jobCategory->getName());
+            $jobCategoriesByName[$jobCategory->getName()] = $jobCategory->getName();
         }
 
         $builder

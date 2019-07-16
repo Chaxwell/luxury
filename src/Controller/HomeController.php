@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\JobOfferRepository;
 
 class HomeController extends AbstractController
 {
@@ -34,9 +35,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/jobs", name="jobs_index")
      */
-    public function jobsIndex()
+    public function jobsIndex(JobOfferRepository $jobOfferRepository)
     {
-        return $this->render('jobs/index.html.twig', []);
+        $jobOffers = $jobOfferRepository->findAll();
+
+        return $this->render('jobs/index.html.twig', [
+            'jobOffers' => $jobOffers,
+        ]);
     }
 
     /**

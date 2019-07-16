@@ -8,7 +8,6 @@
 ## Candidats
 
 **TODO:** Visualiser le profil du candidat.\
-**TODO:** Télécharger les fichiers uploadés du candidat.\
 **TODO:** Visualiser les candidatures en liste ordonnée chronologiquement du candidat.
 
 

@@ -1,6 +1,8 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}{{ 'admin.candidate.addCandidate'|trans }} |
+{% block title %}
+    {{ 'admin.candidate.addCandidate'|trans }}
+    |
     {{ parent() }}
 {% endblock %}
 
@@ -67,9 +69,9 @@
                     <input class="form-control" id="current-location" name="user[currentLocation]" type="text">
                 </div>
                 {# <div class="form-group col-4">
-                    <label for="birth-date">{{ 'form.birthDate'|trans }}</label>
-                    <!-- datetime -->
-                    <input class="form-control" id="birth-date" name="user[birthDate]" type="date">
+                <label for="birth-date">{{ 'form.birthDate'|trans }}</label>
+                <!-- datetime -->
+                <input class="form-control" id="birth-date" name="user[birthDate]" type="date">
                 </div> #}
                 <div class="col-4"></div>
                 <div class="form-group col-4">
@@ -112,21 +114,27 @@
                         <option value="10years">{{ 'form.10years'|trans }}</option>
                     </select>
                 </div>
-                <div class="form-group col-4">
-                    <label for="profile-picture">{{ 'form.profilePicture'|trans }}</label>
-                    <input class="form-control" id="profile-picture" name="user[profilePicture]" type="text">
-                </div>
-                <div class="form-group col-4">
-                    <label for="passport">{{ 'form.passport'|trans }}</label>
-                    <input class="form-control" id="passport" name="user[passport]" type="text">
-                </div>
-                <div class="form-group col-4">
-                    <label for="resume">{{ 'form.resume'|trans }}</label>
-                    <input class="form-control" id="resume" name="user[resumeFile]" type="file">
-                </div>
-                <div class="form-group col-8">
+                <div class="form-group col-12">
                     <label for="note">{{ 'form.note'|trans }}</label>
                     <textarea class="form-control" cols="30" id="note" name="user[note]" rows="1"></textarea>
+                </div>
+                <div class="input-group col-4 mb-3 mt-2">
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="profile-picture">{{ 'form.profilePicture'|trans }}</label>
+                        <input class="custom-file-input" id="profile-picture" name="user[profilePictureFile][file]" type="file">
+                    </div>
+                </div>
+                <div class="input-group col-4 mb-3 mt-2">
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="passport">{{ 'form.passport'|trans }}</label>
+                        <input class="custom-file-input" id="passport" name="user[passportFile][file]" type="file">
+                    </div>
+                </div>
+                <div class="input-group col-4 mb-3 mt-2">
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="resume">{{ 'form.resume'|trans }}</label>
+                        <input class="custom-file-input" id="resume" name="user[resumeFile][file]" type="file">
+                    </div>
                 </div>
                 <div class="form-group col-12">
                     <p class="mb-1">{{ 'form.admin'|trans }}</p>

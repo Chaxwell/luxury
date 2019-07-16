@@ -2,13 +2,13 @@
 
 namespace App\Form;
 
-use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\JobCategoryRepository;
@@ -42,26 +42,21 @@ class UserType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('phoneNumber')
-            ->add('profilePicture')
             ->add('currentLocation')
             ->add('address')
             ->add('country')
             ->add('nationality')
             ->add('birthDate')
             ->add('birthPlace')
-            ->add('passport')
-            ->add('resumeFile', FileType::class, [
-                'mapped' => false,
+            ->add('profilePictureFile', VichImageType::class, [
                 'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '10240k',
-                        'mimeTypes' => [
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Please upload an image.'
-                    ])
-                ],
+                'image_uri' => false,
+            ])
+            ->add('passportFile', VichFileType::class, [
+                'required' => false,
+            ])
+            ->add('resumeFile', VichFileType::class, [
+                'required' => false,
             ])
             ->add('experience', ChoiceType::class, [
                 'choices' => [

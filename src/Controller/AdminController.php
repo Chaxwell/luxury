@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/candidate/new", name="admin_new_candidate", methods={"GET", "POST"})
      */
-    public function newCandidate(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder)
+    public function newCandidate(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder, UploaderHelper $uploaderHelper)
     {
         $candidate = new User();
         $form = $this->createForm(UserType::class, $candidate);

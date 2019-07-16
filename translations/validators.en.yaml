@@ -8,5 +8,7 @@ entity:
         passwordBlank: Please fill in a password.
         passwordCompromised: This password is known from hacked databases, please fill in another password.
         passwordsDifferent: Passwords are different.
+        notAnImage: This file is not an image.
+        maxSizeImage: You can't upload image over {{ limit }} Mo.
     candidature:
         alreadyPairedJobOffer: This candidate has an already existing offer to this job.

@@ -217,6 +217,7 @@ misc:
 navigation:
     aboutUs: About Us
     admin: Administration
+    backHome: Back home
     contact: Contact
     contactUs: Contact us
     getInTouchWithUs: <strong>Get in touch</strong> with us
