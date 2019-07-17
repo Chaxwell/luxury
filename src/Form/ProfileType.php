@@ -47,6 +47,7 @@ class ProfileType extends AbstractType
             ->add('birthPlace')
             ->add('profilePictureFile', VichImageType::class, [
                 'required' => false,
+                'image_uri' => false,
                 // 'allow_delete' => false,
                 // 'download_uri' => false,
                 // 'download_label' => false,
@@ -54,14 +55,14 @@ class ProfileType extends AbstractType
             ->add('passportFile', VichFileType::class, [
                 'required' => false,
                 'allow_delete' => false,
-                'download_uri' => false,
-                'download_label' => false,
+                'download_uri' => true,
+                'download_label' => true,
             ])
             ->add('resumeFile', VichFileType::class, [
                 'required' => false,
                 'allow_delete' => false,
-                'download_uri' => false,
-                'download_label' => false,
+                'download_uri' => true,
+                'download_label' => true,
             ])
             ->add('experience', ChoiceType::class, [
                 'choices' => [

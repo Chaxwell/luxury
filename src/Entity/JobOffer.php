@@ -271,8 +271,8 @@ class JobOffer
 
     public function addCandidature(Candidature $candidature): self
     {
-        if (!$this->candidature->contains($candidature)) {
-            $this->candidature[] = $candidature;
+        if (!$this->candidatures->contains($candidature)) {
+            $this->candidatures[] = $candidature;
             $candidature->setJobOffer($this);
         }
 
@@ -281,8 +281,8 @@ class JobOffer
 
     public function removeCandidature(Candidature $candidature): self
     {
-        if ($this->candidature->contains($candidature)) {
-            $this->candidature->removeElement($candidature);
+        if ($this->candidatures->contains($candidature)) {
+            $this->candidatures->removeElement($candidature);
             // set the owning side to null (unless already changed)
             if ($candidature->getJobOffer() === $this) {
                 $candidature->setJobOffer(null);

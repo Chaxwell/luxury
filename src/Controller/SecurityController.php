@@ -47,7 +47,8 @@ class SecurityController extends AbstractController
      */
     public function profile(Request $request, UserInterface $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        // dd($this->get('security.token_storage')->getToken()->getUser());
+        dd($candidate);
+
 
         $form = $this->createForm(ProfileType::class, $candidate);
         $form->handleRequest($request);
@@ -64,6 +65,7 @@ class SecurityController extends AbstractController
                 'flashMessage' => $this->addFlash('success', 'Profile edited with success.')
             ]);
         }
+
         if ($formAccount->isSubmitted() && $formAccount->isValid()) {
             $hashedPassword = $passwordEncoder->encodePassword($candidate, $request->request->get('change_password')['password']);
             $candidate

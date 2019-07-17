@@ -34,6 +34,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>{{ 'admin.table.jobTitle'|trans }}</th>
+                        <th>Candidats</th>
                         <th>{{ 'admin.table.companyName'|trans }}</th>
                         <th>{{ 'admin.table.contactName'|trans }}</th>
                         <th>{{ 'admin.table.contactEmail'|trans }}</th>
@@ -50,6 +51,20 @@
                     {% for jobOffer in jobOffers %}
                         <tr>
                             <td>{{ jobOffer.title ? jobOffer.title : 'N/A' }}</td>
+                            <td>
+                                {# TODO: Envoyer le lien vers une page admin de visualisation du candidat #}
+                                {% for candidature in jobOffer.candidatures %}
+                                    {% if candidature %}
+                                        <p class="my-0">
+                                            <b>#{{ loop.index }}</b> <a href="#" target="_blank">
+                                            {{ candidature.user.lastName ? candidature.user.lastName|upper ~ ' ' ~ candidature.user.firstName : candidature.user.email }}
+                                            </a>
+                                        </p>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
                             <td>{{ jobOffer.client.companyName ? jobOffer.client.companyName : 'N/A' }}</td>
                             <td>{{ jobOffer.client.contactName ? jobOffer.client.contactName : 'N/A' }}</td>
                             <td>{{ jobOffer.client.contactEmail ? jobOffer.client.contactEmail : 'N/A' }}</td>

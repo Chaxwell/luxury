@@ -2,13 +2,13 @@
 
 ## Global
 
-**TODO:** Ajouter les traductions des flash messages.
+**TODO:** Ajouter les traductions des flash messages.\
+**TODO:** Changer le nom des fichiers uploadés automatiquement.
 
 
 ## Candidats
 
-**TODO:** Visualiser le profil du candidat.\
-**TODO:** Visualiser les candidatures en liste ordonnée chronologiquement du candidat.
+**TODO:** Visualiser le profil du candidat. (lister les infos du candidat et pouvoir ajouter note)
 
 
 ## Clients
@@ -19,14 +19,12 @@
 ## Offres d'emploi
 
 **TODO:** Visualiser l'offre d'emploi.\
-**TODO:** Visualiser les candidatures en liste ordonnée chronologiquement de l'offre.\
 **TODO:** Modifier le statut d'une offre (possible ajout dans le tableau d'un bouton on/off).
 
 
 ## Candidatures
 
 **TODO:** Visualiser la candidature en y incluant toutes les informations du candidat et de l'offre d'emploi.\
-**TODO:** Télécharger les fichiers uploadés du candidat.
 
 
 

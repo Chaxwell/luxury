@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Repository\JobOfferRepository;
+use App\Repository\CandidatureRepository;
 use App\Entity\JobOffer;
 use App\Entity\Candidature;
 
@@ -46,7 +47,7 @@ class HomeController extends AbstractController
      */
     public function jobsIndex(JobOfferRepository $jobOfferRepository)
     {
-        $jobOffers = $jobOfferRepository->findAll();
+        $jobOffers = $jobOfferRepository->findBy(['active' => true]);
 
         return $this->render('jobs/index.html.twig', [
             'jobOffers' => $jobOffers,
@@ -56,9 +57,16 @@ class HomeController extends AbstractController
     /**
      * @Route("/jobs/{id}/show", name="jobs_show", methods={"GET"})
      */
-    public function jobsShow(JobOffer $jobOffer, UserInterface $candidate)
+    public function jobsShow(JobOffer $jobOffer, UserInterface $candidate, CandidatureRepository $candidatureRepository)
     {
-        // TODO: Get candidatures from user to check if he already applied to the current job.
+        $candidature = $candidatureRepository->findOneBy(
+            [
+                'user' => $candidate->getId(),
+                'jobOffer' => $jobOffer->getId()
+            ]
+        );
+
+        $candidature ? $jobOffer->addCandidature($candidature) : '';
 
         return $this->render('jobs/show.html.twig', [
             'jobOffer' => $jobOffer,
@@ -68,8 +76,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/candidature/{id}/new", name="new_candidature", methods={"GET"})
      */
-    public function newCandidature(JobOffer $jobOffer, ObjectManager $objectManager, UserInterface $candidate)
+    public function newCandidature(JobOffer $jobOffer, ObjectManager $objectManager, UserInterface $candidate, CandidatureRepository $candidatureRepository)
     {
+        // TODO: Block new candidature from user whom hasn't got a proper fulfilled profile
+        $candidature = $candidatureRepository->findOneBy(
+            [
+                'user' => $candidate->getId(),
+                'jobOffer' => $jobOffer->getId()
+            ]
+        );
+
+        if ($candidature) {
+            return $this->redirectToRoute('jobs_show', [
+                'id' => $jobOffer->getId(),
+                'flashMessage' => $this->addFlash('warning', 'You already applied to this job.'),
+            ]);
+        }
+
         $candidature = new Candidature();
         $candidature
             ->setUser($candidate)

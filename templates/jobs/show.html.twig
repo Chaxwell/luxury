@@ -7,14 +7,14 @@
         <!-- Page -->
         <div
             class="page">
-
             <!-- Page Header-->
             <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="white-text">{{ jobOffer.title }}</h2>
-                            <span class="white-text">Ref. {{ jobOffer.reference }}</span>
+                            <span class="white-text">Ref.
+                                {{ jobOffer.reference }}</span>
                             <ol class="breadcrumb">
                                 <li>
                                     <div class="portfolio-nav">
@@ -39,9 +39,15 @@
             <section class="single-project-section section-padding light-gray-bg">
                 <div class="container">
                     <div class="project-overview">
+                        {% for message in app.flashes('warning') %}
+                            <div class="alert alert-warning">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
                         <div class="row mb-80">
                             <div class="col-xs-12 col-md-8">
-                                <p class="ref grey-text no-margin">Ref. {{ jobOffer.reference }}</p>
+                                <p class="ref grey-text no-margin">Ref.
+                                    {{ jobOffer.reference }}</p>
                                 <h2>{{ jobOffer.title }}</h2>
                                 <p>{{ jobOffer.description }}</p>
                                 <p>Vivamus id congue massa. Praesent ornare ipsum dolor, ut semper sapien tempus non. Integer eget dui vehicula nisi rutrum interdum et id turpis. Nam eu mollis sem. Aenean in hendrerit neque. Morbi rhoncus lacinia risus ac mattis. Pellentesque a mauris sapien. Nunc sit amet accumsan massa. Nulla gravida porttitor luctus. Aliquam fringilla at quam non euismod. Phasellus eu gravida eros. Cras odio risus, blandit non suscipit sed, volutpat vitae nulla. In ultrices at leo sit amet interdum.</p>
@@ -52,7 +58,8 @@
                                     <li>
                                         <span>
                                             Pulished at
-                                        </span>{{ jobOffer.createdAt|date('d/m/Y') }}</li>
+                                        </span>
+                                        {{ jobOffer.createdAt|date('d/m/Y') }}</li>
                                     <li>
                                         <span>
                                             Position
@@ -60,22 +67,30 @@
                                     <li>
                                         <span>
                                             Contract Type
-                                        </span>{{ jobOffer.type|capitalize }}</li>
+                                        </span>
+                                        {{ jobOffer.type|capitalize }}</li>
                                     <li>
                                         <span>
                                             Salary
-                                        </span>{{ jobOffer.salary }} &euro;</li>
+                                        </span>
+                                        {{ jobOffer.salary }}
+                                        &euro;</li>
                                     <li>
                                         <span>
                                             Location
-                                        </span>{{ jobOffer.location }}</li>
+                                        </span>
+                                        {{ jobOffer.location }}</li>
                                     <li>
                                         <span>
                                             Starting date
-                                        </span>{{ jobOffer.closedAt ? jobOffer.closedAt|date('d/m/Y') : 'N/A' }}</li>
+                                        </span>
+                                        {{ jobOffer.closedAt ? jobOffer.closedAt|date('d/m/Y') : 'N/A' }}</li>
                                 </ul>
-                                <a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('new_candidature', {id: jobOffer.id}) }}">Apply for this job</a>
-                                <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
+                                {% if jobOffer.candidatures is empty %}
+                                    <a class="btn btn-block gradient primary mt-30 waves-effect waves-light" href="{{ path('new_candidature', {id: jobOffer.id}) }}">Apply for this job</a>
+                                {% else %}
+                                    <div class="btn btn-block btn-success mt-30 waves-effect waves-light disabled">You have applied for this job</div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

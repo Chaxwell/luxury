@@ -54,7 +54,15 @@
                             <td>{{ candidate.firstName ? candidate.firstName : 'N/A' }}</td>
                             <td>{{ candidate.email ? candidate.email : 'N/A' }}</td>
                             <td>
-                                {{ '' }}
+                                {% for candidature in candidate.candidatures %}
+                                    {% if candidature %}
+                                        <p class="my-0">
+                                            <b>#{{ loop.index }}</b> <a href="{{ path('jobs_show', {id: candidature.jobOffer.id}) }}" target="_blank">{{ candidature.jobOffer.title }}</a>
+                                        </p>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                {% endfor %}
                             </td>
                             <td>{{ candidate.currentLocation ? candidate.currentLocation : 'N/A' }}</td>
                             <td>{{ candidate.jobCategory ? candidate.jobCategory|capitalize : 'N/A' }}</td>

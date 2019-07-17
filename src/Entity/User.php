@@ -201,11 +201,17 @@ class User implements UserInterface, \Serializable
     private $jobCategory;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isProfileComplete;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="user", cascade="all")
      */
     private $candidatures;
+
 
     public function __construct()
     {
@@ -623,5 +629,17 @@ class User implements UserInterface, \Serializable
             $this->resume,
             $this->passport
         ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getIsProfileComplete(): ?bool
+    {
+        return $this->isProfileComplete;
+    }
+
+    public function setIsProfileComplete(?bool $isProfileComplete): self
+    {
+        $this->isProfileComplete = $isProfileComplete;
+
+        return $this;
     }
 }

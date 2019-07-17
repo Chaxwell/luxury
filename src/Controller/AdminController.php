@@ -47,7 +47,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/candidates", name="admin_candidates", methods={"GET"})
      */
-    public function candidates(UserRepository $userRepository, CandidatureRepository $candidatureRepository)
+    public function candidates(UserRepository $userRepository)
     {
         $candidates = $userRepository
             ->findBy([], ['id' => 'DESC']);

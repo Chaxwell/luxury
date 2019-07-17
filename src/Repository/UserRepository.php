@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use App\Entity\User;
+use App\Entity\JobOffer;
+use App\Entity\Candidature;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,15 +23,26 @@ class UserRepository extends ServiceEntityRepository
         $this->em = $this->getEntityManager();
         $this->connectionManager = $this->getEntityManager()->getConnection();
         $this->userTable = $this->em->getClassMetadata(User::class)->getTableName();
+        $this->candidatureTable = $this->em->getClassMetadata(Candidature::class)->getTableName();
     }
 
-    public function countCandidates()
+    public function countCandidates(): int
     {
         $listOfCandidates = $this->connectionManager
             ->prepare("SELECT COUNT(*) as count FROM {$this->userTable}");
         $listOfCandidates->execute();
 
         return $listOfCandidates->fetch()['count'];
+    }
+
+    // REMOVE:
+    public function listCandidatures(JobOffer $jobOffer, UserInterface $candidate): ?array
+    {
+        $listOfCandidatures = $this->connectionManager
+            ->prepare("SELECT {$this->candidatureTable}.id FROM {$this->candidatureTable} WHERE {$this->candidatureTable}.user_id = ? AND {$this->candidatureTable}.job_offer_id = ?");
+        $listOfCandidatures->execute(array($candidate->getId(), $jobOffer->getId()));
+
+        return $listOfCandidatures->fetchAll();
     }
 
     // /**

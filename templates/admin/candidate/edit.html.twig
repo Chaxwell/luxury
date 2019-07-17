@@ -1,6 +1,8 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}{{ 'admin.candidate.editCandidate'|trans }} |
+{% block title %}
+    {{ 'admin.candidate.editCandidate'|trans }}
+    |
     {{ parent() }}
 {% endblock %}
 
@@ -29,9 +31,7 @@
         {% if not form.vars.valid %}
             <div class="alert alert-danger">
                 <ul>
-                    {# Loop through every form item #}
                     {% for child in form.children %}
-                        {# Display the errors of the form item #}
                         {% for error in child.vars.errors %}
                             <li>{{ error.message }}</li>
                         {% endfor %}
@@ -115,6 +115,7 @@
                     {{ form_label(form.resumeFile, 'form.resume') }}
                     {{ form_widget(form.resumeFile, {attr: {class: 'form-control'}}) }}
                 </div>
+                {# TODO: Changer les boutons Yes/no en un switch on/off et setté manuellement les valeurs reçues de form #}
                 <div class="form-group col-12">
                     <p class="mb-1">{{ 'form.admin'|trans }}</p>
                     <div class="form-check form-check-inline">
