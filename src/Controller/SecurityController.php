@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\UserRepository;
 use App\Form\RegistrationType;
 use App\Form\ProfileType;
 use App\Form\ChangePasswordType;
@@ -45,10 +46,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/profile", name="auth_profile", methods={"GET", "POST"}))
      */
-    public function profile(Request $request, UserInterface $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function profile(Request $request, UserInterface $candidate, ObjectManager $objectManager, UserPasswordEncoderInterface $passwordEncoder, UserRepository $userRepository): Response
     {
-        dd($candidate);
-
+        $isProfileComplete = $userRepository->isProfileComplete($candidate);
 
         $form = $this->createForm(ProfileType::class, $candidate);
         $form->handleRequest($request);
@@ -83,6 +83,7 @@ class SecurityController extends AbstractController
         return $this->render('security/profile.html.twig', [
             'form' => $form->createView(),
             'formAccount' => $formAccount->createView(),
+            'isProfileComplete' => $isProfileComplete,
         ]);
     }
 

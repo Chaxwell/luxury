@@ -8,15 +8,18 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
         profile_picture:
             uri_prefix: '%app.path.profile_picture%'
             upload_destination: '%kernel.project_dir%/public%app.path.profile_picture%'
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
         profile_passport:
             uri_prefix: '%app.path.profile_passport%'
             upload_destination: '%kernel.project_dir%/public%app.path.profile_passport%'
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+            namer: Vich\UploaderBundle\Naming\OrignameNamer

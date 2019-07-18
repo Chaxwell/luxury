@@ -38,7 +38,7 @@ class ProfileType extends AbstractType
             ])
             ->add('firstName')
             ->add('lastName')
-            ->add('phoneNumber')
+            // ->add('phoneNumber')
             ->add('currentLocation')
             ->add('address')
             ->add('country')
@@ -75,14 +75,14 @@ class ProfileType extends AbstractType
                 ]
             ])
             ->add('description')
-            ->add('availability', ChoiceType::class, [
-                'choices' => [
-                    'misc.yes' => true,
-                    'misc.no' => false,
-                ],
-                'expanded' => true,
-                'multiple' => false,
-            ])
+            // ->add('availability', ChoiceType::class, [
+            //     'choices' => [
+            //         'misc.yes' => true,
+            //         'misc.no' => false,
+            //     ],
+            //     'expanded' => true,
+            //     'multiple' => false,
+            // ])
             ->add('jobCategory', ChoiceType::class, [
                 'choices'  => $jobCategoriesByName
             ]);

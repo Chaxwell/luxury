@@ -27,28 +27,30 @@
             </section>
 
 
-            {# <!-- Page Content--> #}
-            {# <section class="gray-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="score-container">
-                        <h4>
-                            <img height="80px" src="https://i.imgur.com/s9bPVaK.gif" width="201px">
-                            &nbsp;&nbsp;
-                            {{ 'profile.profileComplete'|trans }}
-                        </h4>
-                        <div class="c100 p100 small complete ">
-                            <span>100%</span>
-                            <div class="slice">
-                                <div class="bar"></div>
-                                <div class="fill"></div>
+            <!-- Page Content-->
+            {% if isProfileComplete %}
+                <section class="gray-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="score-container">
+                                <h4>
+                                    <img height="80px" src="https://i.imgur.com/s9bPVaK.gif" width="201px">
+                                    &nbsp;&nbsp;
+                                    {{ 'misc.profileComplete'|trans }}
+                                </h4>
+                                <div class="c100 p100 small complete ">
+                                    <span>100%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </section> #}
+                </section>
+            {% endif %}
 
 
             <form action="{{ path('auth_profile') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -131,7 +133,7 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="col-xs-12 col-sm-6"> <!-- L'input Birthdate -->
+                                        class="col-xs-12 col-sm-6"><!-- L'input Birthdate -->
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="input-field">

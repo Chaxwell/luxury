@@ -35,14 +35,46 @@ class UserRepository extends ServiceEntityRepository
         return $listOfCandidates->fetch()['count'];
     }
 
-    // REMOVE:
-    public function listCandidatures(JobOffer $jobOffer, UserInterface $candidate): ?array
+    public function isProfileComplete(UserInterface $candidate): bool
     {
-        $listOfCandidatures = $this->connectionManager
-            ->prepare("SELECT {$this->candidatureTable}.id FROM {$this->candidatureTable} WHERE {$this->candidatureTable}.user_id = ? AND {$this->candidatureTable}.job_offer_id = ?");
-        $listOfCandidatures->execute(array($candidate->getId(), $jobOffer->getId()));
+        $isProfileComplete = $this->connectionManager
+            ->prepare("SELECT is_profile_complete FROM {$this->userTable} WHERE id = ?");
+        $isProfileComplete->execute(array($candidate->getId()));
 
-        return $listOfCandidatures->fetchAll();
+        if ($isProfileComplete->fetch()['is_profile_complete'] === null) {
+            return $this->checkProfile($candidate);
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Returns true if it found the profile to be complete, else returns false.
+     */
+    public function checkProfile(UserInterface $candidate): bool
+    {
+        $userInfos = $this->connectionManager
+            ->prepare("SELECT gender, first_name, last_name, profile_picture, current_location, address, country, nationality, birth_place, passport, resume, experience, description, job_category FROM {$this->userTable} WHERE id = ?");
+        $userInfos->execute(array($candidate->getId()));
+        $userInfosFetched = $userInfos->fetch();
+
+        $error = 0;
+
+        foreach (array_values($userInfosFetched) as $userInfo) {
+            if ($userInfo === null) {
+                $error += 1;
+            }
+        }
+
+        if ($error === 0) {
+            $makeProfileComplete = $this->connectionManager
+                ->prepare("UPDATE {$this->userTable} SET is_profile_complete = 1 WHERE {$this->userTable}.id = ?");
+            $makeProfileComplete->execute(array($candidate->getId()));
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // /**

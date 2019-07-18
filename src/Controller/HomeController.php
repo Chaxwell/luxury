@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\UserRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\CandidatureRepository;
 use App\Entity\JobOffer;
@@ -66,19 +67,17 @@ class HomeController extends AbstractController
             ]
         );
 
-        $candidature ? $jobOffer->addCandidature($candidature) : '';
-
         return $this->render('jobs/show.html.twig', [
             'jobOffer' => $jobOffer,
+            'candidature' => $candidature,
         ]);
     }
 
     /**
      * @Route("/candidature/{id}/new", name="new_candidature", methods={"GET"})
      */
-    public function newCandidature(JobOffer $jobOffer, ObjectManager $objectManager, UserInterface $candidate, CandidatureRepository $candidatureRepository)
+    public function newCandidature(JobOffer $jobOffer, ObjectManager $objectManager, UserInterface $candidate, CandidatureRepository $candidatureRepository, UserRepository $userRepository)
     {
-        // TODO: Block new candidature from user whom hasn't got a proper fulfilled profile
         $candidature = $candidatureRepository->findOneBy(
             [
                 'user' => $candidate->getId(),
@@ -86,10 +85,18 @@ class HomeController extends AbstractController
             ]
         );
 
+        // If the candidate already applied to a job we redirect him with a warning message.
         if ($candidature) {
             return $this->redirectToRoute('jobs_show', [
                 'id' => $jobOffer->getId(),
                 'flashMessage' => $this->addFlash('warning', 'You already applied to this job.'),
+            ]);
+        }
+
+        if (!$userRepository->isProfileComplete($candidate)) {
+            return $this->redirectToRoute('jobs_show', [
+                'id' => $jobOffer->getId(),
+                'flashMessage' => $this->addFlash('warning', 'You can\'t apply to a job until your profile is complete.')
             ]);
         }
 
@@ -105,7 +112,7 @@ class HomeController extends AbstractController
 
         return $this->redirectToRoute('jobs_show', [
             'id' => $jobOffer->getId(),
-            'flashMessage' => $this->addFlash('succes', "You've applied to this job!"),
+            'flashMessage' => $this->addFlash('success', "You've applied to this job!"),
         ]);
     }
 }

@@ -136,7 +136,6 @@ form:
     phoneNumber: Phone number
     phoneNumberFormat: "Format: 0102030405"
     photo: Photo
-    profileComplete: Hooray ! Your profile is complete.
     profilePicture: Profile picture
     profilePro: Your professional profile
     readTermsOfUse: "I have read and I accept the <a href=\"%url%\" target=\"_blank\">Terms of Use</a>"
@@ -192,6 +191,7 @@ misc:
     personalInfoAndProfessionalInfo: Personnal & Professionnal informations
     preciseAndPersonalized: "Precise and personalized, we make sure they don’t skip a step: verifying tickets, diplomas and consulting references."
     profile: Profile
+    profileComplete: Hooray ! Your profile is complete.
     recruitment: Recruitment
     recruitmentAndServices: Recruitment & services
     register: Register
