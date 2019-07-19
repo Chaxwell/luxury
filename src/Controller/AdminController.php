@@ -111,6 +111,7 @@ class AdminController extends AbstractController
      */
     public function editCandidate(Request $request, User $candidate, ObjectManager $objectManager)
     {
+        $candidate->setPasswordValidation($candidate->getPassword());
         $form = $this->createForm(UserType::class, $candidate);
         $form->handleRequest($request);
 

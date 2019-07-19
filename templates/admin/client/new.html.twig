@@ -20,11 +20,17 @@
             </div>
         </div>
 
-        {% if form_errors(form) %}
-            <div class="alert alert-danger">
-                {{ form_errors(form) }}
-            </div>
-        {% endif %}
+        {% if not form.vars.valid %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for child in form.children %}
+                            {% for error in child.vars.errors %}
+                                <li>{{ error.message }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
         <form action="{{ path('admin_new_client') }}" autocomplete="off" class="mb-5" method="POST">
             <div class="form-row">

@@ -1,124 +1,239 @@
 admin:
-    luxuryServices: Luxury Services
-    logout: Déconnexion
-    dashboard: Tableau de bord
-    candidates: Candidats
-    clients: Clients
-    jobOffers: Offres d'emploi
-    candidatures: Candidatures
-    password: Mot de passe
-    email: Email
-    gender: Genre
-    male: Homme
-    female: Femme
-    currentLocation: Localisation
-    firstName: Prénom
-    lastName: Nom
-    address: Adresse
-    country: Pays
-    nationality: Nationnalité
-    birthDate: Date de naissance
-    birthPlace: Lieu de naissance
-    photo: Photo
-    profilePro: Votre profil profesionnel
-    passport: Passeport
-    resume: CV
-    interestJobSector: Intéressé par le secteur
-    experience: Expérience
-    holderDescription: "Courte description pour votre profil, ainsi que pour des informations plus personnelles (ex: vos passions/intérêts). Vous pouvez aussi mettre le lien que vous souhaitez."
-    city: Ville
-    jobSector: Secteur d'emploi
-    availability: Disponibilité
-    registerDate: Date d'inscription
-    actions: Actions
-    newCandidate: Ajouter un nouveau candidat
-    phoneNumber: Numéro de téléphone
-    description: Description
-    addCandidate: Ajouter un candidat
-    commercial: Commercial
-    retailSales: Vente au détail
-    creative: Créatif
-    technology: Technologie
-    marketing: Marketing & RP
-    fashion: Mode & luxe
-    management: Management & RH
+    misc:
+        confirmDelete: Êtes-vous sûr de vouloir supprimer le/la %what% ?
+        logout: Déconnexion
+        luxuryServices: Luxury Services
+        no: Non
+        passport: Passeport
+        resume: CV
+        yes: Oui
+    table:
+        actions: Actions
+        active: Actif
+        available: Disponible
+        candidateEmail: Email du candidat
+        candidateName: Nom du candidat
+        city: Ville
+        closureDate: Date butoire
+        companyName: Nom de société
+        contactEmail: Email du contact
+        contactName: Nom du contact
+        contactPhoneNumber: Numéro du contact
+        createdAt: Créé le
+        email: Email
+        files: Fichiers
+        firstName: Prénom
+        jobSector: Domaine d'emploi
+        jobTitle: Titre d'emploi
+        lastName: Nom
+        note: Note
+        registerDate: Enregistré le
+    dashboard:
+        candidates: Candidats
+        candidatures: Candidatures
+        clients: Clients
+        dashboard: Tableau de bord
+        jobOffers: Offres d'emploi
+    candidate:
+        addCandidate: Ajouter un candidat
+        candidate: Candidat
+        candidates: Candidats
+        editCandidate: Modifier un candidat
+        newCandidate: Ajouter un nouveau candidat
+    candidature:
+        addCandidature: Ajouter une candidature
+        candidature: Candidature
+        candidatures: Candidatures
+        editCandidature: Modifier une candidature
+        newCandidature: Ajouter une nouvelle candidature
+    client:
+        addClient: Ajouter un client
+        client: Client
+        clients: Clients
+        editClient: Modifier un client
+        newClient: Ajouter un nouveau client
+    navigation:
+        addCandidate: Ajouter un candidat
+        addCandidature: Ajouter une candidature
+        addClient: Ajouter un client
+        addJobOffer: Ajouter une offre d'emploi
+        candidates: Candidats
+        candidatures: Candidatures
+        clients: Clients
+        dashboard: Tableau de bord
+        jobOffers: Offres d'emploi
+    jobOffer:
+        addJobOffer: Ajouter une offre d'emploi
+        editJobOffer: Modifier une offre d'emploi
+        jobOffer: Offre d'emploi
+        jobOffers: Offres d'emploi
+        newJobOffer: Ajouter une offre d'emploi
+
+form:
     06months: 0-6 mois
-    612months: 6-12 mois
+    10years: 10+ années
     12years: 1-2 années
     2years: 2+ années
     5years: 5+ années
-    10years: 10+ années
-    profilePicture: Image de profil
-    note: Note
+    612months: 6-12 mois
+    active: Actif
+    address: Adresse
     admin: Admin
-    yes: Oui
-    no: Non
-    submit: Envoyer
-    phoneNumberFormat: "Format: 0102030405"
-
-authentification:
-    termsOfUse_start:  J'ai lu et j'accepte les
-    termsOfUse_end: Conditions Générales d'Utilisation
-    passwordValidation: Confirmez le mot de passe
-    password: Mot de passe
-    email: Email
-    keepLogged: Gardez-moi connecté
-    forgotPassword: Mot de passe oublié ?
-    loginToAccount: Se connecter à son compte
-    login: Connexion
-    newToLuxuryServices_start: Nouveau sur Luxury Services ?
-    newToLuxuryServices_end: Nous rejoindre, c'est permettre à notre expertise en recrutement et à notre accompagnement personnel de faire ressortir le meilleur de vous en vous proposant la position la plus adaptée.
-    createNewAccount: Créer un nouveau compte
+    alreadyHaveAccount: Déjà un compte ? Cliquez ici
+    available: Disponible
+    backHome: Retour à l'accueil
+    birthDate: Date de naissance
+    birthPlace: Ville de naissance
+    cancel: Annuler
+    candidate: Candidat
+    client: Client
+    commercial: Commercial
+    companyName: Nom de société
+    companyType: Type de société
+    contactEmail: Email du contact
+    contactJob: Travail du contact
+    contactName: Nom du contact
+    contactPhoneNumber: Numéro du contact
+    country: Pays
     createAccount: Créer un compte
-    alreadyHaveAccount: Vous êtes déjà inscrit ? Cliquez ici
-    register: Inscription
-    welcome: Bienvenue à bord
-    home: Accueil
+    createNewAccount: Créer un nouveau compte
+    creative: Créatif
+    currentLocation: Localisation actuelle
+    deleteAccount: Supprimer mon compte
+    description: Description
+    email: Email
+    experience: Expérience
+    fashionAndLuxury: Mode & luxe
+    female: Femme
+    firstName: Prénom
+    forgotPassword: Oublié votre mot de passe ?
+    freelance: Freelance
+    fulltime: Plein temps
+    gender: Genre
+    holderDescription: "Courte description pour votre profil, ainsi que des informations plus personnelles (ex: vos hobbies/passions). Vous pouvez aussi coller tous les liens que vous voulez."
+    interestJobSector: Intérêt dans le métier
+    jobOffer: Offre d'emploi
+    jobSector: Domaine de travail
+    jobTitle: Titre d'emploi
+    jobType: Type d'emploi
+    keepLogged: Me garder connecté
+    lastName: Nom
+    location: Localisation
+    login: Connexion
+    loginToAccount: Connectez-vous à votre compte
+    luxuryAccount: Votre compte Luxury Services
+    male: Homme
+    managementAndHR: Management & RH
+    marketingAndPR: Marketing & RP
+    message: Message
+    nationality: Nationnalité
+    note: Note
+    partTime: Temps partiel
+    passport: Passeport
+    password: Mot de passe
+    passwordValidation: Confirmez mot de passe
+    personalInfo: Vos informations personnelles
+    phoneNumber: Numéro de téléphone
+    phoneNumberFormat: "Format: 0102030405"
+    photo: Photo
+    profilePicture: Photo de profil
+    profilePro: Votre profil professionnel
+    readTermsOfUse: "J'ai lu et j'accepte les <a href=\"%url%\" target=\"_blank\">Conditions Générales d'Utilisation</a>"
+    reference: Reférence
+    register: Enregistrer
+    resume: CV
+    retailSales: Vente au détail
+    salary: Salaire
+    seasonal: Saisonnier
+    sendMessage: Envoyer le message
+    submit: Envoyer
+    technology: Technologie
+    temporary: Temporaire
+
+misc:
+    aboutUs: À propos
+    all: Tout
+    bringingJobSeekersAndEmployersTogether: Nous rapprochons les employeurs et les personnes en recherche d'emploi ensemble depuis plus de 40 ans
+    checkedAndSorted: Vérifiées et triées, nos offres d'emploi sont mises à jour régulièrement afin de vous offrir les meilleurs opportunités de l'industrie.
+    commercial: Commercial
+    contact: Contact
+    creative: Créatif
+    discoverOurSkills: Découvrez nos compétences & spécialités
+    dropUsALine: Contactez nous
+    eachOneOfYourSkillPreciousToUs: Chacune de vos compétences est une ressource précieuse à nos yeux, chacun de vos traits de personnalités est considéré comme une plus-value. Nous rejoindre c'est permettre à notre expertise en recrutement et accompagnement personnel de dévoiler le meilleur de vous-même en vous permettant de vous diriger vers la meilleure des situations.
+    experienced: Expérimenté
+    fashionAndLuxury: Mode & luxe
+    feelFreeToContactUs: N'hésitez pas à nous contacter
+    footerCopyright: © 2019 All right reserved - by
+    footerIntro: Luxury Services est le cabinet leader dans le monde du recrutement pour des positions de permanents, contractuels et temporaires, pour le compte des plus prestigieux employeurs.
+    forAnyQuestionsOrDemands: pour toute question ou demande
+    getInTouchWithLuxuryServicesToLeaveWithTheRightCrew: "\"Rentrez en contact avec Luxury Services afin de lever l'ancre avec le bon équipage et une tranquillité d'esprit sachant que peu importe la situation, nous serons la pour vous aider.\""
+    hasEstablishedLeadingPresenceInManyKeyMarkets: Le groupe a établi une forte présence dans de nombreux points clés du marché des professionnels du recrutement, et ce, partout dans le monde. Il s'est également positionné sur différents points clés d'autres marchés offrant ainsi une opportunité d'un dévelloppement futur.
+    hotlineHours: 9 - 22h with 24/7 speaker
+    jobOffers: Offres d'emploi
+    justLikeOurCandidatesWeOfferQualityPositions: Tout comme nos candidats, nous offrons des positions fiables, sérieuses et de qualités. Venez les découvrir et nous vous mettrons en contact avec l'équipe parfaite pour monter un équipage parfait.
+    justLikeOurCandidatesWeOfferSeriousJobOffers: tout comme nos candidats, nous proposons des offres d'emplois fiables, sérieuses et de qualités.
+    leadingProfessionalRecruitmentConsultancy: Luxury Services est le cabinet leader dans le monde du recrutement pour des positions de permanents, contractuels et temporaires, pour le compte des plus prestigieux employeurs.
+    login: Connexion
+    luxuryServices: Luxury Services
+    luxuryServicesBasedInRoanne: Luxury Services est basé à Roanne, dans le département de la Loire
+    luxuryServicesLeadingProfessionalInThePlacementOfCandidates: Luxury Services est le cabinet leader dans le monde du recrutement pour des positions de permanents, contractuels et temporaires, pour le compte des plus prestigieux employeurs.
+    managementAndHR: Management & RH
+    marketingAndPR: Marketing & RP
+    myFavoriteThingsInLife: "\"Mes choses préférées dans la vie ne coûtent rien. Il est parfaitement clair que la chose qui nous est la plus précieuse est le temps.\""
+    newToLuxuryServices_end: Nous rejoindre c'est permettre à notre expertise en recrutement et accompagnement personnel de dévoiler le meilleur de vous-même en vous permettant de vous diriger vers la meilleure des situations.
+    newToLuxuryServices_start: Nouveau sur Luxury Services ?
+    no: Non
+    ourJobOffers: Nos offres d'emploi
+    ourPhilosophy: Notre philosophie
+    ourRoleWorkWithEmployersAndJobSeekers: Notre rôle est de travailler avec les employeurs et les personnes en recherche d'emploi afin d'établir une correspondance fructueuse. Cela va d'une phrase trop compliquée à traduire et pas très jolie en anglais surtout à une heure du matin.
+    personalInfo: Informations personnelles
+    personalInfoAndProfessionalInfo: Informations Personnelles & Professionnelles
+    preciseAndPersonalized: "Précis et personnalisé, nous nous assurons qu'ils ne sautent pas une étape: vérification des tickets, diplômes et consultation des références."
+    profile: Profil
+    profileComplete: Houra ! Votre profil est complet !
+    recruitment: Recrutement
+    recruitmentAndServices: Recrutement & services
+    register: S'enregistrer
+    retailSales: Vente au détail
+    searchAndFilterByJobCategory: Rechercher et filtrer par catégorie
+    signUpAndApply: S'enregistrer et postuler à des emplois maintenant
+    technology: Technologie
+    theRoleOfARecruitementConsultancy: Le rôle d'un cabinet de recrutement est d'agir en tant qu'intermédiaire, d'identifier et de trouver des candidats qualifiés pour les clients. Les candidats sont recrutés, soit en tant que permanent, ou des positions de contrats déterminés ou encore sur un contrat temporaire. Parmi la totalité de l'industrie du recrutement, le marché du recrutement professionnel est un secteur de spécialiste qui s'est développé récemment.
+    verifiedJobs: Emplois vérifiés
+    weHaveSolutionForYou: Nous avons la solution pour vous
+    weHaveThePerfectJobForYou: Nous avons le parfait emploi pour vous
+    weKnowTheImportanceOfEfficiency: Nous connaissons l'importance de l'efficacité et de la disponibilité. Ces qualités sont par conséquent nos mots d'ordre.
+    weProvideCustomizedServices: Nous fournissons des services personnalisés sur demande
+    welcomeOnBoard: Bienvenue à bord
+    whetherEmployerOrCandidate: Que vous soyez un employeur ou un candidat à la recherche d'un emploi
+    whetherYourNeedsAreUrgent: Que vos besoins, désirs, ou souhaits soient urgent ou non, nous nous en chargerons avec le même soin.
+    whoWeAre: Qui nous sommes
+    yes: Oui
+    youAre: Vous êtes
+    youKnowThatAttractingAndRetainingTopTalentIsVital: Vous savez qu'attirer et conserver les super talents est vital pour le succès de votre entreprise. C'est sur ce résultat final que vous êtes concentré - embauche une belle équipe - et non pas sur la façon d'y arriver. C'est là où nous rentrons en jeu...
+    yourProfile: Votre profil
 
 navigation:
-    home: Accueil
-    jobOffers: Offres d'Emploi
     aboutUs: À propos
-    contact: Contact
-    profile: Profil
-    logout: Déconnexion
-    login: Connexion
-    signUp: Inscription
-    yourProfile: Votre profil
-    persoAndProInfo: Informations personnelles & professionnelles
     admin: Administration
-
-footer:
-    intro: Luxury Services est un cabinet leader dans le recrutement de professionnels se spécialisant dans le recrutement de personnels permanent, sous contrats ou temporaires pour le compte des plus grandes employeurs du monde.
+    backHome: Retour à l'accueil
+    contact: Contact
+    contactUs: Contactez nous
+    getInTouchWithUs: <strong>Restez en contact</strong> avec nous
     home: Accueil
     jobOffers: Offres d'emploi
-    aboutUs: À propos
-    contact: Contact
+    joinUs: Rejoignez nous
+    login: Connexion
+    logout: Déconnexion
+    moreAboutUs: En savoir plus
+    next: Suivant
+    persoAndProInfo: Informations personnelles & professionnelles
+    previous: Précédent
+    profile: Profil
+    signUp: S'enregister
+    signUpFree: S'enregistrer <strong>Gratuitement</strong>
     termsOfUse: Conditions Générales d'Utilisation
-    copyright: © 2019 Tout droit réservé - par
-
-profile:
-    profileComplete: Houra ! Votre profil est complet.
-    personalInfo: Vos informations personnelles
-    gender: Genre
-    currentLocation: Position actuelle
-    firstName: Prénom
-    lastName: Nom
-    address: Adresse
-    country: Pays
-    nationality: Nationnalité
-    birthDate: Date de naissance
-    birthPlace: Lieu de naissance
-    photo: Photo
-    profilePro: Votre profil professionnel
-    passport: Passeport
-    resume: CV
-    interestJobSector: Intéressé par le secteur
-    experience: Expérience
-    holderDescription: "Courte description pour votre profil, ainsi que pour des informations plus personnelles (ex: vos passions/intérêts). Vous pouvez aussi mettre le lien que vous souhaitez."
-    luxuryAccount: Votre compte Luxury Services
-    email: Email
-    password: Changez votre mot de passe ici
-    passwordValidation: Confirmez votre nouveau mot de passe
-    deleteAccount: Supprimer mon compte
-    backHome: Retour à l'accueil
+    viewAllJobOffers: Voir toutes les offres d'emploi
+    viewJobs: Voir les emplois
+    yourProfile: Votre profil

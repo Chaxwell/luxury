@@ -95,7 +95,9 @@ class UserType extends AbstractType
                 $form = $event->getForm();
 
                 if(!$user || $user->getId() === null) {
-                    $form->add('password', PasswordType::class);
+                    $form
+                        ->add('password', PasswordType::class)
+                        ->add('passwordValidation', PasswordType::class);
                 }
             });
     }

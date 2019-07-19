@@ -22,12 +22,6 @@
             </div>
         </div>
 
-        {% if form_errors(form) %}
-            <div class="alert alert-danger">
-                {{ form_errors(form) }}
-            </div>
-        {% endif %}
-
         {% if not form.vars.valid %}
             <div class="alert alert-danger">
                 <ul>

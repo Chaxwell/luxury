@@ -1,6 +1,8 @@
 {% extends "admin.html.twig" %}
 
-{% block title %}{{ 'admin.jobOffer.newJobOffer'|trans }} |
+{% block title %}
+    {{ 'admin.jobOffer.newJobOffer'|trans }}
+    |
     {{ parent() }}
 {% endblock %}
 
@@ -20,10 +22,16 @@
             </div>
         </div>
 
-        {% if form_errors(form) %}
-        <div class="alert alert-danger py-3 px-3 my-3">
-            {{ form_errors(form) }}
-        </div>
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for child in form.children %}
+                        {% for error in child.vars.errors %}
+                            <li>{{ error.message }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
 
         <form action="{{ path('admin_new_joboffer') }}" autocomplete="off" class="mb-5" method="POST">
@@ -47,7 +55,7 @@
                 </div>
                 <div class="form-group col-3">
                     <label for="salary">{{ 'form.salary'|trans }}</label>
-                    <input class="form-control" id="salary" name="job_offer[salary]" type="number" min="0" step="50">
+                    <input class="form-control" id="salary" min="0" name="job_offer[salary]" step="50" type="number">
                 </div>
                 <div class="col-4"></div>
                 <div class="form-group col-4">

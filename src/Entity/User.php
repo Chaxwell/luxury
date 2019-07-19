@@ -45,25 +45,23 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank(
      *      message = "entity.user.passwordBlank"
      * )
-     * //@Assert\NotCompromisedPassword(
-     * //     message = "entity.user.passwordCompromised",
-     * //     skipOnError = true
-     * //)
+     * @Assert\NotCompromisedPassword(
+     *      message = "entity.user.passwordCompromised",
+     *      skipOnError = true
+     * )
      * @Assert\Length(
      *      min = 6,
      *      max = 96,
      *      minMessage = "entity.user.passwordMinLength",
      *      maxMessage = "entity.user.passwordMaxLength"
      * )
-     */
-    private $password;
-
-    /**
      * @Assert\EqualTo(
-     *      propertyPath = "password",
+     *      propertyPath = "passwordValidation",
      *      message = "entity.user.passwordsDifferent"
      * )
      */
+    private $password;
+
     private $passwordValidation;
 
     /**

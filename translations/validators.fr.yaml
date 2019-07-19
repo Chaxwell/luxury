@@ -8,3 +8,7 @@ entity:
         passwordBlank: Veuillez renseigner un mot de passe.
         passwordCompromised: Ce mot de passe est connu des bases de données piratées, veuillez renseigner un autre mot de passe.
         passwordsDifferent: Les mots de passe ne sont pas identiques.
+        notAnImage: Ce fichier n'est pas une image.
+        maxSizeImage: Votre fichier ne doit pas dépasser {{ limit }} Mo.
+    candidature:
+        alreadyPairedJobOffer: Ce candidat est déjà lié à cette offre d'emploi.
